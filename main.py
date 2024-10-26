@@ -1,5 +1,6 @@
 import os
 import pathlib
+from venv import create
 
 
 def create_paths(path_list):
@@ -60,4 +61,29 @@ folders_and_files = [
     "lib/utils/helpers.dart",
 ]
 
-create_paths(folders_and_files)
+# create_paths(folders_and_files)
+
+
+def create_branches(branches):
+    for branch in branches:
+        try:
+            os.system(f"git checkout {branch}")
+            os.system(f"git rm main.py")
+            os.system(f"git push origin {branch}")
+            print("branch pushed to git")
+
+        except OSError as e:
+            print(f"Error creating '{branch}': {e}")
+
+
+branches = branches = [
+    "feature/login-signup",
+    "feature/dashboard",
+    "feature/service-management",
+    "feature/booking-management",
+    "feature/customer-management",
+    "feature/reports-analytics",
+    "feature/notifications",
+]
+
+create_branches(branches)
