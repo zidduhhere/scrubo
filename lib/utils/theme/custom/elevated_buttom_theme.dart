@@ -5,29 +5,42 @@ import 'package:scrubo/utils/constants/uiconstants.dart';
 class TElevatedButtonTheme {
   // Private constructor to prevent instantiation
   TElevatedButtonTheme._();
-  static final ButtonStyle lightElevatedButtonTheme = ElevatedButton.styleFrom(
-    backgroundColor: TColors.lightPrimaryColor, // Background color
-    foregroundColor: TColors.lightOnPrimary, // Text color
+  static final ElevatedButtonThemeData lightElevatedButtonTheme =
+      ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+    foregroundColor: TColors.lightOnPrimary,
+    backgroundColor: TColors.lightPrimaryColor,
+
+    fixedSize: const Size(
+      240,
+      TUiConstants.buttonHeight,
+    ),
     disabledForegroundColor: TColors.lightOnSecondaryContainer,
     disabledBackgroundColor: TColors.lightSecondaryContainer,
     shadowColor: TColors.lightShadow, // Shadow color
-    elevation: 5, // Elevation
+    elevation: 1, // Elevation
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(
           TUiConstants.borderRadiusMedium), // Rounded corners
     ),
-  );
+  ));
 
-  static final ButtonStyle darkElevatedButtonTheme = ElevatedButton.styleFrom(
+  static final ElevatedButtonThemeData darkElevatedButtonTheme =
+      ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
     backgroundColor: TColors.darkPrimary, // Background color
     foregroundColor: TColors.darkOnPrimary, // Text color
     shadowColor: TColors.darkShadow, // Shadow color
     disabledForegroundColor: TColors.darkOnSecondaryContainer,
     disabledBackgroundColor: TColors.darkSecondaryContainer,
-    elevation: 5, // Elevation
+    elevation: 3, // Elevation
+    fixedSize: const Size(
+      TUiConstants.buttonWidth,
+      TUiConstants.buttonHeight,
+    ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(
           TUiConstants.borderRadiusMedium), // Rounded corners
     ),
-  );
+  ));
 }

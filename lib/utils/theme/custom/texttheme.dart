@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
 class TTextTheme {
@@ -7,62 +8,77 @@ class TTextTheme {
   static TextTheme lightTextTheme = TextTheme(
     headlineLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.headlineLarge,
-      color: Colors.black,
+      color: TColors.lightOnSurface,
       fontWeight: FontWeight.bold,
     ),
     headlineMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.headlineMedium,
-      color: Colors.black,
+      color: TColors.lightOnSurface,
       fontWeight: FontWeight.w600,
     ),
     headlineSmall: const TextStyle().copyWith(
       fontSize: TUiConstants.headlineSmall,
-      color: Colors.black,
-      fontWeight: FontWeight.w500,
+      color: TColors.lightOnSurface,
+      fontWeight: FontWeight.w600,
     ),
     titleLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeExtraLarge,
-      color: Colors.black,
-      fontWeight: FontWeight.w500,
+      color: TColors.lightOnSurface,
+      fontWeight: FontWeight.w600,
     ),
     titleMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeLarge,
-      color: Colors.black,
-      fontWeight: FontWeight.w400,
+      color: TColors.lightOnSurface,
+      fontWeight: FontWeight.w600,
     ),
     titleSmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMediumLarge,
-      color: Colors.black,
-      fontWeight: FontWeight.w500,
+      color: TColors.lightOnSurface,
+      fontWeight: FontWeight.w300,
     ),
     labelLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMedium,
-      color: Colors.black,
+      color: TColors.lightOnSurface,
       fontWeight: FontWeight.w300,
     ),
     labelMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeSmall,
-      color: Colors.black,
-      fontWeight: FontWeight.w300,
+      color: TColors.lightPrimaryColor,
+      fontWeight: FontWeight.w500,
+      letterSpacing: .5,
     ),
     labelSmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeVerySmall,
-      color: Colors.black,
-      fontWeight: FontWeight.w300,
+      color: TColors.lightPrimaryColor,
+      letterSpacing: .5,
+      fontWeight: FontWeight.w500,
     ),
     bodyLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMedium,
-      color: Colors.black,
-      fontWeight: FontWeight.w300,
+      color: TColors.lightOnSurface,
     ),
     bodyMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeSmall,
-      color: Colors.black,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w500,
+      color: TColors.lightSecondary,
     ),
     bodySmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeVerySmall,
-      color: Colors.black,
+      color: TColors.lightOnSurface,
+      fontWeight: FontWeight.w300,
+    ),
+    displayLarge: const TextStyle().copyWith(
+      fontSize: TUiConstants.fontSizeExtraLarge,
+      color: TColors.lightOnSurface,
+      fontWeight: FontWeight.w300,
+    ),
+    displayMedium: const TextStyle().copyWith(
+      fontSize: TUiConstants.fontSizeLarge,
+      color: TColors.lightOnSurface,
+    ),
+    displaySmall: const TextStyle().copyWith(
+      fontSize: TUiConstants.fontSizeMedium,
+      color: TColors.lightOnSurface,
       fontWeight: FontWeight.w300,
     ),
   );
@@ -71,62 +87,76 @@ class TTextTheme {
   static TextTheme darkTextTheme = TextTheme(
     headlineLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.headlineLarge,
-      color: Colors.white,
+      color: TColors.darkOnSurface,
       fontWeight: FontWeight.bold,
     ),
     headlineMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.headlineMedium,
-      color: Colors.white,
+      color: TColors.darkOnSurface,
       fontWeight: FontWeight.w600,
     ),
     headlineSmall: const TextStyle().copyWith(
       fontSize: TUiConstants.headlineSmall,
-      color: Colors.white,
-      fontWeight: FontWeight.w500,
+      color: TColors.darkOnSurface,
+      fontWeight: FontWeight.w600,
     ),
     titleLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeExtraLarge,
-      color: Colors.white,
-      fontWeight: FontWeight.w500,
+      color: TColors.darkOnSurface,
+      fontWeight: FontWeight.w600,
     ),
     titleMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeLarge,
-      color: Colors.white,
-      fontWeight: FontWeight.w300,
+      color: TColors.darkOnSurface,
+      fontWeight: FontWeight.w600,
     ),
     titleSmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMediumLarge,
-      color: Colors.white,
+      color: TColors.darkOnSurface,
       fontWeight: FontWeight.w300,
     ),
     labelLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMedium,
-      color: Colors.white,
+      color: TColors.darkOnSurface,
       fontWeight: FontWeight.w300,
     ),
     labelMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeSmall,
-      color: Colors.white,
-      fontWeight: FontWeight.w300,
+      color: TColors.darkPrimary,
+      fontWeight: FontWeight.w500,
+      letterSpacing: .5,
     ),
     labelSmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeVerySmall,
-      color: Colors.white,
-      fontWeight: FontWeight.w300,
+      color: TColors.darkPrimary,
+      letterSpacing: .5,
+      fontWeight: FontWeight.w500,
     ),
     bodyLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMedium,
-      color: Colors.white,
-      fontWeight: FontWeight.w300,
+      color: TColors.darkOnSurface,
     ),
     bodyMedium: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeSmall,
-      color: Colors.white,
-      fontWeight: FontWeight.w300,
+      color: TColors.darkOnSurface,
     ),
     bodySmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeVerySmall,
-      color: Colors.white,
+      color: TColors.darkOnSurface,
+      fontWeight: FontWeight.w300,
+    ),
+    displayLarge: const TextStyle().copyWith(
+      fontSize: TUiConstants.fontSizeExtraLarge,
+      color: TColors.darkOnSurface,
+      fontWeight: FontWeight.w300,
+    ),
+    displayMedium: const TextStyle().copyWith(
+      fontSize: TUiConstants.fontSizeLarge,
+      color: TColors.darkOnSurface,
+    ),
+    displaySmall: const TextStyle().copyWith(
+      fontSize: TUiConstants.fontSizeMedium,
+      color: TColors.darkOnSurface,
       fontWeight: FontWeight.w300,
     ),
   );

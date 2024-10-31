@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class THelperFunctions {
   static bool isDarkMode(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark;
+  }
+
+  static void changeThemeMode(bool isDarkMode) {
+    Get.changeThemeMode(isDarkMode ? ThemeMode.dark : ThemeMode.light);
   }
 
   static double getDeviceHeight(BuildContext context) {

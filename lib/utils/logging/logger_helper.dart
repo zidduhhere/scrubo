@@ -8,7 +8,7 @@ class TLogger {
       lineLength: 50,
       colors: true,
       printEmojis: true,
-      printTime: true,
+      // printTime: true,
     ),
   );
   static void logInfo(String message) {

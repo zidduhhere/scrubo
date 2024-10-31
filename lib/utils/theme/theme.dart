@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:scrubo/utils/constants/colors.dart';
+import 'package:scrubo/utils/theme/custom/elevated_buttom_theme.dart';
+import 'package:scrubo/utils/theme/custom/iconbutton_theme.dart';
+import 'package:scrubo/utils/theme/custom/outlined_button_theme.dart';
+import 'package:scrubo/utils/theme/custom/text_field_theme.dart';
 import 'package:scrubo/utils/theme/custom/texttheme.dart';
 
 class TAppTheme {
@@ -7,10 +12,36 @@ class TAppTheme {
   static ThemeData lightTheme = ThemeData(
       primarySwatch: Colors.blue,
       useMaterial3: true,
-      fontFamily: 'Roboto',
+
+      ///Button Themes
+      ///
+      ///
+      ///
+      ///
+      ///
+      elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme,
+      iconButtonTheme: TIconButtonTheme.lightIconButtonTheme,
+      outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
+
+      ///
+      ///
+      ///
+      ///
+      ///
+      ///
+      fontFamily: 'Poppins',
+      iconTheme: const IconThemeData(color: TColors.lightOutline),
+      inputDecorationTheme: TTextFieldTheme.lightTextFieldTheme,
       brightness: Brightness.light,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: TTextTheme.lightTextTheme,
+
+      ///
+      ///
+      ///
+      ///
+      ///
+      ///
       colorScheme: const ColorScheme(
         brightness: Brightness.light,
         primary: Color(0xFF0061A3),
@@ -60,12 +91,23 @@ class TAppTheme {
         surfaceContainerHighest: Color(0xFFE4E5E9),
       ));
   static ThemeData darkTheme = ThemeData(
+      brightness: Brightness.dark,
       primarySwatch: Colors.blue,
       useMaterial3: true,
-      fontFamily: 'Roboto',
-      brightness: Brightness.light,
+      fontFamily: 'Poppins',
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: TTextTheme.darkTextTheme,
+      iconTheme: const IconThemeData(color: TColors.darkOutline),
+
+      ///Button Themes
+      elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
+      iconButtonTheme: TIconButtonTheme.darkIconButtonTheme,
+      inputDecorationTheme: TTextFieldTheme.darkTextFieldTheme,
+      outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
+
+      ///
+      ///
+      ///
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
         primary: Color(0xFF9ECAFF),
