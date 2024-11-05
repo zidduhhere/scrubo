@@ -12,17 +12,22 @@ class RememberForgetRow extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginController controller = Get.put(LoginController());
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Obx(
-          () => Checkbox(
-            value: controller.rememberMe.value,
-            onChanged: (value) {
-              controller.rememberMe.value = value!;
-            },
+          () => SizedBox(
+            width: 32,
+            height: 32,
+            child: Checkbox(
+              value: controller.rememberMe.value,
+              onChanged: (value) {
+                controller.rememberMe.value = value!;
+              },
+            ),
           ),
         ),
         Text(TTextConstants.rememberMe,
-            style: Theme.of(context).textTheme.labelMedium!),
+            style: Theme.of(context).textTheme.labelSmall),
       ],
     );
   }

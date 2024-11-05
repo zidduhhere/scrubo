@@ -39,7 +39,7 @@ dependencies:
   flutter_native_splash:
   google_fonts:
   iconsax: ^0.0.8
-
+  badges:
   #Web Communication
 
   http:

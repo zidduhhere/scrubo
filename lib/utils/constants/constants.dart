@@ -26,8 +26,42 @@ class TTextConstants {
   static const String dontHaveAccount = "Don't have an account?";
   static const String loginDescription =
       "This is the app description that is displayed here";
+  static const String signInwith = "Or sign in with";
 
   //Snackbar Texts
   static const String loginSuccessful = "Login Successful";
   static const String loginFailed = "Login Failed";
+  static const String passwordOrEmailIncorrect =
+      "Password or Email is incorrect";
+
+//SignUpScreen Texts
+
+  static const String signUpTitle = "Sign Up";
+  static const String firstName = "First Name";
+  static const String firstNameHint = "John";
+  static const String lastNameHint = "Doe";
+  static const String lastName = "Last Name";
+  static const String phoneNumber = "Phone Number";
+  static const String confirmPassword = "Confirm Password";
+  static const String enterPassword = "Enter Password";
+  static const String username = "Username";
+  static const String usernameHint = "JohnDoe";
+  static const String phoneNumberHint = "Enter your phone number";
+  static const String iAgree = "I agree to the";
+  static const String termsAndConditions = "Terms and Conditions";
+  static const String privacyPolicy = "Privacy Policy";
+  static const String and = "and";
+  static const String verifyEmail = "Verify your email account !";
+  static const String continueButton = "Continue";
+  static const String resendCode = "Resend Email";
+  static const String verifyEmailDescription =
+      "Congratulations ! You have successfully created your account. Please verify your email address to continue.";
+  static const String accountCreatedSuccessfully =
+      "Your account succesfully created !";
+  static const String welcomeDescription =
+      "Welcome to Scrubo, the best automible service in town. We are here to make your life easier. Just schedule a pickup and we will take care of the rest.";
+
+  //Home Screen
+
+  static const String home = "Home";
 }

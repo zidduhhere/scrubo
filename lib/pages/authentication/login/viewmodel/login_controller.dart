@@ -7,7 +7,9 @@ import 'package:scrubo/utils/helpers/helper_functions.dart';
 class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final obscureState = true.obs;
+  static const String email = 'email';
+  static const String password = 'password';
+  RxBool obscureState = true.obs;
   final rememberMe = false.obs;
   RxBool isDarkMode = Get.isDarkMode.obs;
   FormFieldValidator<String> get validator => (value) {
@@ -33,20 +35,24 @@ class LoginController extends GetxController {
   }
 
   bool loginValidation() {
-    //TODO: Implement login validation logic
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-      return false;
+    if (emailController.text == email && passwordController.text == password) {
+      print("validation complete");
+      return true;
     }
-    return true;
+
+    return false;
   }
 
   bool login() {
-    //TODO: Implement login logic
     if (loginValidation()) {
-      Get.offNamed('/home');
+      print("Logged in");
+      Get.offAllNamed('/home');
       return true;
-    } else {
-      return false;
     }
+    return false;
+  }
+
+  void signUp() {
+    Get.toNamed('/signup');
   }
 }

@@ -43,6 +43,7 @@ class TUiConstants {
   static const double borderRadiusSmall = 4.0;
   static const double borderRadiusMedium = 8.0;
   static const double borderRadiusLarge = 16.0;
+  static const double borderRadiusCircleAvatar = 15.0;
 
 // Elevation
   static const double elevationLow = 2.0;
@@ -55,17 +56,20 @@ class TUiConstants {
   static const double xl = 32.0;
   static const double xxl = 40.0;
 
-  static const double textFieldBorder = 2;
+  static const double textFieldBorder = 1;
 
   static const double appBarheight = 56.0;
   static const double bottomNavigationBarHeight = 56.0;
   static const double defaultSpacing = 16.0;
+  static const double spaceBtwSections = 32.0;
+  static const double spaceBtwInputFields = 20.0;
 
   // Button Size
   static const double buttonWidth = 340.0;
   static const double buttonHeight = 50.0;
   static const double buttonPaddingHorizontal = 24.0;
   static const double buttonPaddingVertical = 16.0;
+  static const double buttonWidthFactor = 0.78;
 }
 
 class TSpacingStyles {

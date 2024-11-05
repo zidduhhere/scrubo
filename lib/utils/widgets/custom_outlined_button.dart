@@ -3,17 +3,19 @@ import 'package:get/get.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-  const CustomOutlinedButton({super.key, required this.text, this.iconData});
+  const CustomOutlinedButton(
+      {super.key, required this.text, this.iconData, required this.onTap});
 
   final String text;
+  final VoidCallback onTap;
   final IconData? iconData;
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: OutlinedButton.styleFrom(
           fixedSize: Size(
-            Get.size.width * .8,
+            Get.size.width * TUiConstants.buttonWidthFactor,
             TUiConstants.buttonHeight,
           ),
         ),

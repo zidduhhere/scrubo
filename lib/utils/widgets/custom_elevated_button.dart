@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:scrubo/utils/constants/colors.dart';
-import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/helpers/helper_functions.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({super.key, required this.onTap, this.iconData});
+  const CustomElevatedButton(
+      {super.key, required this.onTap, this.iconData, required this.text});
 
   final dynamic onTap;
   final IconData? iconData;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         // backgroundColor: TColors.lightPrimaryColor,
-        fixedSize: Size(THelperFunctions.getDeviceWidth(context) * .8,
+        fixedSize: Size(
+            THelperFunctions.getDeviceWidth(context) *
+                TUiConstants.buttonWidthFactor,
             TUiConstants.buttonHeight),
       ),
-      onPressed: () {},
+      onPressed: onTap,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            TTextConstants.login,
+            text,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: TColors.lightOnPrimary,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
           ),
           const SizedBox(width: TUiConstants.s),
@@ -33,7 +35,7 @@ class CustomElevatedButton extends StatelessWidget {
               ? const SizedBox()
               : Icon(
                   iconData,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   size: TUiConstants.iconSizeMedium,
                 )
         ],

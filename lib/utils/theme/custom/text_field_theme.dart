@@ -8,12 +8,12 @@ class TTextFieldTheme {
     prefixIconColor: TColors.lightOutline,
     iconColor: TColors.lightOutline,
     contentPadding: const EdgeInsets.all(TUiConstants.m),
-    hintStyle: TTextTheme.lightTextTheme.labelMedium!
-        .copyWith(fontWeight: FontWeight.w500),
-    floatingLabelStyle: TTextTheme.lightTextTheme.labelLarge!
-        .copyWith(fontWeight: FontWeight.w500),
-    labelStyle: TTextTheme.lightTextTheme.labelLarge!
-        .copyWith(fontWeight: FontWeight.w500),
+    hintStyle: TTextTheme.lightTextTheme.labelSmall!
+        .copyWith(fontWeight: FontWeight.w500, color: TColors.lightOnSurface),
+    floatingLabelStyle: TTextTheme.lightTextTheme.labelMedium!
+        .copyWith(fontWeight: FontWeight.w500, color: TColors.lightOnSurface),
+    labelStyle: TTextTheme.lightTextTheme.labelSmall!
+        .copyWith(fontWeight: FontWeight.w500, color: TColors.lightOnSurface),
     border: OutlineInputBorder(
       borderSide: const BorderSide(
         width: TUiConstants.textFieldBorder,
@@ -65,12 +65,12 @@ class TTextFieldTheme {
     prefixIconColor: TColors.darkOutline,
     iconColor: TColors.darkOutline,
     contentPadding: const EdgeInsets.all(TUiConstants.m),
-    hintStyle: TTextTheme.darkTextTheme.labelMedium!
-        .copyWith(fontWeight: FontWeight.w500),
-    floatingLabelStyle: TTextTheme.darkTextTheme.labelLarge!
-        .copyWith(fontWeight: FontWeight.w500),
-    labelStyle: TTextTheme.darkTextTheme.labelLarge!
-        .copyWith(fontWeight: FontWeight.w500),
+    hintStyle: TTextTheme.lightTextTheme.labelSmall!
+        .copyWith(fontWeight: FontWeight.w500, color: TColors.darkOnSurface),
+    floatingLabelStyle: TTextTheme.lightTextTheme.labelMedium!
+        .copyWith(fontWeight: FontWeight.w500, color: TColors.darkOnSurface),
+    labelStyle: TTextTheme.lightTextTheme.labelSmall!
+        .copyWith(fontWeight: FontWeight.w500, color: TColors.darkOnSurface),
     border: OutlineInputBorder(
       borderSide: const BorderSide(
         color: TColors.darkOutline,

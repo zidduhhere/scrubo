@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scrubo/utils/constants/colors.dart';
+import 'package:scrubo/utils/theme/custom/appbar_theme.dart';
 import 'package:scrubo/utils/theme/custom/elevated_buttom_theme.dart';
 import 'package:scrubo/utils/theme/custom/iconbutton_theme.dart';
 import 'package:scrubo/utils/theme/custom/outlined_button_theme.dart';
@@ -35,6 +36,7 @@ class TAppTheme {
       brightness: Brightness.light,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: TTextTheme.lightTextTheme,
+      appBarTheme: TAppBarTheme.lightAppbarTheme,
 
       ///
       ///
@@ -98,6 +100,7 @@ class TAppTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: TTextTheme.darkTextTheme,
       iconTheme: const IconThemeData(color: TColors.darkOutline),
+      appBarTheme: TAppBarTheme.darkAppbarTheme,
 
       ///Button Themes
       elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
