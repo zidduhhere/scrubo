@@ -64,4 +64,11 @@ class TTextConstants {
   //Home Screen
 
   static const String home = "Home";
+  static const String address = "Address";
+  static const String sampleAddress = "123, Sample Address, Sample City";
+  static const String bookNow = "Book Now";
+  static const String allCategories = "All Categories";
+  static const String seeAll = "See All";
+  static const String name = "John Doe";
+  static const String welcome = "Good Dat for your car";
 }

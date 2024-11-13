@@ -40,6 +40,7 @@ dependencies:
   google_fonts:
   iconsax: ^0.0.8
   badges:
+  carousel_slider:
   #Web Communication
 
   http:

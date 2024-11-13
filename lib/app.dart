@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:scrubo/navigation_bar.dart';
 import 'package:scrubo/pages/authentication/login/view/login_view.dart';
 import 'package:scrubo/pages/authentication/onboarding/view/onboarding_view.dart';
 import 'package:scrubo/pages/authentication/signup/view/signup_view.dart';
@@ -19,11 +21,12 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/signup', page: () => const SignupView()),
         GetPage(name: '/login', page: () => const LoginView()),
         GetPage(name: '/home', page: () => const HomeView()),
+        GetPage(name: '/navigation', page: () => const NavigationMenu()),
         GetPage(name: '/signup/verify', page: () => const VerifyView()),
         GetPage(
             name: '/signup/verify/verified', page: () => const VerifiedView())
       ],
-      initialRoute: '/',
+      initialRoute: '/navigation',
       debugShowCheckedModeBanner: false,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,

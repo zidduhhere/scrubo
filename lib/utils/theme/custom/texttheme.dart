@@ -70,10 +70,11 @@ class TTextTheme {
     displayLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeExtraLarge,
       color: TColors.lightOnSurface,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w500,
     ),
     displayMedium: const TextStyle().copyWith(
-      fontSize: TUiConstants.fontSizeLarge,
+      fontSize: TUiConstants.fontSizeMedium,
+      fontWeight: FontWeight.w500,
       color: TColors.lightOnSurface,
     ),
     displaySmall: const TextStyle().copyWith(
@@ -148,11 +149,12 @@ class TTextTheme {
     displayLarge: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeExtraLarge,
       color: TColors.darkOnSurface,
-      fontWeight: FontWeight.w300,
+      fontWeight: FontWeight.w500,
     ),
     displayMedium: const TextStyle().copyWith(
-      fontSize: TUiConstants.fontSizeLarge,
+      fontSize: TUiConstants.fontSizeMedium,
       color: TColors.darkOnSurface,
+      fontWeight: FontWeight.w500,
     ),
     displaySmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMedium,
