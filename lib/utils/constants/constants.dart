@@ -70,5 +70,10 @@ class TTextConstants {
   static const String allCategories = "All Categories";
   static const String seeAll = "See All";
   static const String name = "John Doe";
-  static const String welcome = "Good Dat for your car";
+  static const String welcome = "Good Day for your car";
+  static const String off = "OFF";
+  static const String shopAddress = "AutoGTG Car Services, Private LTD";
+  static const String recommended = "Recommended for you";
+  static const String carWashDecs = "Car Wash Instant";
+  static const String discount = "25%";
 }

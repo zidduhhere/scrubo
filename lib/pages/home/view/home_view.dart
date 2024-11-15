@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/home/view/home_view_controller.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:scrubo/pages/home/view/widgets/address_selection_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/categories_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/home_carousel.dart';
+import 'package:scrubo/pages/home/view/widgets/product_grid.dart';
+import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/constants.dart';
-import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/helpers/helper_functions.dart';
+import 'package:scrubo/utils/device/device_utility.dart';
+import 'package:scrubo/utils/widgets/custom_app_bar.dart';
+import 'package:scrubo/utils/widgets/custom_row_header.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,158 +19,68 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeViewController homeviewController = Get.put(HomeViewController());
-    return Scaffold(
-      //BODY
-      body: Padding(
-        padding:
-            const EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0),
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Good day for you car",
-                      style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                    ),
-                    Text(
-                      "Ubaid Altaf",
-                      style:
-                          Theme.of(context).textTheme.headlineSmall!.copyWith(
-                                color: Theme.of(context).colorScheme.onSurface,
-                              ),
-                      textAlign: TextAlign.start,
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: () => TDeviceUtility.hideKeyboard(context),
+      child: Scaffold(
+        //BODY
+        body: Padding(
+          padding:
+              const EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0),
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                Obx(
+                  () => TCustomAppBar(
+                    badgeIcon: Iconsax.shopping_bag,
+                    title: TTextConstants.name,
+                    titlemsg: TTextConstants.welcome,
+                    badge: true,
+                    badgeVal: homeviewController.badgeNumber.value,
+                    badgeOnPresed: () {
+                      homeviewController.badgeNumber.value++;
+                      // Get.toNamed('/navigation');
+                    },
+                    profileIcon: true,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                  ),
                 ),
-                centerTitle: false,
-                backgroundColor: Colors.transparent,
-                scrolledUnderElevation: 0,
-                toolbarHeight: 80,
-                actions: [
-                  badges.Badge(
-                    badgeStyle: badges.BadgeStyle(
-                        borderRadius: BorderRadius.circular(
-                            TUiConstants.borderRadiusSmall),
-                        shape: badges.BadgeShape.circle,
-                        badgeColor:
-                            Theme.of(context).colorScheme.errorContainer),
-                    position: badges.BadgePosition.topEnd(top: 0, end: 3),
-                    badgeContent: Obx(() => Text(
-                          homeviewController.badgeNumber.value.toString(),
-                          style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onErrorContainer,
-                                  ),
-                        )),
-                    child: IconButton(
-                      onPressed: () {
-                        homeviewController.badgeNumber.value++;
-                      },
-                      icon: const Icon(Iconsax.notification),
+              ];
+            },
+            body: const SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AddressSelectionHeader(),
+                  SizedBox(height: TUiConstants.defaultSpacing),
+                  TSeachBox(),
+                  SizedBox(height: TUiConstants.defaultSpacing),
+                  //Offers Section
+                  CustomHomeCarousel(),
+                  SizedBox(height: TUiConstants.spaceBtwSections),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: TUiConstants.s,
+                    ),
+                    child: CustomRowHeader(
+                        leadingText: TTextConstants.allCategories,
+                        trailingText: TTextConstants.seeAll),
+                  ),
+                  SizedBox(height: TUiConstants.defaultSpacing),
+                  CategoriesList(),
+                  SizedBox(height: TUiConstants.defaultSpacing),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: TUiConstants.s,
+                    ),
+                    child: CustomRowHeader(
+                      leadingText: TTextConstants.recommended,
                     ),
                   ),
-                  const SizedBox(width: TUiConstants.s / 2),
-                  CircleAvatar(
-                    radius: TUiConstants.borderRadiusCircleAvatar,
-                    backgroundColor: Theme.of(context).colorScheme.primaryFixed,
-                    child: const Icon(Iconsax.user),
-                  ),
-                  const SizedBox(width: TUiConstants.s),
+                  // ProductGrid()
+                  SizedBox(height: TUiConstants.defaultSpacing * 2),
+                  ProductViewGrid()
                 ],
               ),
-            ];
-          },
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                const AddressSelectionHeader(),
-                const SizedBox(height: TUiConstants.spaceBtwSections),
-                //Offers Section
-                const CustomHomeCarousel(),
-                const SizedBox(height: TUiConstants.spaceBtwSections),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: TUiConstants.s,
-                  ),
-                  //ALL CATEGORIES
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        TTextConstants.allCategories.toUpperCase(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium!
-                            .copyWith(
-                              fontSize: TUiConstants.fontSizeMedium,
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
-                      ),
-                      Text(
-                        TTextConstants.seeAll,
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium!
-                            .copyWith(
-                              fontSize: TUiConstants.fontSizeMedium,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: TUiConstants.defaultSpacing),
-                const CategoriesList(),
-                const SizedBox(height: TUiConstants.spaceBtwSections),
-                SizedBox(
-                  height: THelperFunctions.getDeviceHeight(context) * .8,
-                  child: GridView.builder(
-                      itemCount: homeviewController.serviceDetails.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                TUiConstants.borderRadiusMedium),
-                          ),
-                          elevation: 0,
-                          margin: const EdgeInsets.all(TUiConstants.s),
-                          child: ListTile(
-                            contentPadding:
-                                const EdgeInsets.all(TUiConstants.s),
-                            title: Text(
-                              homeviewController
-                                  .serviceDetails[index]!['title'],
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            subtitle: Text(
-                              homeviewController
-                                  .serviceDetails[index]!['subtitle'],
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                            leading: const CircleAvatar(
-                              backgroundImage: AssetImage(TImages.logo),
-                              radius: 30,
-                            ),
-                            trailing: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                        );
-                      }),
-                )
-              ],
             ),
           ),
         ),
@@ -177,49 +89,47 @@ class HomeView extends StatelessWidget {
   }
 }
 
-// class BottomNavbar extends StatelessWidget {
-//   const BottomNavbar({
-//     super.key,
-//   });
+class TSeachBox extends StatelessWidget {
+  const TSeachBox({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     AppController appController = Get.find<AppController>();
-//     HomeViewController homeviewController = Get.find<HomeViewController>();
-
-//     return Obx(
-//       () => BottomNavigationBar(
-//         useLegacyColorScheme: true,
-//         selectedFontSize: TUiConstants.fontSizeVerySmall,
-//         // selectedLabelStyle: TextStyle(
-//         //   color: Theme.of(context).colorScheme.onSurface,
-//         // ),
-//         // unselectedLabelStyle: TextStyle(
-//         //   color: Theme.of(context).colorScheme.outline,
-//         // ),
-//         unselectedFontSize: TUiConstants.fontSizeSmall,
-//         elevation: 0,
-//         currentIndex: appController.currentPage.value,
-//         onTap: (value) {
-//           appController.changePage();
-//           appController.currentPage.value = value;
-//         },
-//         selectedIconTheme:
-//             IconThemeData(color: Theme.of(context).colorScheme.onSurface),
-//         unselectedIconTheme:
-//             IconThemeData(color: Theme.of(context).colorScheme.outline),
-//         backgroundColor: Colors.black,
-//         selectedItemColor: Colors.black,
-//         items: List.generate(
-//           homeviewController.bottomNavBarItems.length,
-//           (int index) => BottomNavigationBarItem(
-//             label: homeviewController.bottomNavBarItems[index]!["label"],
-//             icon: Icon(
-//               homeviewController.bottomNavBarItems[index]!["iconData"],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    HomeViewController homeViewController = Get.find<HomeViewController>();
+    homeViewController.changeHint();
+    return Obx(
+      () => TextField(
+        autocorrect: true,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: TColors.lightSecondary.withOpacity(0.2),
+          hintText: homeViewController.hintText.value,
+          border: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(TUiConstants.borderRadiusMedium),
+            borderSide: BorderSide.none, // Makes border transparent
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(TUiConstants.borderRadiusMedium),
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(TUiConstants.borderRadiusMedium),
+            borderSide: BorderSide.none,
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(TUiConstants.borderRadiusMedium),
+            borderSide: BorderSide.none,
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(TUiConstants.borderRadiusMedium),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
+  }
+}

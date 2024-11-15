@@ -64,12 +64,12 @@ class NavigationMenuController extends GetxController {
       "label": "Home",
     },
     1: {
-      "iconData": Iconsax.search_normal,
+      "iconData": Iconsax.ticket,
       "label": "Search",
     },
     2: {
-      "iconData": Iconsax.shopping_bag,
-      "label": "Cart",
+      "iconData": Iconsax.flash,
+      "label": "Instant",
     },
     3: {
       "iconData": Iconsax.user,

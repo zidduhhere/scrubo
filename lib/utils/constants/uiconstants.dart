@@ -60,7 +60,7 @@ class TUiConstants {
 
   static const double textFieldBorder = 1;
 
-  static const double appBarheight = 56.0;
+  static const double appBarheight = 70.0;
   static const double bottomNavigationBarHeight = 70.0;
   static const double defaultSpacing = 16.0;
   static const double spaceBtwSections = 32.0;
@@ -75,6 +75,12 @@ class TUiConstants {
 
   static const double carouselImageHeight = 200.0;
   static const double carouselImageWidth = 300.0;
+
+  static const double indicatorWidth = 20.0;
+  static const double indicatorHeight = 4.0;
+
+  static const double productCardImageHeight = 120;
+  static const double searchBarHeight = 54.0;
 }
 
 class TSpacingStyles {
@@ -85,5 +91,23 @@ class TSpacingStyles {
     bottom: TUiConstants.appBarheight,
     left: TUiConstants.marginLarge,
     right: TUiConstants.marginLarge,
+  );
+}
+
+class TShadowStyles {
+  TShadowStyles._();
+
+  static BoxShadow verticalShadow = BoxShadow(
+    color: Colors.grey.withOpacity(0.3),
+    offset: const Offset(0, 2),
+    blurRadius: 4,
+    spreadRadius: 7,
+  );
+
+  static BoxShadow horizontalShadow = BoxShadow(
+    color: Colors.grey.withOpacity(0.3),
+    offset: const Offset(2, 0),
+    blurRadius: 4,
+    spreadRadius: 7,
   );
 }

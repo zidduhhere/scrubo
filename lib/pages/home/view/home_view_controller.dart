@@ -1,53 +1,78 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:scrubo/utils/constants/image_strings.dart';
 
 class HomeViewController extends GetxController {
   RxInt badgeNumber = 3.obs;
-  Rx<CarouselSliderController> carouselController =
-      CarouselSliderController().obs;
+  RxInt carouselIndex = 0.obs;
+  String firstPrice = "₹ 250";
+  String secondPrice = "₹200";
+  RxInt countOfItem = 1.obs;
+  RxString hintText = "Search Services".obs;
+
+  void changeHint() {
+    while (true) {
+      const Duration(seconds: 2);
+      hintText.value = "Search Workshops";
+
+      const Duration(seconds: 2);
+    }
+  }
+
+  bool incrementCount() {
+    if (countOfItem.value < 10) {
+      countOfItem.value++;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void changeCarouselIndex(int index) {
+    carouselIndex.value = index;
+  }
 
   Map<int, Map<String, dynamic>> categories = {
     0: {
       "title": "Wash",
       "iconData": Iconsax.car,
-      "backgroundColor": const Color(0xFFAEC6CF)
+      "backgroundColor": const Color(0xFF99CCE6), // Lightest
     },
     1: {
-      "title": "Service",
-      "iconData": Iconsax.card1,
-      "backgroundColor": const Color(0xFF77DD77)
+      "title": "Oil Change",
+      "iconData": Iconsax.drop3,
+      "backgroundColor": const Color(0xFF66B2D9), // Very light
     },
     2: {
       "title": "Repair",
       "iconData": Icons.car_repair_outlined,
-      "backgroundColor": const Color(0xFFFDFD96)
+      "backgroundColor": const Color(0xFF3399CC), // Light
     },
     3: {
-      "title": "Detailing",
+      "title": "Engine",
       "iconData": Iconsax.designtools,
-      "backgroundColor": const Color(0xFFFFB7B2)
+      "backgroundColor": const Color(0xFF0061A3), // Primary
     },
     4: {
       "title": "Inspection",
       "iconData": Iconsax.search_normal,
-      "backgroundColor": const Color(0xFFB39DDB)
+      "backgroundColor": const Color(0xFF004D82), // Medium dark
     },
     5: {
-      "title": "Tire Change",
-      "iconData": Iconsax.calculator1,
-      "backgroundColor": const Color(0xFF90CAF9)
+      "title": "Brake Check",
+      "iconData": Iconsax.stop_circle1,
+      "backgroundColor": const Color(0xFF003A61), // Dark
     },
     6: {
-      "title": "Oil Change",
+      "title": "Transmission Check",
       "iconData": Iconsax.omega_circle,
-      "backgroundColor": const Color(0xFFFFCC80)
+      "backgroundColor": const Color(0xFF002E4D), // Darker
     },
     7: {
       "title": "Battery Check",
-      "iconData": Iconsax.add1,
-      "backgroundColor": const Color(0xFFA5D6A7)
+      "iconData": Iconsax.battery_charging,
+      "backgroundColor": const Color(0xFF00223A), // Darkest
     },
   };
 
@@ -56,19 +81,19 @@ class HomeViewController extends GetxController {
       "title": "Full Car Wash",
       "description": "Description 1",
       "offer": "20%",
-      "image": "assets/images/water-rinse.png",
+      "image": TImages.waterRinse,
     },
     1: {
       "title": "Full Car Service",
       "description": "Description 2",
       "offer": "10%",
-      "image": "assets/images/car-service.png",
+      "image": TImages.carService,
     },
     2: {
       "title": "Full Car Wash",
       "description": "Description 3",
       "offer": "30%",
-      "image": "assets/images/water-rinse.png",
+      "image": TImages.waterRinse,
     },
   };
 

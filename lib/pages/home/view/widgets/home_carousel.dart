@@ -5,19 +5,23 @@ import 'package:scrubo/pages/home/view/home_view_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/helpers/helper_functions.dart';
+import 'package:scrubo/utils/widgets/custom_rounded_containers.dart';
 
 class CustomHomeCarousel extends StatelessWidget {
   const CustomHomeCarousel({
     super.key,
   });
 
-  static HomeViewController homeviewController = Get.find<HomeViewController>();
   @override
   Widget build(BuildContext context) {
+    HomeViewController homeviewController = Get.find<HomeViewController>();
     return Column(
       children: [
         CarouselSlider.builder(
           options: CarouselOptions(
+            onPageChanged: (index, _) {
+              homeviewController.changeCarouselIndex(index);
+            },
             aspectRatio: 16 / 9,
             viewportFraction: 1,
             autoPlay: false,
@@ -30,7 +34,7 @@ class CustomHomeCarousel extends StatelessWidget {
               children: [
                 Container(
                   height: 200,
-                  width: THelperFunctions.getDeviceWidth(context) * .9,
+                  width: THelperFunctions.getDeviceWidth(context) * 1,
                   margin: const EdgeInsets.all(TUiConstants.s),
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
@@ -118,7 +122,7 @@ class CustomHomeCarousel extends StatelessWidget {
                         top: 35,
                         left: 120,
                         child: Text(
-                          "OFF",
+                          TTextConstants.off,
                           style: Theme.of(context)
                               .textTheme
                               .displayMedium!
@@ -137,9 +141,24 @@ class CustomHomeCarousel extends StatelessWidget {
             );
           },
         ),
-        Row(children: [
-          for (int i = 0; i < homeviewController.items.length; i++) Container(),
-        ]),
+        const SizedBox(height: TUiConstants.defaultSpacing),
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < homeviewController.items.length; i++)
+                TRoundedContainer(
+                  backgroundColor: i == homeviewController.carouselIndex.value
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey,
+                  radius: 20,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 2.0,
+                  ),
+                ),
+            ],
+          ),
+        ),
       ],
     );
   }
