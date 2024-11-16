@@ -52,20 +52,22 @@ class ProductViewCard extends StatelessWidget {
                   padding: EdgeInsets.all(TUiConstants.s),
                 ),
                 Positioned(
-                  top: 0,
-                  left: 0,
+                  top: 10,
+                  left: 5,
                   height: 20,
                   width: 40,
                   child: TRoundedContainer(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     height: 20,
                     diffRadius: true,
-                    borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(TUiConstants.s),
-                        bottomLeft: Radius.circular(TUiConstants.s / 2),
-                        bottomRight: Radius.circular(TUiConstants.s),
-                        topLeft:
-                            Radius.circular(TUiConstants.borderRadiusLarge)),
+                    borderRadius:
+                        BorderRadius.circular(TUiConstants.borderRadiusSmall),
+                    // borderRadius: const BorderRadius.only(
+                    //     topRight: Radius.circular(TUiConstants.s),
+                    //     bottomLeft: Radius.circular(TUiConstants.s / 2),
+                    //     bottomRight: Radius.circular(TUiConstants.s),
+                    //     topLeft:
+                    //         Radius.circular(TUiConstants.borderRadiusLarge)),
                     child: Center(
                       child: Text(
                         TTextConstants.discount,
@@ -92,7 +94,7 @@ class ProductViewCard extends StatelessWidget {
                 Text(
                   TTextConstants.carWashDecs,
                   style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontWeight: FontWeight.w600),
                 ),
                 Row(
@@ -110,7 +112,7 @@ class ProductViewCard extends StatelessWidget {
                       ),
                     ),
                     const Icon(
-                      Iconsax.verify,
+                      Iconsax.verify5,
                       color: Colors.blue,
                       size: 20,
                     )
@@ -151,50 +153,42 @@ class ProductViewCard extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Obx(
-                  () => GestureDetector(
-                    onTap: () {
-                      bool success = homeViewController.incrementCount();
-                      if (!success) {
-                        Get.snackbar(
-                          "Maximum limit reached",
-                          "You can only add a maximum of 10 of each product",
-                          snackStyle: SnackStyle.FLOATING,
-                          colorText: Colors.white,
-                          icon: const Icon(
-                            Iconsax.warning_2,
-                            color: TColors.darkError,
-                          ),
-                          backgroundColor: TColors.lightPrimaryColor,
-                        );
-                      }
-                    },
-                    child: TRoundedContainer(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      height: 40,
-                      width: 50,
-                      diffRadius: true,
-                      borderRadius: const BorderRadius.only(
-                        topLeft:
-                            Radius.circular(TUiConstants.borderRadiusLarge),
-                        bottomRight: Radius.circular(
-                          TUiConstants.borderRadiusLarge,
+                child: GestureDetector(
+                  onTap: () {
+                    bool success = homeViewController.incrementCount();
+                    if (!success) {
+                      Get.snackbar(
+                        "Maximum limit reached",
+                        "You can only add a maximum of 10 of each product",
+                        snackStyle: SnackStyle.FLOATING,
+                        colorText: Colors.white,
+                        icon: const Icon(
+                          Iconsax.warning_2,
+                          color: TColors.darkError,
                         ),
+                        backgroundColor: TColors.lightPrimaryColor,
+                      );
+                    }
+                  },
+                  child: TRoundedContainer(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    height: 40,
+                    width: 50,
+                    diffRadius: true,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(TUiConstants.borderRadiusLarge),
+                      bottomRight: Radius.circular(
+                        TUiConstants.borderRadiusLarge,
                       ),
-                      child: Center(
-                          child: Text(
-                        homeViewController.countOfItem.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                            ),
-                      )),
                     ),
+                    child: Center(
+                        child: Icon(
+                      Iconsax.add,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    )),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],

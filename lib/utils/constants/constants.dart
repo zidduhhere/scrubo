@@ -76,4 +76,16 @@ class TTextConstants {
   static const String recommended = "Recommended for you";
   static const String carWashDecs = "Car Wash Instant";
   static const String discount = "25%";
+
+  //Profile Screen
+
+  static const String profile = "Profile";
+  static const String editProfile = "Edit Profile";
+  static const String changePassword = "Change Password";
+  static const String logout = "Logout";
+  static const String profileDetails = "Profile Details";
+  static const String changePasswordDescription = "Change your password here";
+  static const String oldPassword = "Old Password";
+  static const String newPassword = "New Password";
+  static const String tempPhoneNumber = "+91 73065 22615";
 }

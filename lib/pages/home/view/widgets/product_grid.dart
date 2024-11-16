@@ -14,7 +14,7 @@ class ProductViewGrid extends StatelessWidget {
       // height: THelperFunctions.getDeviceHeight(context) * 0.8,
       child: GridView.builder(
         dragStartBehavior: DragStartBehavior.down,
-        itemCount: 10,
+        itemCount: 5,
         shrinkWrap: true,
         padding: const EdgeInsets.fromLTRB(0, TUiConstants.s, 0, 0),
         physics: const NeverScrollableScrollPhysics(),

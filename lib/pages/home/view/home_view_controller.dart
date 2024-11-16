@@ -9,20 +9,11 @@ class HomeViewController extends GetxController {
   String firstPrice = "₹ 250";
   String secondPrice = "₹200";
   RxInt countOfItem = 1.obs;
-  RxString hintText = "Search Services".obs;
-
-  void changeHint() {
-    while (true) {
-      const Duration(seconds: 2);
-      hintText.value = "Search Workshops";
-
-      const Duration(seconds: 2);
-    }
-  }
 
   bool incrementCount() {
-    if (countOfItem.value < 10) {
-      countOfItem.value++;
+    if (badgeNumber.value < 10) {
+      // countOfItem.value++;
+      badgeNumber.value++;
       return true;
     } else {
       return false;

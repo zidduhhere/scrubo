@@ -6,7 +6,6 @@ import 'package:scrubo/pages/home/view/widgets/address_selection_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/categories_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/home_carousel.dart';
 import 'package:scrubo/pages/home/view/widgets/product_grid.dart';
-import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
@@ -78,6 +77,7 @@ class HomeView extends StatelessWidget {
                   ),
                   // ProductGrid()
                   SizedBox(height: TUiConstants.defaultSpacing * 2),
+                  // ProductViewGrid()
                   ProductViewGrid()
                 ],
               ),
@@ -89,45 +89,57 @@ class HomeView extends StatelessWidget {
   }
 }
 
+class HorizontalProductViewCard extends StatelessWidget {
+  const HorizontalProductViewCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10),
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        boxShadow: [
+          TShadowStyles.verticalShadow,
+          TShadowStyles.horizontalShadow
+        ],
+      ),
+    );
+  }
+}
+
 class TSeachBox extends StatelessWidget {
   const TSeachBox({super.key});
 
   @override
   Widget build(BuildContext context) {
-    HomeViewController homeViewController = Get.find<HomeViewController>();
-    homeViewController.changeHint();
-    return Obx(
-      () => TextField(
-        autocorrect: true,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: TColors.lightSecondary.withOpacity(0.2),
-          hintText: homeViewController.hintText.value,
-          border: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(TUiConstants.borderRadiusMedium),
-            borderSide: BorderSide.none, // Makes border transparent
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(TUiConstants.borderRadiusMedium),
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(TUiConstants.borderRadiusMedium),
-            borderSide: BorderSide.none,
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(TUiConstants.borderRadiusMedium),
-            borderSide: BorderSide.none,
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius:
-                BorderRadius.circular(TUiConstants.borderRadiusMedium),
-            borderSide: BorderSide.none,
-          ),
+    // HomeViewController homeViewController = Get.find<HomeViewController>();
+    // homeViewController.changeHint();
+    return TextField(
+      autocorrect: true,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Iconsax.search_normal),
+        filled: true,
+        // fillColor: TColors.lightSecondary.withOpacity(0.2),
+        hintText: "Search Services",
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
+          borderSide: BorderSide.none, // Makes border transparent
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
+          borderSide: BorderSide.none,
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
+          borderSide: BorderSide.none,
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
+          borderSide: BorderSide.none,
         ),
       ),
     );

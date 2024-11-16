@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
+import 'package:scrubo/pages/profile_management/view/profile_management_view.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -53,9 +54,7 @@ class NavigationMenuController extends GetxController {
     Container(
       color: Colors.blue,
     ),
-    Container(
-      color: Colors.yellow,
-    ),
+    const ProfileManagementView(),
   ];
 
   Map<int, Map<String, dynamic>> bottomNavBarItems = {

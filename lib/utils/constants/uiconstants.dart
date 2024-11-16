@@ -81,6 +81,8 @@ class TUiConstants {
 
   static const double productCardImageHeight = 120;
   static const double searchBarHeight = 54.0;
+  static const double smallContainerHeight = 48.0;
+  static const double smallContainerWidth = 48 * 3;
 }
 
 class TSpacingStyles {
@@ -100,14 +102,14 @@ class TShadowStyles {
   static BoxShadow verticalShadow = BoxShadow(
     color: Colors.grey.withOpacity(0.3),
     offset: const Offset(0, 2),
-    blurRadius: 4,
-    spreadRadius: 7,
+    blurRadius: 1,
+    spreadRadius: 1,
   );
 
   static BoxShadow horizontalShadow = BoxShadow(
     color: Colors.grey.withOpacity(0.3),
     offset: const Offset(2, 0),
-    blurRadius: 4,
-    spreadRadius: 7,
+    blurRadius: 1,
+    spreadRadius: 1,
   );
 }
