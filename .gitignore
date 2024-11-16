@@ -9,6 +9,8 @@
 .history
 .svn/
 migrate_working_dir/
+build/
+main.py
 
 # IntelliJ related
 *.iml
