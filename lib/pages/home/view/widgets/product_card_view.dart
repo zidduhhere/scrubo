@@ -35,10 +35,10 @@ class ProductViewCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(TUiConstants.borderRadiusLarge),
         color: Theme.of(context).colorScheme.surfaceContainer,
-        boxShadow: [
-          TShadowStyles.horizontalShadow,
-          TShadowStyles.verticalShadow
-        ],
+        // boxShadow: [
+        //   TShadowStyles.horizontalShadow,
+        //   TShadowStyles.verticalShadow
+        // ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,

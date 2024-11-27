@@ -35,8 +35,14 @@ class ProfileViewController extends GetxController {
     Get.offAllNamed('/login');
   }
 
-  void address() {}
-  void payments() {}
+  void address() {
+    Get.toNamed('profile/address');
+  }
+
+  void payments() {
+    Get.toNamed('profile/payments');
+  }
+
   void feedback() {}
   void termsAndConditions() {}
 }
