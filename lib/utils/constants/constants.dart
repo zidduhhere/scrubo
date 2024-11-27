@@ -76,6 +76,10 @@ class TTextConstants {
   static const String recommended = "Recommended for you";
   static const String carWashDecs = "Car Wash Instant";
   static const String discount = "25%";
+  static const String snackBarTitle = "Maximum limit reached";
+  static const String snackBarDescription =
+      "You can only add a maximum of 10 of each product";
+  static const String rupees = "₹";
 
   //Profile Screen
 

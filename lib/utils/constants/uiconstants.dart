@@ -1,5 +1,6 @@
 // uiconstants.dart
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class TUiConstants {
   // Padding
@@ -83,6 +84,43 @@ class TUiConstants {
   static const double searchBarHeight = 54.0;
   static const double smallContainerHeight = 48.0;
   static const double smallContainerWidth = 48 * 3;
+
+  static const double gridViewMainAxisSpacing = 16.0;
+  static const double gridViewCrossAxisSpacing = 16.0;
+
+  // static const double profileContainerHeight =
+
+  // Icons
+  static const IconData iconHome = Iconsax.home;
+  static const IconData iconPrevious = Iconsax.ticket;
+  static const IconData iconInstant = Iconsax.flash;
+  static const IconData iconProfile = Iconsax.user;
+  static const IconData iconCar = Iconsax.car;
+  static const IconData iconService = Iconsax.activity;
+  static const IconData iconNotification = Iconsax.notification;
+  static const IconData iconSettings = Iconsax.setting;
+  static const IconData iconLogout = Iconsax.logout;
+  static const IconData iconOil = Iconsax.drop3;
+  static const IconData iconRepair = Icons.car_repair_outlined;
+  static const IconData iconEngine = Iconsax.designtools;
+  static const IconData iconCart = Iconsax.shopping_bag;
+  static const IconData iconInspection = Iconsax.search_normal;
+  static const IconData iconBrake = Iconsax.stop_circle1;
+  static const IconData iconTransmission = Iconsax.omega_circle;
+  static const IconData iconBattery = Iconsax.battery_charging;
+  static const IconData iconSearch = Iconsax.search_normal;
+  static const IconData iconLock = Iconsax.lock;
+  static const IconData iconUser = Iconsax.user;
+  static const IconData iconUserAdd = Iconsax.user_add;
+  static const IconData iconDirectRight = Iconsax.direct_right;
+  static const IconData iconDirectLeft = Iconsax.direct_left;
+  static const IconData iconArrowDown = Iconsax.arrow_down;
+  static const IconData iconArrowUp = Iconsax.arrow_up;
+  static const IconData iconEmail = Icons.email_outlined;
+  static const IconData iconError = Icons.error;
+  static const IconData iconSuccess = Icons.check_circle;
+  static const IconData iconWarning = Icons.warning;
+  static const IconData iconEdit = Iconsax.edit;
 }
 
 class TSpacingStyles {

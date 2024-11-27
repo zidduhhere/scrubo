@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/pages/home/view/home_view_controller.dart';
+import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
 class CategoriesList extends StatelessWidget {

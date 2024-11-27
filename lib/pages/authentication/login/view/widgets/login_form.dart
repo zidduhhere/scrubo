@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/authentication/login/view/widgets/remember_forget_widget.dart';
 import 'package:scrubo/pages/authentication/login/viewmodel/login_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
@@ -28,7 +27,8 @@ class LoginForm extends StatelessWidget {
             controller: controller,
             validator: controller.validator,
             hintText: TTextConstants.emailHint,
-            prefixIcon: Icons.email_outlined,
+            prefixIcon: TUiConstants.iconEmail,
+            obscureText: false,
             labelText: TTextConstants.email,
           ),
           const SizedBox(height: TUiConstants.defaultSpacing),
@@ -38,7 +38,7 @@ class LoginForm extends StatelessWidget {
             controller: controller,
             validator: controller.validator,
             hintText: TTextConstants.passwordHint,
-            prefixIcon: Iconsax.lock,
+            prefixIcon: TUiConstants.iconLock,
             labelText: TTextConstants.password,
             suffixIcon: true,
           ),
@@ -55,7 +55,7 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: TUiConstants.spaceBtwSections),
           CustomElevatedButton(
             text: TTextConstants.login,
-            iconData: Iconsax.direct_right,
+            iconData: TUiConstants.iconDirectRight,
             onTap: () {
               controller.login()
                   ? null
@@ -66,7 +66,7 @@ class LoginForm extends StatelessWidget {
                           Theme.of(context).colorScheme.primaryFixedDim,
                       colorText: Theme.of(context).colorScheme.onPrimaryFixed,
                       icon: Icon(
-                        Icons.error,
+                        TUiConstants.iconError,
                         color: Theme.of(context).colorScheme.onPrimaryFixed,
                       ));
             },
@@ -77,7 +77,7 @@ class LoginForm extends StatelessWidget {
               controller.signUp();
             },
             text: TTextConstants.signUp,
-            iconData: Iconsax.user_add,
+            iconData: TUiConstants.iconUserAdd,
           )
         ],
       ),

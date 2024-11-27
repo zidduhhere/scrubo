@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:scrubo/pages/home/view/home_view_controller.dart';
+import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/pages/home/view/widgets/address_selection_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/categories_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/home_carousel.dart';
@@ -11,12 +10,14 @@ import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
 import 'package:scrubo/utils/widgets/custom_app_bar.dart';
 import 'package:scrubo/utils/widgets/custom_row_header.dart';
+import 'package:scrubo/utils/widgets/custom_search_bar.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     HomeViewController homeviewController = Get.put(HomeViewController());
     return GestureDetector(
       onTap: () => TDeviceUtility.hideKeyboard(context),
@@ -28,20 +29,18 @@ class HomeView extends StatelessWidget {
           child: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
-                Obx(
-                  () => TCustomAppBar(
-                    badgeIcon: Iconsax.shopping_bag,
-                    title: TTextConstants.name,
-                    titlemsg: TTextConstants.welcome,
-                    badge: true,
-                    badgeVal: homeviewController.badgeNumber.value,
-                    badgeOnPresed: () {
-                      homeviewController.badgeNumber.value++;
-                      // Get.toNamed('/navigation');
-                    },
-                    profileIcon: true,
-                    backgroundColor: Theme.of(context).colorScheme.surface,
-                  ),
+                TCustomAppBar(
+                  badgeIcon: TUiConstants.iconCart,
+                  title: TTextConstants.name,
+                  titlemsg: TTextConstants.welcome,
+                  // badge: true,
+                  // badgeVal: homeviewController.badgeNumber.value,
+                  // badgeOnPresed: () {
+                  //   homeviewController.badgeNumber.value++;
+                  //   // Get.toNamed('/navigation');
+                  // },
+                  profileIcon: true,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
                 ),
               ];
             },
@@ -51,7 +50,7 @@ class HomeView extends StatelessWidget {
                 children: [
                   AddressSelectionHeader(),
                   SizedBox(height: TUiConstants.defaultSpacing),
-                  TSeachBox(),
+                  TSearchBox(),
                   SizedBox(height: TUiConstants.defaultSpacing),
                   //Offers Section
                   CustomHomeCarousel(),
@@ -78,7 +77,8 @@ class HomeView extends StatelessWidget {
                   // ProductGrid()
                   SizedBox(height: TUiConstants.defaultSpacing * 2),
                   // ProductViewGrid()
-                  ProductViewGrid()
+                  ProductViewGrid(),
+                  SizedBox(height: TUiConstants.defaultSpacing * 2),
                 ],
               ),
             ),
@@ -102,45 +102,6 @@ class HorizontalProductViewCard extends StatelessWidget {
           TShadowStyles.verticalShadow,
           TShadowStyles.horizontalShadow
         ],
-      ),
-    );
-  }
-}
-
-class TSeachBox extends StatelessWidget {
-  const TSeachBox({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // HomeViewController homeViewController = Get.find<HomeViewController>();
-    // homeViewController.changeHint();
-    return TextField(
-      autocorrect: true,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Iconsax.search_normal),
-        filled: true,
-        // fillColor: TColors.lightSecondary.withOpacity(0.2),
-        hintText: "Search Services",
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
-          borderSide: BorderSide.none, // Makes border transparent
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
-          borderSide: BorderSide.none,
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
-          borderSide: BorderSide.none,
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
-          borderSide: BorderSide.none,
-        ),
       ),
     );
   }

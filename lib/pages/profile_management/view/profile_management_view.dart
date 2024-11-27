@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
+import 'package:scrubo/pages/profile_management/view/widgets/cusotm_divider.dart';
+import 'package:scrubo/pages/profile_management/view/widgets/profile_selection_container.dart';
+import 'package:scrubo/pages/profile_management/view/widgets/small_profile_container.dart';
+import 'package:scrubo/pages/profile_management/viewmodel/profile_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/helpers/helper_functions.dart';
 
 class ProfileManagementView extends StatelessWidget {
   const ProfileManagementView({super.key});
-
   @override
   Widget build(context) {
+    ProfileViewController profileViewController =
+        Get.put(ProfileViewController());
     return Scaffold(
         appBar: AppBar(
           title: const Text('Profile'),
@@ -17,7 +21,7 @@ class ProfileManagementView extends StatelessWidget {
             Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: TUiConstants.paddingSmall),
-              child: Icon(Iconsax.edit),
+              child: Icon(TUiConstants.iconEdit),
             ),
           ],
         ),
@@ -105,66 +109,59 @@ class ProfileManagementView extends StatelessWidget {
                     SmallProfileContainer(
                       text: '8',
                       leading: Icon(
-                        Iconsax.ticket,
+                        TUiConstants.iconPrevious,
                         color: Theme.of(context).colorScheme.onPrimaryFixed,
                       ),
                     ),
                     SmallProfileContainer(
                       text: '2',
                       leading: Icon(
-                        Iconsax.car,
+                        TUiConstants.iconCar,
                         color: Theme.of(context).colorScheme.onPrimaryFixed,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: TUiConstants.defaultSpacing),
-                const Divider(
-                  indent: 60,
-                  endIndent: 60,
-                  height: 1,
-                ),
-                const SizedBox(height: TUiConstants.spaceBtwSections * 2),
+                const SizedBox(height: TUiConstants.spaceBtwSections),
+                const CustomDivider(),
+                ...List.generate(profileViewController.profileSections.length,
+                    (int index) {
+                  return InkWell(
+                    borderRadius:
+                        BorderRadius.circular(TUiConstants.borderRadiusLarge),
+                    splashColor: Theme.of(context).colorScheme.primaryContainer,
+                    onTap: () {
+                      switch (index) {
+                        case 0:
+                          profileViewController.address();
+                          break;
+                        case 1:
+                          profileViewController.payments();
+                          break;
+                        case 2:
+                          profileViewController.feedback();
+                          break;
+                        case 3:
+                          profileViewController.termsAndConditions();
+                          break;
+                        case 4:
+                          profileViewController.logout();
+                          break;
+                      }
+                    },
+                    child: ProfileSectionContainer(
+                      iconColor: profileViewController
+                          .profileSections[index]!["iconColor"],
+                      text:
+                          profileViewController.profileSections[index]!["text"],
+                      iconData: profileViewController
+                          .profileSections[index]!["iconData"],
+                    ),
+                  );
+                })
               ],
             ),
           ),
         ));
-  }
-}
-
-class SmallProfileContainer extends StatelessWidget {
-  const SmallProfileContainer(
-      {super.key, this.leading, required this.text, this.trailing})
-      : assert(leading == null || trailing == null,
-            'Either leading or trailing can be provided');
-  final Widget? leading, trailing;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: TUiConstants.smallContainerHeight,
-      width: TUiConstants.smallContainerWidth,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryFixed,
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          leading ?? const SizedBox(),
-          const SizedBox(width: TUiConstants.paddingSmall),
-          Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium!
-                .copyWith(color: Theme.of(context).colorScheme.onPrimaryFixed),
-          ),
-          const SizedBox(width: TUiConstants.paddingSmall),
-          trailing ?? const SizedBox(),
-        ],
-      ),
-    );
   }
 }

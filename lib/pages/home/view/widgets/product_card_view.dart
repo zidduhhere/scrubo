@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:scrubo/pages/home/view/home_view_controller.dart';
+import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/constants.dart';
-import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/custom_rounded_containers.dart';
 
 class ProductViewCard extends StatelessWidget {
-  const ProductViewCard({super.key});
+  const ProductViewCard({
+    super.key,
+    required this.price,
+    required this.previousPrice,
+    required this.title,
+    required this.imageUrl,
+    required this.isNetworkImage,
+    required this.shopAddress,
+    this.discount,
+  });
+  final String price;
+  final String previousPrice;
+  final String title;
+  final String imageUrl;
+  final bool isNetworkImage;
+  final String shopAddress;
+  final String? discount;
 
   @override
   Widget build(BuildContext context) {
@@ -18,22 +33,11 @@ class ProductViewCard extends StatelessWidget {
       width: 180,
       margin: const EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0),
       decoration: BoxDecoration(
-        // border: Border.all(),
         borderRadius: BorderRadius.circular(TUiConstants.borderRadiusLarge),
         color: Theme.of(context).colorScheme.surfaceContainer,
         boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            offset: const Offset(2, 0),
-            blurRadius: 1,
-            spreadRadius: 1,
-          ),
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            offset: const Offset(0, 2),
-            blurRadius: 1,
-            spreadRadius: 1,
-          ),
+          TShadowStyles.horizontalShadow,
+          TShadowStyles.verticalShadow
         ],
       ),
       child: Column(
@@ -45,54 +49,55 @@ class ProductViewCard extends StatelessWidget {
             height: TUiConstants.productCardImageHeight,
             child: Stack(
               children: [
-                const TRoundedImageContainer(
-                  isNetworkImage: false,
+                //Product Card Image
+                TRoundedImageContainer(
+                  isNetworkImage: isNetworkImage,
                   backgroundColor: Colors.transparent,
-                  imageUrl: TImages.carTransperent,
-                  padding: EdgeInsets.all(TUiConstants.s),
+                  imageUrl: imageUrl,
+                  padding: const EdgeInsets.all(TUiConstants.s),
                 ),
-                Positioned(
-                  top: 10,
-                  left: 5,
-                  height: 20,
-                  width: 40,
-                  child: TRoundedContainer(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    height: 20,
-                    diffRadius: true,
-                    borderRadius:
-                        BorderRadius.circular(TUiConstants.borderRadiusSmall),
-                    // borderRadius: const BorderRadius.only(
-                    //     topRight: Radius.circular(TUiConstants.s),
-                    //     bottomLeft: Radius.circular(TUiConstants.s / 2),
-                    //     bottomRight: Radius.circular(TUiConstants.s),
-                    //     topLeft:
-                    //         Radius.circular(TUiConstants.borderRadiusLarge)),
-                    child: Center(
-                      child: Text(
-                        TTextConstants.discount,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 10),
+                discount == null
+                    ? const SizedBox()
+                    : Positioned(
+                        top: 10,
+                        left: 5,
+                        height: 20,
+                        width: 40,
+                        child: TRoundedContainer(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          height: 20,
+                          diffRadius: true,
+                          borderRadius: BorderRadius.circular(
+                              TUiConstants.borderRadiusSmall),
+                          child: Center(
+                            child: Text(
+                              discount!,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
           Padding(
-            // padding: EdgeInsets.all(0),
             padding: const EdgeInsets.symmetric(horizontal: TUiConstants.s),
-            child: Column(
+            child:
+                //Texts for product card
+                Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  TTextConstants.carWashDecs,
+                  title,
                   style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                       fontWeight: FontWeight.w600),
@@ -100,9 +105,8 @@ class ProductViewCard extends StatelessWidget {
                 Row(
                   children: [
                     Flexible(
-                      // flex: 2,
                       child: Text(
-                        TTextConstants.shopAddress,
+                        shopAddress,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
@@ -135,13 +139,13 @@ class ProductViewCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      homeViewController.secondPrice,
+                      previousPrice.toString(),
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                           decoration: TextDecoration.lineThrough),
                     ),
                     Text(
-                      homeViewController.firstPrice,
+                      price.toString(),
                       style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           color: Theme.of(context).colorScheme.onSurface,
                           letterSpacing: 1.0,
@@ -158,8 +162,8 @@ class ProductViewCard extends StatelessWidget {
                     bool success = homeViewController.incrementCount();
                     if (!success) {
                       Get.snackbar(
-                        "Maximum limit reached",
-                        "You can only add a maximum of 10 of each product",
+                        TTextConstants.snackBarTitle,
+                        TTextConstants.snackBarDescription,
                         snackStyle: SnackStyle.FLOATING,
                         colorText: Colors.white,
                         icon: const Icon(

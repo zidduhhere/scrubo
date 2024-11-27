@@ -46,7 +46,7 @@ class LoginController extends GetxController {
   bool login() {
     if (loginValidation()) {
       print("Logged in");
-      Get.offAllNamed('/home');
+      Get.offAllNamed('/navigation');
       return true;
     }
     return false;

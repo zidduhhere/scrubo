@@ -8,4 +8,6 @@ class TImages {
   static const String waterRinse = 'assets/images/products/water_rinse.png';
   static const String carService = 'assets/images/products/car_service.png';
   static const String avatar = 'assets/images/utils/avatar.jpg';
+  static const String carEngine = 'assets/images/products/car_engine.png';
+  static const String carTyre = 'assets/images/products/car_tyre.jpg';
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
 import 'package:scrubo/pages/profile_management/view/profile_management_view.dart';
+import 'package:scrubo/pages/service_scheduling/view/service_scheduling_view.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -17,6 +18,7 @@ class NavigationMenu extends StatelessWidget {
           .screens[navigationMenuController.currentPage.value]),
       bottomNavigationBar: Obx(
         () => NavigationBar(
+          backgroundColor: Theme.of(context).colorScheme.surface,
           height: TUiConstants.bottomNavigationBarHeight,
           elevation: 3,
           selectedIndex: navigationMenuController.currentPage.value,
@@ -48,9 +50,7 @@ class NavigationMenuController extends GetxController {
 
   List<Widget> screens = [
     const HomeView(),
-    Container(
-      color: Colors.green,
-    ),
+    const ServiceSchedulingView(),
     Container(
       color: Colors.blue,
     ),
@@ -64,7 +64,7 @@ class NavigationMenuController extends GetxController {
     },
     1: {
       "iconData": Iconsax.ticket,
-      "label": "Search",
+      "label": "Previous",
     },
     2: {
       "iconData": Iconsax.flash,

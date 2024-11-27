@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 
 class HomeViewController extends GetxController {
@@ -29,6 +30,7 @@ class HomeViewController extends GetxController {
       "title": "Wash",
       "iconData": Iconsax.car,
       "backgroundColor": const Color(0xFF99CCE6), // Lightest
+      "backgroundColorDark": TColors.darkPrimary
     },
     1: {
       "title": "Oil Change",

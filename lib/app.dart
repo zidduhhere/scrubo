@@ -8,6 +8,7 @@ import 'package:scrubo/pages/authentication/signup/view/signup_view.dart';
 import 'package:scrubo/pages/authentication/signup/view/verified_view.dart';
 import 'package:scrubo/pages/authentication/signup/view/verify_view.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
+import 'package:scrubo/pages/service_details/view/service_details_view.dart';
 import 'package:scrubo/utils/theme/theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/navigation', page: () => const NavigationMenu()),
         GetPage(name: '/signup/verify', page: () => const VerifyView()),
         GetPage(
-            name: '/signup/verify/verified', page: () => const VerifiedView())
+            name: '/signup/verify/verified', page: () => const VerifiedView()),
+        GetPage(
+            name: '/serviceDetails', page: () => const ServiceDetailsView()),
       ],
       initialRoute: '/navigation',
       debugShowCheckedModeBanner: false,
