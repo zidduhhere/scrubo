@@ -9,7 +9,7 @@ import 'package:scrubo/pages/authentication/signup/view/verified_view.dart';
 import 'package:scrubo/pages/authentication/signup/view/verify_view.dart';
 import 'package:scrubo/pages/booking_history/view/booking_history_view.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
-
+import 'package:scrubo/pages/personalization/profile/profile_view.dart';
 import 'package:scrubo/pages/service_details/view/service_details_view.dart';
 import 'package:scrubo/pages/service_scheduling/view/service_scheduling_view.dart';
 import 'package:scrubo/pages/services/view/services_view.dart';
@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/bookinghistory', page: () => const BookingHistoryView()),
         GetPage(name: '/schedule', page: () => const ServiceSchedulingView()),
-        GetPage(name: '/services', page: () => const ServicesView())
+        GetPage(name: '/services', page: () => const ServicesView()),
+        GetPage(name: '/profile', page: () => const ProfileView()),
       ],
       initialRoute: '/navigation',
       debugShowCheckedModeBanner: false,
