@@ -4,7 +4,7 @@ import 'package:scrubo/pages/authentication/signup/viewmodel/signup_controller.d
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/widgets/custom_elevated_button.dart';
+import 'package:scrubo/utils/widgets/buttons/custom_elevated_button.dart';
 
 class VerifiedView extends StatelessWidget {
   const VerifiedView({super.key});

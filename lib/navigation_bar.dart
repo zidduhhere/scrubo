@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/booking_history/view/booking_history_view.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
-import 'package:scrubo/pages/profile_management/view/profile_management_view.dart';
+import 'package:scrubo/pages/personalization/settings/settings.dart';
+import 'package:scrubo/pages/services/view/services_view.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -51,27 +52,25 @@ class NavigationMenuController extends GetxController {
   List<Widget> screens = [
     const HomeView(),
     const BookingHistoryView(),
-    Container(
-      color: Colors.blue,
-    ),
-    const ProfileManagementView(),
+    const ServicesView(),
+    const SettingsView()
   ];
 
   Map<int, Map<String, dynamic>> bottomNavBarItems = {
     0: {
-      "iconData": Iconsax.home,
+      "iconData": TUiConstants.iconHome,
       "label": "Home",
     },
     1: {
-      "iconData": Iconsax.ticket,
+      "iconData": TUiConstants.iconPrevious,
       "label": "Previous",
     },
     2: {
-      "iconData": Iconsax.flash,
+      "iconData": Iconsax.command,
       "label": "Instant",
     },
     3: {
-      "iconData": Iconsax.user,
+      "iconData": TUiConstants.iconProfile,
       "label": "Profile",
     },
   };

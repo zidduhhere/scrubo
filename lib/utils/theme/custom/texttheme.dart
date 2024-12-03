@@ -73,13 +73,15 @@ class TTextTheme {
       fontWeight: FontWeight.w500,
     ),
     displayMedium: const TextStyle().copyWith(
-      fontSize: TUiConstants.fontSizeMedium,
-      fontWeight: FontWeight.w500,
+      fontSize: TUiConstants.fontSizeLarge,
+      fontWeight: FontWeight.w300,
+      fontFamily: 'Roboto',
       color: TColors.lightOnSurface,
     ),
     displaySmall: const TextStyle().copyWith(
       fontSize: TUiConstants.fontSizeMedium,
       color: TColors.lightOnSurface,
+      fontFamily: 'Roboto',
       fontWeight: FontWeight.w300,
     ),
   );
@@ -160,6 +162,7 @@ class TTextTheme {
       fontSize: TUiConstants.fontSizeMedium,
       color: TColors.darkOnSurface,
       fontWeight: FontWeight.w300,
+      fontFamily: 'Roboto',
     ),
   );
 }

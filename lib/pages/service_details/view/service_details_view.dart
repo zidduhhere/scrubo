@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/widgets/custom_elevated_button.dart';
+import 'package:scrubo/utils/widgets/buttons/custom_elevated_button.dart';
 
 class ServiceDetailsView extends StatelessWidget {
   const ServiceDetailsView({super.key});
@@ -29,7 +29,7 @@ class ServiceDetailsView extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
-                    TImages.carWash,
+                    TImages.carWashService,
                     fit: BoxFit.cover,
                   ),
                   // Gradient overlay for better text visibility

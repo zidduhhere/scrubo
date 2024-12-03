@@ -37,7 +37,7 @@ class TUiConstants {
   static const double imageSizeLarge = 120.0;
 // Icon Size
   static const double iconSizeSmall = 12.0;
-  static const double iconSizeMedium = 18.0;
+  static const double iconSizeMedium = 20.0;
   static const double iconSizeLarge = 24.0;
   static const double iconButtonWidthFactor = 0.7;
 
@@ -96,12 +96,14 @@ class TUiConstants {
   static const IconData iconInstant = Iconsax.flash;
   static const IconData iconProfile = Iconsax.user;
   static const IconData iconCar = Iconsax.car;
-  static const IconData iconService = Iconsax.activity;
+  static const IconData iconStar = Iconsax.star;
+  static const IconData iconService = Iconsax.setting;
   static const IconData iconNotification = Iconsax.notification;
   static const IconData iconSettings = Iconsax.setting;
+  static const IconData iconShop = Iconsax.shop;
   static const IconData iconLogout = Iconsax.logout;
   static const IconData iconOil = Iconsax.drop3;
-  static const IconData iconRepair = Icons.car_repair_outlined;
+  static const IconData iconRepair = Iconsax.settings;
   static const IconData iconEngine = Iconsax.designtools;
   static const IconData iconCart = Iconsax.shopping_bag;
   static const IconData iconInspection = Iconsax.search_normal;
@@ -111,8 +113,10 @@ class TUiConstants {
   static const IconData iconSearch = Iconsax.search_normal;
   static const IconData iconLock = Iconsax.lock;
   static const IconData iconUser = Iconsax.user;
+  static const IconData iconClock = Iconsax.clock;
   static const IconData iconUserAdd = Iconsax.user_add;
   static const IconData iconDirectRight = Iconsax.direct_right;
+  static const IconData iconPickup = Iconsax.truck;
   static const IconData iconDirectLeft = Iconsax.direct_left;
   static const IconData iconArrowDown = Iconsax.arrow_down;
   static const IconData iconArrowUp = Iconsax.arrow_up;
@@ -121,6 +125,33 @@ class TUiConstants {
   static const IconData iconSuccess = Icons.check_circle;
   static const IconData iconWarning = Icons.warning;
   static const IconData iconEdit = Iconsax.edit;
+  static const IconData iconCarRepair = Icons.car_repair_outlined;
+  static const IconData iconCarEngine = Iconsax.designtools;
+  static const IconData iconBreak = Iconsax.stop_circle1;
+  static const IconData iconAdd = Iconsax.add;
+  static const IconData iconStarFilled = Iconsax.star_slash;
+  static const IconData iconStarHalf = Iconsax.star_15;
+  static const IconData iconDiscount = Iconsax.discount_shape;
+  static const IconData iconLocation = Iconsax.location;
+  static const IconData iconPrivacy = Iconsax.security_card;
+  static const IconData iconBank = Iconsax.bank;
+  static const IconData iconDocumentUpload = Iconsax.document_upload;
+  static const IconData iconSafe = Iconsax.security_user;
+  static const IconData iconImage = Iconsax.image;
+
+  //signs
+
+  // Currency Signs
+  static const String dollarSign = ' \$';
+  static const String euroSign = ' €';
+  static const String poundSign = ' £';
+  static const String yenSign = ' ¥';
+  static const String nairaSign = ' ₦';
+
+  // Common Signs
+  static const String commaSign = ', ';
+  static const String rupeeSign = ' ₹';
+  static const String ampersandSign = ' & ';
 }
 
 class TSpacingStyles {
@@ -132,6 +163,9 @@ class TSpacingStyles {
     left: TUiConstants.marginLarge,
     right: TUiConstants.marginLarge,
   );
+
+  static const EdgeInsetsGeometry paddingScaffold =
+      EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0);
 }
 
 class TShadowStyles {
@@ -151,3 +185,5 @@ class TShadowStyles {
     spreadRadius: 1,
   );
 }
+
+class TextStyles {}

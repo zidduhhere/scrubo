@@ -4,9 +4,9 @@ import 'package:scrubo/pages/authentication/login/view/widgets/remember_forget_w
 import 'package:scrubo/pages/authentication/login/viewmodel/login_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/widgets/custom_elevated_button.dart';
-import 'package:scrubo/utils/widgets/custom_outlined_button.dart';
-import 'package:scrubo/utils/widgets/custom_text_field.dart';
+import 'package:scrubo/utils/widgets/buttons/custom_elevated_button.dart';
+import 'package:scrubo/utils/widgets/buttons/custom_outlined_button.dart';
+import 'package:scrubo/utils/widgets/textfield/custom_text_field.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({

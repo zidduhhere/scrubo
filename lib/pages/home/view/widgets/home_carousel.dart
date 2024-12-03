@@ -5,7 +5,7 @@ import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/helpers/helper_functions.dart';
-import 'package:scrubo/utils/widgets/custom_rounded_containers.dart';
+import 'package:scrubo/utils/widgets/containers/custom_rounded_containers.dart';
 
 class CustomHomeCarousel extends StatelessWidget {
   const CustomHomeCarousel({
@@ -33,110 +33,178 @@ class CustomHomeCarousel extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  height: 200,
-                  width: THelperFunctions.getDeviceWidth(context) * 1,
-                  margin: const EdgeInsets.all(TUiConstants.s),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius:
-                        BorderRadius.circular(TUiConstants.borderRadiusLarge),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 30,
-                        right: 0,
-                        child: Image.asset(
-                          homeviewController.items[index]!['image']!,
-                          height: TUiConstants.carouselImageHeight / 2,
+                    height: 200,
+                    width: THelperFunctions.getDeviceWidth(context) * 1,
+                    margin: const EdgeInsets.all(TUiConstants.s),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                      borderRadius:
+                          BorderRadius.circular(TUiConstants.borderRadiusLarge),
+                    ),
+                    child: LayoutBuilder(builder: (context, constraints) {
+                      String? imageLoc =
+                          homeviewController.items[index]!['image']!;
+                      String? description =
+                          homeviewController.items[index]!['description']!;
+                      String? title =
+                          homeviewController.items[index]!['title']!;
+                      String? offer = homeviewController.items[index]!['offer'];
+                      bool offerExists = offer != null && offer.isNotEmpty;
+                      //Get Image Size
+                      AssetImage assetImage = AssetImage(
+                        homeviewController.items[index]!['image']!,
+                      );
+                      ImageStream imageStream = assetImage.resolve(
+                        const ImageConfiguration(),
+                      );
+
+                      // late double imageWidth;
+                      // late double imageHeight;
+
+                      imageStream.addListener(
+                        ImageStreamListener(
+                          (info, _) {
+                            // imageWidth = info.image.width.toDouble();
+                            // imageHeight = info.image.height.toDouble();
+                          },
                         ),
-                      ),
-                      Positioned(
-                        top: 80,
-                        left: 30,
-                        child: Text(
-                          homeviewController.items[index]!['title']!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                                fontWeight: FontWeight.w600,
-                              ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 110,
-                        left: 30,
-                        child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(120, 50),
-                              backgroundColor: Colors.black,
-                              foregroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .onPrimaryContainer,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    TUiConstants.borderRadiusMedium),
+                      );
+
+                      return Stack(
+                        children: [
+                          Positioned(
+                            top: index == 0 ? 0 : constraints.maxHeight * 0.1,
+                            right: 0,
+                            bottom:
+                                index == 0 ? 0 : -constraints.maxHeight * 0.05,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  TUiConstants.borderRadiusLarge),
+                              child: Image.asset(
+                                imageLoc,
+                                alignment: Alignment.centerRight,
+                                height: TUiConstants.carouselImageHeight / 1,
                               ),
                             ),
+                          ),
+                          Positioned(
+                            top: 80,
+                            left: 30,
                             child: Text(
-                              TTextConstants.bookNow,
+                              title,
                               style: Theme.of(context)
                                   .textTheme
-                                  .labelLarge!
+                                  .labelMedium!
                                   .copyWith(
-                                      fontSize: TUiConstants.fontSizeSmall,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
-                            )),
-                      ),
-                      // Text(
-                      //   homeviewController.items[index]!['description']!,
-                      //   style: Theme.of(context)
-                      //       .textTheme
-                      //       .labelSmall!
-                      //       .copyWith(
-                      //           color: Theme.of(context)
-                      //               .colorScheme
-                      //               .secondary),
-                      // ),
-                      Positioned(
-                        top: 30,
-                        left: 30,
-                        child: Text(
-                          homeviewController.items[index]!['offer']!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineLarge!
-                              .copyWith(
-                                  fontSize: TUiConstants.headlineLarge * 1.2,
-                                  // sfontWeight: FontWeight.w600,
-                                  color: Theme.of(context)
+                                    fontSize: offerExists
+                                        ? TUiConstants.fontSizeSmall
+                                        : TUiConstants.fontSizeMediumLarge,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 100,
+                            left: 30,
+                            child: Text(
+                              description,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall!
+                                  .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondaryContainer,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 130,
+                            left: 30,
+                            child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: const Size(120, 50),
+                                  backgroundColor: Colors.black,
+                                  foregroundColor: Theme.of(context)
                                       .colorScheme
-                                      .onPrimaryContainer),
-                        ),
-                      ),
-                      Positioned(
-                        top: 35,
-                        left: 120,
-                        child: Text(
-                          TTextConstants.off,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium!
-                              .copyWith(
-                                  fontSize: TUiConstants.headlineMedium,
-                                  fontWeight: FontWeight.w300,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                                      .onPrimaryContainer,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        TUiConstants.borderRadiusMedium),
+                                  ),
+                                ),
+                                child: Text(
+                                  TTextConstants.bookNow,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(
+                                        fontSize: TUiConstants.fontSizeSmall,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                      ),
+                                )),
+                          ),
+                          // Text(
+                          //   homeviewController.items[index]!['description']!,
+                          //   style: Theme.of(context)
+                          //       .textTheme
+                          //       .labelSmall!
+                          //       .copyWith(
+                          //           color: Theme.of(context)
+                          //               .colorScheme
+                          //               .secondary),
+                          // ),
+                          offerExists
+                              ? Positioned(
+                                  top: 30,
+                                  left: 30,
+                                  child: RichText(
+                                    textAlign: TextAlign.left,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    text: TextSpan(
+                                        text: offer,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineLarge!
+                                            .copyWith(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize:
+                                                  TUiConstants.headlineLarge *
+                                                      1,
+                                              // sfontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onSecondaryContainer,
+                                            ),
+                                        children: [
+                                          TextSpan(
+                                            text: TTextConstants.off
+                                                .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displayMedium!
+                                                .copyWith(
+                                                    fontSize: TUiConstants
+                                                        .headlineSmall,
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .onSecondaryContainer),
+                                          ),
+                                        ]),
+                                  ),
+                                )
+                              : const SizedBox()
+                        ],
+                      );
+                    })),
               ],
             );
           },
@@ -150,10 +218,14 @@ class CustomHomeCarousel extends StatelessWidget {
                 TRoundedContainer(
                   backgroundColor: i == homeviewController.carouselIndex.value
                       ? Theme.of(context).colorScheme.primary
-                      : Colors.grey,
+                      : Colors.grey[300],
                   radius: 20,
                   margin: const EdgeInsets.symmetric(
                     horizontal: 2.0,
+                  ),
+                  child: const SizedBox(
+                    height: TUiConstants.indicatorHeight,
+                    width: TUiConstants.indicatorWidth,
                   ),
                 ),
             ],

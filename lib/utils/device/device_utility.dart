@@ -9,6 +9,10 @@ class TDeviceUtility {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
+  static void setPotrait(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
   static Future<void> setStatusBarColor(Color color) async {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: color,
@@ -42,6 +46,10 @@ class TDeviceUtility {
 
   static double getStatusBarHeight(BuildContext context) {
     return MediaQuery.of(context).padding.top;
+  }
+
+  static Size getAppBarSize() {
+    return const Size.fromHeight(kToolbarHeight);
   }
 
   static double getNavigationBarHeight(BuildContext context) {

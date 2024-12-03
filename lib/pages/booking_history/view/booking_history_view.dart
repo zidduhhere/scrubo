@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
+import 'package:scrubo/utils/widgets/custom_app_bar.dart';
 
 class BookingHistoryController extends GetxController {
   RxList<ServiceHistory> bookings = <ServiceHistory>[].obs;
@@ -58,6 +59,11 @@ class BookingHistoryController extends GetxController {
   void toggleExpanded(String id) {
     expandedCards[id] = !(expandedCards[id] ?? false);
     update();
+  }
+
+  @override
+  void onClose() {
+    dispose();
   }
 }
 
@@ -360,45 +366,46 @@ class BookingHistoryView extends GetView<BookingHistoryController> {
   Widget build(BuildContext context) {
     BookingHistoryController controller = Get.put(BookingHistoryController());
     return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: controller.refreshBookings,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        color: Theme.of(context).colorScheme.primary,
-        displacement: TUiConstants.defaultSpacing * 2,
-        child: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(), // Enable overscroll
-          slivers: [
-            SliverAppBar(
-              title: Text(
-                'Service History',
-                style: Theme.of(context).textTheme.titleLarge,
+      body: Padding(
+        padding: TSpacingStyles.paddingScaffold,
+        child: RefreshIndicator(
+          onRefresh: controller.refreshBookings,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          color: Theme.of(context).colorScheme.primary,
+          displacement: TUiConstants.defaultSpacing * 2,
+          child: CustomScrollView(
+            physics: const AlwaysScrollableScrollPhysics(), // Enable overscroll
+            slivers: [
+              TCustomAppBar(
+                profileIcon: true,
+                titlemsg: 'Welcome to',
+                title: 'Booking History',
+                backgroundColor: Theme.of(context).colorScheme.surface,
               ),
-              pinned: true,
-              floating: true,
-            ),
-            Obx(() {
-              if (controller.isLoading.value) {
-                return const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
+              Obx(() {
+                if (controller.isLoading.value) {
+                  return const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                }
 
-              return SliverPadding(
-                padding: const EdgeInsets.all(TUiConstants.defaultSpacing),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final booking = controller.bookings[index];
-                      return TBookingCard(
-                        booking: booking,
-                      );
-                    },
-                    childCount: controller.bookings.length,
+                return SliverPadding(
+                  padding: const EdgeInsets.all(TUiConstants.defaultSpacing),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final booking = controller.bookings[index];
+                        return TBookingCard(
+                          booking: booking,
+                        );
+                      },
+                      childCount: controller.bookings.length,
+                    ),
                   ),
-                ),
-              );
-            }),
-          ],
+                );
+              }),
+            ],
+          ),
         ),
       ),
     );

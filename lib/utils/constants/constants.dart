@@ -70,8 +70,9 @@ class TTextConstants {
   static const String allCategories = "All Categories";
   static const String seeAll = "See All";
   static const String name = "John Doe";
-  static const String welcome = "Good Day for your car";
-  static const String off = "OFF";
+  static const String welcome = "Good Morning";
+  static const String off = " Off";
+  static const String searchServices = "Search Services";
   static const String shopAddress = "AutoGTG Car Services, Private LTD";
   static const String recommended = "Recommended for you";
   static const String carWashDecs = "Car Wash Instant";
@@ -92,4 +93,13 @@ class TTextConstants {
   static const String oldPassword = "Old Password";
   static const String newPassword = "New Password";
   static const String tempPhoneNumber = "+91 73065 22615";
+
+  //Services
+
+  static const String services = "Services";
+  static const String featureServices = "Featured Services";
+  static const String freePickUp = "Free Pickup";
+  static const String freeDelivery = "Free Delivery";
+  static const String hours = "hrs";
+  static const String minutes = "mins";
 }

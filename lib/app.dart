@@ -9,10 +9,11 @@ import 'package:scrubo/pages/authentication/signup/view/verified_view.dart';
 import 'package:scrubo/pages/authentication/signup/view/verify_view.dart';
 import 'package:scrubo/pages/booking_history/view/booking_history_view.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
-import 'package:scrubo/pages/profile_management/view/my_address_view.dart';
-import 'package:scrubo/pages/profile_management/view/my_payments_view.dart';
+
 import 'package:scrubo/pages/service_details/view/service_details_view.dart';
 import 'package:scrubo/pages/service_scheduling/view/service_scheduling_view.dart';
+import 'package:scrubo/pages/services/view/services_view.dart';
+import 'package:scrubo/utils/device/device_utility.dart';
 import 'package:scrubo/utils/theme/theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TDeviceUtility.setPotrait(context);
     return GetMaterialApp(
       getPages: [
         GetPage(name: '/', page: () => const OnboardingView()),
@@ -32,17 +34,16 @@ class MyApp extends StatelessWidget {
             name: '/signup/verify/verified', page: () => const VerifiedView()),
         GetPage(
             name: '/serviceDetails', page: () => const ServiceDetailsView()),
-        GetPage(name: '/profile/address', page: () => const MyAddressView()),
-        GetPage(name: '/profile/payments', page: () => const MyPaymentsView()),
         GetPage(
             name: '/bookinghistory', page: () => const BookingHistoryView()),
-        GetPage(name: '/schedule', page: () => const ServiceSchedulingView())
+        GetPage(name: '/schedule', page: () => const ServiceSchedulingView()),
+        GetPage(name: '/services', page: () => const ServicesView())
       ],
       initialRoute: '/navigation',
       debugShowCheckedModeBanner: false,
       theme: TAppTheme.lightTheme,
-      darkTheme: TAppTheme.lightTheme,
-      themeMode: ThemeMode.dark,
+      darkTheme: TAppTheme.darkTheme,
+      themeMode: ThemeMode.light,
     );
   }
 }

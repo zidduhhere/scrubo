@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/authentication/signup/viewmodel/signup_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/widgets/custom_text_field.dart';
+import 'package:scrubo/utils/widgets/textfield/custom_text_field.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({

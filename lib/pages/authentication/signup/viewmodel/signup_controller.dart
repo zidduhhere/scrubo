@@ -121,6 +121,17 @@ class SignupController extends GetxController implements AppControllerMixin {
   void resendEmail() {}
 
   void homeWithSignup() {
-    Get.offAllNamed('/home');
+    Get.offAllNamed('/navigation');
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    userNameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneController.dispose();
+    super.onClose();
   }
 }
