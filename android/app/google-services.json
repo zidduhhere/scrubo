@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605279676407",
+    "project_id": "scrub-bf0f2",
+    "storage_bucket": "scrub-bf0f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605279676407:android:376ec3bcff59ca09aff0f2",
+        "android_client_info": {
+          "package_name": "com.abialif.scrubo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCShVK5GE4SEPJ7HZB-QChIa3bgmv-xtTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

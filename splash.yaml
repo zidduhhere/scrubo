@@ -1,13 +1,12 @@
-# flutter_native_splash:
-#   color: "#FFFFFF"
-#   color_dark: "#272727"
-#   image: assets/images/scrubo.png
-#   image_dark: assets/images/scrubo.png
+flutter_native_splash:
+  android: true
+  ios: false
+  web: false
+  background_color: "#ffffff"
+  image: assets/images/scrubo.png
+  image_dark: assets/images/scrubo.png
 
-#   android_12:
-#     color: "#FFFFFF"
-#     color_dark: "#272727"
-#     image: assets/images/scrubo.png
-#     image_dark: assets/images/scrubo.png
-
-#   web: false
+  android_12:
+    background_color: "#ffffff"
+    image: assets/images/scrubo.png
+    image_dark: assets/images/scrubo.png

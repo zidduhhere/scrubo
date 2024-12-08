@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
@@ -30,7 +31,7 @@ class AddressSelectionHeader extends StatelessWidget {
                             TUiConstants.iconButtonWidthFactor),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () => Get.toNamed('/profile/address'),
                 icon: const Icon(Iconsax.menu),
               ),
               const SizedBox(width: TUiConstants.s / 2),
@@ -70,9 +71,9 @@ class AddressSelectionHeader extends StatelessWidget {
                         TUiConstants.iconButtonWidthFactor),
               ),
             ),
-            onPressed: () {},
+            onPressed: () => Get.toNamed('/home/dynamicLocation'),
             icon: const Icon(
-              Iconsax.search_normal,
+              TUiConstants.iconSearch,
               size: 20,
             ),
           ),

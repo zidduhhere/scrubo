@@ -1,4 +1,4 @@
-package com.example.scrubo
+package com.abialif.scrubo
 
 import io.flutter.embedding.android.FlutterActivity
 

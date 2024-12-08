@@ -7,6 +7,7 @@ class TUiConstants {
   static const double paddingSmall = 8.0;
   static const double paddingMedium = 12.0;
   static const double paddingLarge = 20.0;
+  static const double paddingImage = 16.0;
 
   // Margin
   static const double marginSmall = 8.0;
@@ -66,6 +67,7 @@ class TUiConstants {
   static const double defaultSpacing = 16.0;
   static const double spaceBtwSections = 32.0;
   static const double spaceBtwInputFields = 20.0;
+  static const double spaceBtwTexts = 12.0;
 
   // Button Size
   static const double buttonWidth = 340.0;
@@ -88,6 +90,7 @@ class TUiConstants {
   static const double gridViewMainAxisSpacing = 16.0;
   static const double gridViewCrossAxisSpacing = 16.0;
 
+  static const double cardSpacing = TUiConstants.defaultSpacing * 1.5;
   // static const double profileContainerHeight =
 
   // Icons
@@ -96,10 +99,10 @@ class TUiConstants {
   static const IconData iconInstant = Iconsax.flash;
   static const IconData iconProfile = Iconsax.user;
   static const IconData iconCar = Iconsax.car;
-  static const IconData iconStar = Iconsax.star;
-  static const IconData iconService = Iconsax.setting;
+  static const IconData iconStar = Iconsax.star1;
+  static const IconData iconSettings = Iconsax.setting_45;
   static const IconData iconNotification = Iconsax.notification;
-  static const IconData iconSettings = Iconsax.setting;
+  static const IconData iconService = Iconsax.setting;
   static const IconData iconShop = Iconsax.shop;
   static const IconData iconLogout = Iconsax.logout;
   static const IconData iconOil = Iconsax.drop3;
@@ -129,8 +132,9 @@ class TUiConstants {
   static const IconData iconCarEngine = Iconsax.designtools;
   static const IconData iconBreak = Iconsax.stop_circle1;
   static const IconData iconAdd = Iconsax.add;
-  static const IconData iconStarFilled = Iconsax.star_slash;
+  static const IconData iconStarFilled = Iconsax.star5;
   static const IconData iconStarHalf = Iconsax.star_15;
+  static const IconData iconStarEmpty = Iconsax.star;
   static const IconData iconDiscount = Iconsax.discount_shape;
   static const IconData iconLocation = Iconsax.location;
   static const IconData iconPrivacy = Iconsax.security_card;
@@ -138,6 +142,27 @@ class TUiConstants {
   static const IconData iconDocumentUpload = Iconsax.document_upload;
   static const IconData iconSafe = Iconsax.security_user;
   static const IconData iconImage = Iconsax.image;
+  static const IconData iconArrowRight = Iconsax.arrow_right_3;
+  static const IconData iconCopy = Iconsax.copy;
+  static const IconData iconArrowLeft = Iconsax.arrow_left_2;
+  static const IconData iconBack = Iconsax.arrow_left;
+  static const IconData iconFavourite = Iconsax.like_1;
+  static const IconData iconFavouriteFill = Iconsax.like_15;
+  static const IconData iconShare = Iconsax.share4;
+  static const IconData iconMenu = Iconsax.more5;
+  static const IconData iconCheck = Iconsax.tick_circle5;
+  static const IconData iconPhone = Iconsax.call;
+  static const IconData iconStreet = Iconsax.building_3;
+  static const IconData iconPostalCode = Iconsax.code;
+  static const IconData iconCity = Iconsax.building4;
+  static const IconData iconState = Iconsax.map;
+  static const IconData iconCalendar = Iconsax.calendar5;
+  static const IconData iconVerify = Iconsax.verify5;
+  static const IconData iconCompleted = Iconsax.tick_circle;
+  static const IconData iconTag = Iconsax.tag;
+  static const IconData iconPending = Iconsax.activity;
+  static const IconData iconCancelled = Iconsax.close_circle;
+  static const IconData iconUnknown = Iconsax.forbidden;
 
   //signs
 
@@ -166,6 +191,15 @@ class TSpacingStyles {
 
   static const EdgeInsetsGeometry paddingScaffold =
       EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0);
+
+  static const EdgeInsetsGeometry paddingWithAppBar = EdgeInsets.fromLTRB(
+      TUiConstants.defaultSpacing,
+      TUiConstants.appBarheight * .6,
+      TUiConstants.defaultSpacing,
+      0);
+
+  static const EdgeInsetsGeometry paddingDefault = EdgeInsets.fromLTRB(
+      TUiConstants.defaultSpacing, 0, TUiConstants.defaultSpacing, 0);
 }
 
 class TShadowStyles {

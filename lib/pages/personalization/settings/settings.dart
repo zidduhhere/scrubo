@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:scrubo/pages/personalization/widgets/changable_profile_tiles_view.dart';
 import 'package:scrubo/pages/personalization/widgets/profile_container.dart';
 import 'package:scrubo/pages/personalization/widgets/settings_tile.dart';
@@ -14,11 +15,11 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TCurvedEdgeWidget(
+            const TCurvedEdgeWidget(
               height: 250,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -46,50 +47,56 @@ class SettingsView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(TUiConstants.defaultSpacing),
+              padding: const EdgeInsets.all(TUiConstants.defaultSpacing),
               child: Column(
                 children: [
                   //Account Settings
-                  CustomRowHeader(
+                  const CustomRowHeader(
                       leadingText: 'Account Settings', isTrailing: false),
-                  SizedBox(height: TUiConstants.defaultSpacing),
+                  const SizedBox(height: TUiConstants.defaultSpacing),
                   TSettingsTile(
-                      icon: TUiConstants.iconHome,
-                      title: 'My Addresses',
-                      subtitle: 'Set pickup delivery address'),
-                  TSettingsTile(
+                    icon: TUiConstants.iconHome,
+                    title: 'My Addresses',
+                    subtitle: 'Set pickup delivery address',
+                    onTap: () => Get.toNamed('/profile/address'),
+                  ),
+                  const TSettingsTile(
+                      icon: TUiConstants.iconCar,
+                      title: 'My Vehicles',
+                      subtitle: 'Add or remove your vehicles'),
+                  const TSettingsTile(
                       icon: TUiConstants.iconService,
                       title: 'My Services',
                       subtitle: 'View your past service details and more'),
-                  TSettingsTile(
+                  const TSettingsTile(
                       icon: TUiConstants.iconBank,
                       title: 'Bank Account',
                       subtitle: 'Add or remove bank account'),
-                  TSettingsTile(
+                  const TSettingsTile(
                       icon: TUiConstants.iconDiscount,
                       title: 'My Coupons',
                       subtitle:
                           'View your available coupons and get more referal codes'),
-                  TSettingsTile(
+                  const TSettingsTile(
                       icon: TUiConstants.iconNotification,
                       title: 'Notifications',
                       subtitle: 'Manage your notifications'),
-                  TSettingsTile(
+                  const TSettingsTile(
                       icon: TUiConstants.iconPrivacy,
                       title: 'Account Privacy',
                       subtitle: 'Manage data usage and connected accounts'),
 
-                  SizedBox(height: TUiConstants.spaceBtwSections),
+                  const SizedBox(height: TUiConstants.spaceBtwSections),
                   //App Settings
-                  CustomRowHeader(
+                  const CustomRowHeader(
                       leadingText: 'App Settings', isTrailing: false),
-                  SizedBox(height: TUiConstants.defaultSpacing),
-                  TSettingsTile(
+                  const SizedBox(height: TUiConstants.defaultSpacing),
+                  const TSettingsTile(
                       icon: TUiConstants.iconDocumentUpload,
                       title: 'Load Data',
                       subtitle: 'Upload your data to cloud Firebase'),
 
-                  ChangableProfileTiles()
+                  const ChangableProfileTiles()
                 ],
               ),
             ),

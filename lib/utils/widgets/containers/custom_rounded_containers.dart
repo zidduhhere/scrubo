@@ -95,6 +95,7 @@ class TRoundedImageContainer extends StatelessWidget {
       margin: margin,
       decoration: BoxDecoration(
         boxShadow: shadow,
+        border: border,
         color: backgroundColor ?? Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(
             bordeRadius ?? TUiConstants.borderRadiusMedium),
@@ -108,8 +109,8 @@ class TRoundedImageContainer extends StatelessWidget {
               : Image.asset(
                   imageUrl,
                   fit: BoxFit.contain,
-                  width: double.maxFinite,
-                  height: double.maxFinite,
+                  width: width ?? double.maxFinite,
+                  height: height ?? double.maxFinite,
                   // width: double.infinity,
                 ),
         ),
@@ -132,7 +133,6 @@ class TSizeAdjustableRoundedContainer extends StatelessWidget {
     this.diffRadius = false,
     this.border,
     this.borderRadius,
-    this.fit = BoxFit.contain,
   }) : assert(
           !diffRadius || borderRadius != null,
           'Give specific border in borderRadius if diffRadius is true',
@@ -141,7 +141,7 @@ class TSizeAdjustableRoundedContainer extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final VoidCallback? onPressed;
-  final BoxFit fit;
+
   final Color? backgroundColor;
   final double? width;
   // final Text text;
@@ -173,6 +173,53 @@ class TSizeAdjustableRoundedContainer extends StatelessWidget {
         child: child,
         // margin: const EdgeInsets.symmetric(horizontal: 5.0),
       ),
+    );
+  }
+}
+
+class TRoundedDecorationImageContainer extends StatelessWidget {
+  const TRoundedDecorationImageContainer(
+      {super.key,
+      this.height,
+      this.width,
+      this.padding,
+      this.radius,
+      required this.borderColor,
+      required this.imageUrl,
+      this.fit,
+      this.margin,
+      required this.isNetworkImage});
+
+  final double? height;
+  final double? width;
+  final EdgeInsetsGeometry? padding;
+  final double? radius;
+  final Color borderColor;
+  final String imageUrl;
+  final BoxFit? fit;
+  final EdgeInsetsGeometry? margin;
+  final bool isNetworkImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      margin: margin,
+      padding: padding,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: isNetworkImage ? NetworkImage(imageUrl) : AssetImage(imageUrl),
+          fit: fit ?? BoxFit.fill,
+        ),
+        border: Border.all(color: borderColor),
+        // color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(
+          radius ?? TUiConstants.borderRadiusMedium,
+        ),
+      ),
+
+      // margin: const EdgeInsets.symmetric(horizontal: 5.0),
     );
   }
 }

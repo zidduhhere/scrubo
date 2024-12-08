@@ -21,10 +21,10 @@ class ProductViewGrid extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(0, TUiConstants.s, 0, 0),
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: .8,
           mainAxisSpacing: TUiConstants.gridViewMainAxisSpacing / 1,
           crossAxisSpacing: TUiConstants.gridViewCrossAxisSpacing / 10,
           crossAxisCount: 2,
+          childAspectRatio: 0.7,
         ),
         itemBuilder: (_, index) {
           int price = controller.productGridItems[index]!["price"]!;

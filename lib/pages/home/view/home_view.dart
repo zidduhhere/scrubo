@@ -38,40 +38,47 @@ class HomeView extends StatelessWidget {
                 ),
               ];
             },
-            body: SingleChildScrollView(
+            body: const SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //ADDRESS SELECTION SECTION
-                  const AddressSelectionHeader(),
-                  const SizedBox(height: TUiConstants.defaultSpacing),
+                  AddressSelectionHeader(),
+                  SizedBox(height: TUiConstants.defaultSpacing),
                   //SEARCH SECTION
-                  const TSearchBox(),
-                  const SizedBox(height: TUiConstants.defaultSpacing),
+                  TSearchBox(),
+                  SizedBox(height: TUiConstants.defaultSpacing),
                   //Offers Section
-                  const CustomHomeCarousel(),
-                  const SizedBox(height: TUiConstants.spaceBtwSections),
+                  CustomHomeCarousel(),
+                  SizedBox(height: TUiConstants.spaceBtwSections),
                   //CATEGORIES SECTION
                   CustomRowHeader(
                     leadingText: TTextConstants.allCategories,
-                    trailingText: TTextConstants.seeAll,
-                    isTrailing: true,
-                    action: () {},
+                    isTrailing: false,
                   ),
-                  const SizedBox(height: TUiConstants.defaultSpacing),
-                  const CategoriesList(),
-                  const SizedBox(height: TUiConstants.defaultSpacing),
+                  SizedBox(height: TUiConstants.defaultSpacing),
+                  CategoriesList(),
+                  SizedBox(height: TUiConstants.defaultSpacing),
+                  //TRENDING SECTION
+                  Placeholder(
+                    fallbackHeight: 400,
+                    fallbackWidth: double.infinity,
+                    child: Center(
+                      child: Text('Trending Services'),
+                    ),
+                  ),
+                  SizedBox(height: TUiConstants.spaceBtwSections),
                   //RECOMMENDED SECTION
-                  const CustomRowHeader(
+                  CustomRowHeader(
                     leadingText: TTextConstants.recommended,
                     isTrailing: false,
                   ),
 
-                  const SizedBox(height: TUiConstants.defaultSpacing * 1),
+                  SizedBox(height: TUiConstants.defaultSpacing),
 
                   // ProductViewGrid()
-                  const ProductViewGrid(),
-                  const SizedBox(height: TUiConstants.defaultSpacing * 2),
+                  ProductViewGrid(),
+                  SizedBox(height: TUiConstants.spaceBtwSections * 2),
                 ],
               ),
             ),

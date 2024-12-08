@@ -11,6 +11,9 @@
 migrate_working_dir/
 build/
 main.py
+node_modules/
+.aider.chat.history.md
+command.txt
 
 # IntelliJ related
 *.iml
@@ -33,6 +36,7 @@ main.py
 .pub/
 /build/
 
+
 # Symbolication related
 app.*.symbols
 
@@ -43,3 +47,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+node_modules/

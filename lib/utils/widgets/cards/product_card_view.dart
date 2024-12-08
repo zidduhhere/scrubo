@@ -5,8 +5,11 @@ import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
+import 'package:scrubo/utils/widgets/buttons/custom_rounded_icon_button.dart';
+import 'package:scrubo/utils/widgets/containers/custom_discount_containers.dart';
 import 'package:scrubo/utils/widgets/headings/custom_price_text_views.dart';
 import 'package:scrubo/utils/widgets/containers/custom_rounded_containers.dart';
+import 'package:scrubo/utils/widgets/headings/custom_shop_with_verified_icon.dart';
 
 class ProductViewCard extends StatelessWidget {
   const ProductViewCard({
@@ -31,19 +34,17 @@ class ProductViewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeViewController homeViewController = Get.find<HomeViewController>();
     return Container(
-      width: 180,
       margin: const EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0),
       decoration: BoxDecoration(
+        border: Border.all(
+          color: Theme.of(context).colorScheme.surfaceContainerHigh,
+          width: 1,
+        ),
         borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
-        color: Theme.of(context).colorScheme.surfaceContainer,
-        // boxShadow: [
-        //   TShadowStyles.horizontalShadow,
-        //   TShadowStyles.verticalShadow
-        // ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
@@ -62,7 +63,7 @@ class ProductViewCard extends StatelessWidget {
                     ? const SizedBox()
                     : Positioned(
                         top: 10,
-                        left: 5,
+                        left: 10,
                         height: 20,
                         width: 40,
                         child: DiscountContainer(discount: discount.toString()),
@@ -83,26 +84,7 @@ class ProductViewCard extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onSurface,
                       fontWeight: FontWeight.w600),
                 ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        shopAddress,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                    const Icon(
-                      Iconsax.verify5,
-                      color: Colors.blue,
-                      size: 20,
-                    )
-                  ],
-                ),
+                TShopWithVerifiedIcon(shopAddress: shopAddress),
                 const SizedBox(
                   height: TUiConstants.m,
                 ),
@@ -127,41 +109,27 @@ class ProductViewCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: GestureDetector(
-                  onTap: () {
-                    bool success = homeViewController.incrementCount();
-                    if (!success) {
-                      Get.snackbar(
-                        TTextConstants.snackBarTitle,
-                        TTextConstants.snackBarDescription,
-                        snackStyle: SnackStyle.FLOATING,
-                        colorText: Colors.white,
-                        icon: const Icon(
-                          Iconsax.warning_2,
-                          color: TColors.darkError,
-                        ),
-                        backgroundColor: TColors.lightPrimaryColor,
-                      );
-                    }
-                  },
-                  child: TSizeAdjustableRoundedContainer(
-                    height: 40,
-                    width: 40,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    diffRadius: true,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(TUiConstants.borderRadiusMedium),
-                      bottomRight: Radius.circular(
-                        TUiConstants.borderRadiusMedium,
+              GestureDetector(
+                onTap: () {
+                  bool success = homeViewController.incrementCount();
+                  if (!success) {
+                    Get.snackbar(
+                      TTextConstants.snackBarTitle,
+                      TTextConstants.snackBarDescription,
+                      snackStyle: SnackStyle.FLOATING,
+                      colorText: Colors.white,
+                      icon: const Icon(
+                        Iconsax.warning_2,
+                        color: TColors.darkError,
                       ),
-                    ),
-                    child: Center(
-                        child: Icon(
-                      TUiConstants.iconAdd,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    )),
+                      backgroundColor: TColors.lightPrimaryColor,
+                    );
+                  }
+                },
+                child: const Align(
+                  alignment: Alignment.bottomRight,
+                  child: TRoundedIconButton(
+                    icon: TUiConstants.iconAdd,
                   ),
                 ),
               ),

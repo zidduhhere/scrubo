@@ -6,6 +6,7 @@ class TAppBarTheme {
   TAppBarTheme._();
   static AppBarTheme lightAppbarTheme = const AppBarTheme(
     centerTitle: true,
+
     actionsIconTheme: IconThemeData(color: TColors.lightOutline),
     // titleTextStyle: TTextTheme.lightTextTheme.headlineSmall,
     backgroundColor: TColors.lightSurface,

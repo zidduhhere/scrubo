@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:badges/badges.dart' as badges;
@@ -95,10 +96,14 @@ class TCustomAppBar extends StatelessWidget {
             : const SizedBox(),
         const SizedBox(width: TUiConstants.s / 2),
         profileIcon
-            ? CircleAvatar(
-                radius: TUiConstants.borderRadiusCircleAvatar,
-                backgroundColor: Theme.of(context).colorScheme.secondary,
-                child: const Icon(Iconsax.user),
+            ? GestureDetector(
+                onTap: () => Get.toNamed('/profile'),
+                child: CircleAvatar(
+                  radius: TUiConstants.borderRadiusCircleAvatar,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.secondaryContainer,
+                  child: const Icon(Iconsax.user),
+                ),
               )
             : const SizedBox(),
         // const SizedBox(width: TUiConstants.s),
@@ -230,10 +235,14 @@ class TCustomNormalAppBar extends StatelessWidget
                   : const SizedBox(),
               const SizedBox(width: TUiConstants.s / 2),
               profileIcon
-                  ? CircleAvatar(
-                      radius: TUiConstants.borderRadiusCircleAvatar,
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
-                      child: const Icon(Iconsax.user),
+                  ? GestureDetector(
+                      onTap: () => Get.toNamed('/profile'),
+                      child: CircleAvatar(
+                        radius: TUiConstants.borderRadiusCircleAvatar,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondaryContainer,
+                        child: const Icon(Iconsax.user),
+                      ),
                     )
                   : const SizedBox(),
               // const SizedBox(width: TUiConstants.s),

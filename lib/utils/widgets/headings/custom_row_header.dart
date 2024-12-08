@@ -32,10 +32,9 @@ class CustomRowHeader extends StatelessWidget {
           onTap: isTrailing ? action : null,
           child: Text(
             trailingText ?? "",
-            style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                  fontSize: TUiConstants.fontSizeMedium,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
           ),
         ),

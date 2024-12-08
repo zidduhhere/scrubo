@@ -36,11 +36,14 @@ dependencies:
   cupertino_icons: ^1.0.6
   google_maps_flutter:
   flutter_svg:
-  flutter_native_splash:
+  flutter_native_splash: ^2.4.3
   google_fonts:
   iconsax: ^0.0.8
   badges:
   carousel_slider:
+  readmore:
+  flutter_rating_bar:
+
   #Web Communication
 
   http:
@@ -51,6 +54,10 @@ dependencies:
   #State Management
 
   get:
+  firebase_core: ^3.8.1
+
+  #get storage
+  get_storage:
 
 dev_dependencies:
   flutter_test:
@@ -74,14 +81,15 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/images/
+  assets: # Add all images in the assets/images folder
     - assets/images/products/
     - assets/images/carousel/
     - assets/images/utils/
     - assets/icons/color/
     - assets/icons/
     - assets/fonts/
+    - assets/images/payments/
+    - assets/images/vehicles/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

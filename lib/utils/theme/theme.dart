@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/theme/custom/appbar_theme.dart';
+import 'package:scrubo/utils/theme/custom/chip_theme.dart';
 import 'package:scrubo/utils/theme/custom/elevated_buttom_theme.dart';
 import 'package:scrubo/utils/theme/custom/iconbutton_theme.dart';
 import 'package:scrubo/utils/theme/custom/outlined_button_theme.dart';
@@ -23,6 +24,7 @@ class TAppTheme {
       elevatedButtonTheme: TElevatedButtonTheme.lightElevatedButtonTheme,
       iconButtonTheme: TIconButtonTheme.lightIconButtonTheme,
       outlinedButtonTheme: TOutlinedButtonTheme.lightOutlinedButtonTheme,
+      chipTheme: TChipTheme.lightChipThemeData,
 
       ///
       ///
@@ -107,6 +109,7 @@ class TAppTheme {
       iconButtonTheme: TIconButtonTheme.darkIconButtonTheme,
       inputDecorationTheme: TTextFieldTheme.darkTextFieldTheme,
       outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
+      chipTheme: TChipTheme.darkChipThemeData,
 
       ///
       ///

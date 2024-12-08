@@ -12,6 +12,7 @@ class CategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeViewController homeviewController = Get.find<HomeViewController>();
+
     return SizedBox(
       height: THelperFunctions.getDeviceHeight(context) * 0.125,
       child: ListView.builder(
@@ -23,15 +24,18 @@ class CategoriesList extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: TUiConstants.m),
               child: Column(
                 children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundColor: THelperFunctions.isDarkMode(context)
-                        ? Colors.blueGrey[800]
-                        : Colors.blueGrey[100],
-                    foregroundColor: Theme.of(context).colorScheme.primary,
-                    child: Image.asset(
-                      homeviewController.categories[index]!['icon']!,
-                      scale: 15,
+                  GestureDetector(
+                    onTap: () => Get.toNamed('/home/subcategory'),
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundColor: THelperFunctions.isDarkMode(context)
+                          ? Colors.blueGrey[800]
+                          : Colors.blueGrey[100],
+                      foregroundColor: Theme.of(context).colorScheme.primary,
+                      child: Image.asset(
+                        homeviewController.categories[index]!['icon']!,
+                        scale: 15,
+                      ),
                     ),
                   ),
                   const SizedBox(height: TUiConstants.s),

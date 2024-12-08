@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:scrubo/pages/services/view/widgets/custom_tabbar_view.dart';
-import 'package:scrubo/pages/services/view/widgets/featured_car_view.dart';
+import 'package:scrubo/pages/services/view/widgets/featured_card_view.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
-import 'package:scrubo/utils/widgets/custom_app_bar.dart';
 import 'package:scrubo/utils/widgets/grids/custom_grid.dart';
 import 'package:scrubo/utils/widgets/cards/custom_horizontal_card_view.dart';
 import 'package:scrubo/utils/widgets/headings/custom_row_header.dart';
@@ -19,19 +19,52 @@ class ServicesView extends StatelessWidget {
     return DefaultTabController(
       length: 6,
       child: Scaffold(
-        appBar: TCustomNormalAppBar(
-          title: TTextConstants.services,
-          titlemsg: TTextConstants.welcome,
-          profileIcon: true,
-          backgroundColor: Theme.of(context).colorScheme.surface,
-        ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                stretch: true,
+                actions: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: TUiConstants.s),
+                    child: GestureDetector(
+                      onTap: () => Get.toNamed('/profile'),
+                      child: CircleAvatar(
+                        radius: TUiConstants.borderRadiusCircleAvatar,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondaryContainer,
+                        child: const Icon(TUiConstants.iconUser),
+                      ),
+                    ),
+                  )
+                ],
+                title: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: TUiConstants.s,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Good Morning",
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      Text(
+                        "Services",
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              fontSize: TUiConstants.fontSizeMediumLarge,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                ),
+                centerTitle: false,
                 backgroundColor: Colors.transparent,
-                surfaceTintColor: Colors.transparent,
                 floating: true,
                 expandedHeight: TDeviceUtility.getDeviceHeight(context) * .6,
                 flexibleSpace: Padding(
@@ -40,7 +73,8 @@ class ServicesView extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      const SizedBox(height: TUiConstants.spaceBtwSections),
+                      const SizedBox(
+                          height: TUiConstants.spaceBtwSections * 2.5),
                       const TSearchBox(),
                       const SizedBox(height: TUiConstants.spaceBtwSections),
 
@@ -109,12 +143,12 @@ class TCategoryTab extends StatelessWidget {
 final Map<int, Map<String, dynamic>> featuredServices = {
   0: {
     'image': TImages.colorIconCarWash,
-    'title': 'Car Wash',
+    'title': 'Polishing',
     'subtitle': '10 shops nearby'
   },
   1: {
     'image': TImages.colorIconCarService,
-    'title': 'Car Service',
+    'title': 'Service',
     'subtitle': '8 shops nearby'
   },
   2: {
@@ -133,6 +167,11 @@ final Map<int, Map<String, dynamic>> featuredServices = {
     'subtitle': '10 shops nearby'
   },
   5: {
+    'image': TImages.colorIconRepair,
+    'title': 'Vehicle Repair',
+    'subtitle': '8 shops nearby'
+  },
+  6: {
     'image': TImages.colorIconRepair,
     'title': 'Vehicle Repair',
     'subtitle': '8 shops nearby'

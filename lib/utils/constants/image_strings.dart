@@ -1,10 +1,10 @@
 class TImages {
   TImages._();
 
+  static const String logo = 'assets/images/scrubo.png';
+
   static const String verification = 'assets/images/utils/verification.png';
   static const String verified = 'assets/images/utils/verified.png';
-  static const String carouselImage2 = 'assets/images/carousel/water_rinse.png';
-  static const String carouselImage1 = 'assets/images/carousel/car_service.png';
   static const String avatar = 'assets/images/utils/avatar.png';
   static const String carEngine = 'assets/images/products/car_engine.png';
   static const String airFilterCar = 'assets/images/prodcuts/air_filter.png';
@@ -38,4 +38,19 @@ class TImages {
   static const String colorIconSpareParts =
       'assets/icons/color/spare_parts.png';
   static const String colorIconTowing = 'assets/icons/color/towing.png';
+
+  //Payments
+  static const String gpay = 'assets/images/payments/gpay.png';
+  static const String phonePe = 'assets/images/payments/phonepe.png';
+  static const String upi = 'assets/images/payments/upi.png';
+  static const String cash = 'assets/images/payments/cash.png';
+  static const String transactionSuccess = 'assets/images/payments/success.png';
+
+  //Static carousel images;
+  static const String carousel1 = 'assets/images/carousel/car_wash.jpg';
+
+  //Vehicle Images
+  static const String bike = 'assets/images/vehicles/bike.png';
+  static const String car = 'assets/images/vehicles/car.png';
+  static const String car_2 = 'assets/images/vehicles/car_2.png';
 }

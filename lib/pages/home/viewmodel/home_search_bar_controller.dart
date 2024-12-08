@@ -39,7 +39,5 @@ class SearchBarStateController extends GetxController {
 
   void selectSearchItem(String item) {
     // Navigate to search results page with selected item
-    Get.toNamed('/services',
-        arguments: {'searchQuery': item, 'searchResults': filteredItems});
   }
 }

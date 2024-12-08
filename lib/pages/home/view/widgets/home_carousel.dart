@@ -88,7 +88,7 @@ class CustomHomeCarousel extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            top: 80,
+                            top: 100,
                             left: 30,
                             child: Text(
                               title,
@@ -107,7 +107,7 @@ class CustomHomeCarousel extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            top: 100,
+                            top: 120,
                             left: 30,
                             child: Text(
                               description,
@@ -122,34 +122,34 @@ class CustomHomeCarousel extends StatelessWidget {
                                   ),
                             ),
                           ),
-                          Positioned(
-                            top: 130,
-                            left: 30,
-                            child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  fixedSize: const Size(120, 50),
-                                  backgroundColor: Colors.black,
-                                  foregroundColor: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        TUiConstants.borderRadiusMedium),
-                                  ),
-                                ),
-                                child: Text(
-                                  TTextConstants.bookNow,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge!
-                                      .copyWith(
-                                        fontSize: TUiConstants.fontSizeSmall,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                )),
-                          ),
+                          // Positioned(
+                          //   top: 130,
+                          //   left: 30,
+                          //   child: ElevatedButton(
+                          //       onPressed: () {},
+                          //       style: ElevatedButton.styleFrom(
+                          //         fixedSize: const Size(120, 50),
+                          //         backgroundColor: Colors.black,
+                          //         foregroundColor: Theme.of(context)
+                          //             .colorScheme
+                          //             .onPrimaryContainer,
+                          //         shape: RoundedRectangleBorder(
+                          //           borderRadius: BorderRadius.circular(
+                          //               TUiConstants.borderRadiusMedium),
+                          //         ),
+                          //       ),
+                          //       child: Text(
+                          //         TTextConstants.bookNow,
+                          //         style: Theme.of(context)
+                          //             .textTheme
+                          //             .labelLarge!
+                          //             .copyWith(
+                          //               fontSize: TUiConstants.fontSizeSmall,
+                          //               fontWeight: FontWeight.w600,
+                          //               color: Colors.white,
+                          //             ),
+                          //       )),
+                          // ),
                           // Text(
                           //   homeviewController.items[index]!['description']!,
                           //   style: Theme.of(context)
@@ -177,7 +177,7 @@ class CustomHomeCarousel extends StatelessWidget {
                                               fontWeight: FontWeight.w500,
                                               fontSize:
                                                   TUiConstants.headlineLarge *
-                                                      1,
+                                                      1.5,
                                               // sfontWeight: FontWeight.w600,
                                               color: Theme.of(context)
                                                   .colorScheme

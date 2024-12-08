@@ -18,25 +18,28 @@ class TSettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: Theme.of(context).primaryColor,
-        size: TUiConstants.iconSizeLarge,
+    return GestureDetector(
+      onTap: onTap,
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: Theme.of(context).primaryColor,
+          size: TUiConstants.iconSizeLarge,
+        ),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+        ),
+        trailing: trailing,
       ),
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-      ),
-      subtitle: Text(
-        subtitle,
-        style: Theme.of(context).textTheme.labelSmall!.copyWith(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-      ),
-      trailing: trailing,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/pages/booking_history/view/booking_history_view.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
 import 'package:scrubo/pages/personalization/settings/settings.dart';
@@ -66,12 +65,12 @@ class NavigationMenuController extends GetxController {
       "label": "Previous",
     },
     2: {
-      "iconData": Iconsax.command,
+      "iconData": TUiConstants.iconService,
       "label": "Instant",
     },
     3: {
-      "iconData": TUiConstants.iconProfile,
-      "label": "Profile",
+      "iconData": TUiConstants.iconSettings,
+      "label": "Settings",
     },
   };
 }
