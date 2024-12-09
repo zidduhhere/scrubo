@@ -26,6 +26,8 @@ class ProfileDetailsContainer extends StatelessWidget {
                 flex: 6,
                 child: Text(
                   value,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context)
                       .textTheme
                       .labelMedium!

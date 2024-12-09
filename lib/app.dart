@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:scrubo/bindings/general_bindings.dart';
 import 'package:scrubo/navigation_bar.dart';
-import 'package:scrubo/pages/authentication/login/view/login_view.dart';
-import 'package:scrubo/pages/authentication/onboarding/view/onboarding_view.dart';
-import 'package:scrubo/pages/authentication/signup/view/signup_view.dart';
-import 'package:scrubo/pages/authentication/signup/view/verified_view.dart';
-import 'package:scrubo/pages/authentication/signup/view/verify_view.dart';
+import 'package:scrubo/pages/authentication/screens/login/view/login_view.dart';
+import 'package:scrubo/pages/onboarding/view/onboarding_view.dart';
+import 'package:scrubo/pages/authentication/screens/signup/view/signup_view.dart';
+import 'package:scrubo/pages/authentication/screens/signup/view/verified_view.dart';
+import 'package:scrubo/pages/authentication/screens/signup/view/verify_view.dart';
 import 'package:scrubo/pages/booking_history/view/booking_history_view.dart';
 import 'package:scrubo/pages/categories/view/sub_categories_view.dart';
 import 'package:scrubo/pages/home/view/dynamic_location_view.dart';
@@ -27,7 +28,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TDeviceUtility.setPotrait(context);
+    TDeviceUtility.setStatusBarColor(Colors.white);
+    TDeviceUtility.setStatusBarTextColor(true);
+
     return GetMaterialApp(
+      initialBinding: GeneralBindings(),
       getPages: [
         GetPage(name: '/', page: () => const OnboardingView()),
         GetPage(name: '/signup', page: () => const SignupView()),

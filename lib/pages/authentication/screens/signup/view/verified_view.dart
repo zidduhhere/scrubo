@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:scrubo/pages/authentication/signup/viewmodel/signup_controller.dart';
+import 'package:scrubo/data/repositories/auth/authentication_repository.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
@@ -11,7 +10,6 @@ class VerifiedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignupController signupController = Get.find<SignupController>();
     return Scaffold(
       body: Center(
         child: Padding(
@@ -39,7 +37,7 @@ class VerifiedView extends StatelessWidget {
               ),
               const SizedBox(height: TUiConstants.spaceBtwSections),
               CustomElevatedButton(
-                onTap: () => signupController.homeWithSignup(),
+                onTap: () => AuthenticationRepository.instance.screenRedirect(),
                 // Get.toNamed('/login');
 
                 text: TTextConstants.continueButton,

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scrubo/data/user/user_controller.dart';
 import 'package:scrubo/pages/personalization/widgets/profile_details_card.dart';
 import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
+import 'package:scrubo/utils/formatter/phone_number_formatter.dart';
 import 'package:scrubo/utils/widgets/containers/circukar_image_container.dart';
 import 'package:scrubo/utils/widgets/custom/custom_divider.dart';
 import 'package:scrubo/utils/widgets/headings/custom_row_header.dart';
@@ -13,6 +16,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -44,15 +48,19 @@ class ProfileView extends StatelessWidget {
                   isTrailing: false,
                 ),
                 const SizedBox(height: TUiConstants.defaultSpacing),
-                ProfileDetailsContainer(
-                  property: 'Name',
-                  value: 'Ubaid Atlhaf',
-                  onPressed: () {},
+                Obx(
+                  () => ProfileDetailsContainer(
+                    property: 'Name',
+                    value: controller.user.value?.fullName ?? 'Unknown',
+                    onPressed: () {},
+                  ),
                 ),
-                ProfileDetailsContainer(
-                  property: TTextConstants.username,
-                  value: 'ubaidatlhaf',
-                  onPressed: () {},
+                Obx(
+                  () => ProfileDetailsContainer(
+                    property: TTextConstants.username,
+                    value: controller.user.value?.username ?? 'Unknown',
+                    onPressed: () {},
+                  ),
                 ),
                 const SizedBox(height: TUiConstants.spaceBtwSections),
                 const CustomDivider(),
@@ -63,17 +71,18 @@ class ProfileView extends StatelessWidget {
                 ProfileDetailsContainer(
                   onPressed: () {},
                   property: 'User ID',
-                  value: '45689',
+                  value: controller.user.value?.uid ?? 'Unknown',
                   trailingIcon: TUiConstants.iconCopy,
                 ),
                 ProfileDetailsContainer(
                     onPressed: () {},
                     property: 'E-mail',
-                    value: 'ubaidalthaf@gmail.com'),
+                    value: controller.user.value?.email ?? 'Unknown'),
                 ProfileDetailsContainer(
                     onPressed: () {},
                     property: 'Phone Number',
-                    value: '+91 1234567890'),
+                    value: TPhoneNumberFormatter.addCountryCode(
+                        controller.user.value?.phoneNumber ?? '')),
                 ProfileDetailsContainer(
                   property: 'Gender',
                   value: 'Male',

@@ -16,6 +16,7 @@ class ServicesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TDeviceUtility.setStatusBarTextColor(true);
     return DefaultTabController(
       length: 6,
       child: Scaffold(
@@ -49,7 +50,7 @@ class ServicesView extends StatelessWidget {
                         "Good Morning",
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
                             color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w300),
+                            fontWeight: FontWeight.w500),
                       ),
                       Text(
                         "Services",
@@ -64,7 +65,7 @@ class ServicesView extends StatelessWidget {
                   ),
                 ),
                 centerTitle: false,
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.white,
                 floating: true,
                 expandedHeight: TDeviceUtility.getDeviceHeight(context) * .6,
                 flexibleSpace: Padding(

@@ -22,7 +22,8 @@ plugins {
     // START: FlutterFire Configuration
     id "com.google.gms.google-services" version "4.3.15" apply false
     // END: FlutterFire Configuration
-    id "org.jetbrains.kotlin.android" version "1.7.10" apply false
+    // Updated Kotlin version to 1.9.0 to match annotation dependency
+    id "org.jetbrains.kotlin.android" version "1.9.0" apply false
 }
 
 include ":app"

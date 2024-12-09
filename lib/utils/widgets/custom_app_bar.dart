@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:scrubo/utils/formatter/welcome_formatter.dart';
 
 class TCustomAppBar extends StatelessWidget {
   const TCustomAppBar(
@@ -54,10 +55,10 @@ class TCustomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            titlemsg ?? "",
+            WelcomeFormatter.getWelcomeMessage(DateTime.now()),
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
                 color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.w300),
+                fontWeight: FontWeight.w500),
           ),
           Text(
             title ?? "",
@@ -186,7 +187,7 @@ class TCustomNormalAppBar extends StatelessWidget
                   color: customStyle
                       ? titleColor
                       : Theme.of(context).colorScheme.secondary,
-                  fontWeight: FontWeight.w300),
+                  fontWeight: FontWeight.w500),
             ),
             Text(
               title ?? "",

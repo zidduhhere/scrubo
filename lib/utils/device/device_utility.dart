@@ -19,6 +19,13 @@ class TDeviceUtility {
     ));
   }
 
+  static Future<void> setStatusBarTextColor(bool isDark) async {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarIconBrightness: isDark ? Brightness.dark : Brightness.light,
+      statusBarBrightness: isDark ? Brightness.light : Brightness.dark,
+    ));
+  }
+
   static void showStatusBar() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: SystemUiOverlay.values);

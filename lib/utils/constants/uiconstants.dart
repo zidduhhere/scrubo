@@ -104,7 +104,7 @@ class TUiConstants {
   static const IconData iconNotification = Iconsax.notification;
   static const IconData iconService = Iconsax.setting;
   static const IconData iconShop = Iconsax.shop;
-  static const IconData iconLogout = Iconsax.logout;
+  static const IconData iconLogout = Iconsax.logout_1;
   static const IconData iconOil = Iconsax.drop3;
   static const IconData iconRepair = Iconsax.settings;
   static const IconData iconEngine = Iconsax.designtools;
@@ -163,6 +163,8 @@ class TUiConstants {
   static const IconData iconPending = Iconsax.activity;
   static const IconData iconCancelled = Iconsax.close_circle;
   static const IconData iconUnknown = Iconsax.forbidden;
+  static const IconData iconEyeOpen = Iconsax.eye;
+  static const IconData iconEyeClose = Iconsax.eye_slash;
 
   //signs
 
@@ -220,4 +222,8 @@ class TShadowStyles {
   );
 }
 
-class TextStyles {}
+class TLotties {
+  TLotties._();
+
+  static const String animationLoading = 'assets/lottie/loading.json';
+}

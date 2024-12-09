@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/pages/authentication/controllers/signup/verify_controller.dart';
+import 'package:scrubo/pages/authentication/controllers/login/login_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/buttons/custom_elevated_button.dart';
 
-class VerifyView extends StatelessWidget {
-  const VerifyView({super.key, this.email});
+class ForgotPasswordView extends StatelessWidget {
+  const ForgotPasswordView({super.key, this.email});
 
   final String? email;
 
   @override
   Widget build(BuildContext context) {
-    final verifyController = Get.put(VerifyController());
-
+    final controller = LoginController.instance;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -35,8 +34,9 @@ class VerifyView extends StatelessWidget {
               //Title
               // const SizedBox(height: TUiConstants.defaultSpacing),
               Text(
-                TTextConstants.verifyEmail,
+                'Password reset email is sent to your email',
                 style: Theme.of(context).textTheme.titleLarge,
+                maxLines: 2,
               ),
               const SizedBox(height: TUiConstants.defaultSpacing),
               Text(email ?? '',
@@ -45,7 +45,8 @@ class VerifyView extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       )),
               const SizedBox(height: TUiConstants.defaultSpacing),
-              Text(TTextConstants.verifyEmailDescription,
+              Text(
+                  'Please check your email for the password reset link, there you can reset the password',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith()),
 
@@ -53,11 +54,11 @@ class VerifyView extends StatelessWidget {
 
               const SizedBox(height: TUiConstants.spaceBtwSections),
               CustomElevatedButton(
-                  onTap: () => verifyController.checkifEmailVerfied(),
+                  onTap: () => Get.offAllNamed('/login'),
                   text: TTextConstants.continueButton),
               const SizedBox(height: TUiConstants.defaultSpacing),
               TextButton(
-                  onPressed: () => verifyController.sendEmailVerification(),
+                  onPressed: () => controller.forgotPassword(resend: true),
                   child: Text(
                     TTextConstants.resendCode,
                     style: Theme.of(context).textTheme.labelMedium,

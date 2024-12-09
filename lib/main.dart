@@ -21,6 +21,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((FirebaseApp app) {
     Get.put(AuthenticationRepository());
+    
+
   });
 
   // Intialize Authentication

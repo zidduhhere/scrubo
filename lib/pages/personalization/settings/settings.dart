@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scrubo/data/repositories/auth/authentication_repository.dart';
+import 'package:scrubo/data/user/user_controller.dart';
 import 'package:scrubo/pages/personalization/widgets/changable_profile_tiles_view.dart';
 import 'package:scrubo/pages/personalization/widgets/profile_container.dart';
 import 'package:scrubo/pages/personalization/widgets/settings_tile.dart';
@@ -15,11 +17,12 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const TCurvedEdgeWidget(
+            TCurvedEdgeWidget(
               height: 250,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -33,13 +36,28 @@ class SettingsView extends StatelessWidget {
                     customStyle: true,
                     titleColor: TColors.lightOnPrimary,
                     subtitleColor: TColors.lightOnPrimary,
+                    trailing: true,
+                    trailingWidgets: [
+                      IconButton(
+                        onPressed: () =>
+                            AuthenticationRepository.instance.logout(),
+                        icon: Icon(
+                          TUiConstants.iconLogout,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      )
+                    ],
                   ),
-                  SizedBox(height: TUiConstants.defaultSpacing),
+                  const SizedBox(height: TUiConstants.defaultSpacing),
                   //Profile Info
-                  ProfileInfoContainer(
-                    name: 'John Doe',
-                    email: 'johndoe@gmail.com',
-                    imageUrl: TImages.avatar,
+                  Obx(
+                    () {
+                      return ProfileInfoContainer(
+                        name: controller.user.value?.fullName ?? 'Unknown',
+                        email: controller.user.value?.email ?? 'Unknown',
+                        imageUrl: TImages.avatar,
+                      );
+                    },
                   ),
 
                   //Body

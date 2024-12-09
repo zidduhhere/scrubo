@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
+import 'package:scrubo/data/user/user_controller.dart';
 import 'package:scrubo/pages/home/view/widgets/address_selection_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/categories_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/home_carousel.dart';
+import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
+import 'package:scrubo/utils/widgets/containers/custom_shimmer.dart';
 import 'package:scrubo/utils/widgets/grids/product_grid.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
@@ -19,6 +21,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     HomeViewController homeviewController = Get.put(HomeViewController());
+    final userController = Get.put(UserController());
     return GestureDetector(
       onTap: () => TDeviceUtility.hideKeyboard(context),
       child: Scaffold(
@@ -29,12 +32,24 @@ class HomeView extends StatelessWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                 //APPBAR SECTION
-                TCustomAppBar(
-                  badgeIcon: TUiConstants.iconCart,
-                  title: TTextConstants.name,
-                  titlemsg: TTextConstants.welcome,
-                  profileIcon: true,
-                  backgroundColor: Theme.of(context).colorScheme.surface,
+                Obx(
+                  () {
+                    if (userController.profileLoading.value) {
+                      return const SliverToBoxAdapter(
+                        child: TShimmerEffect(
+                          width: double.infinity,
+                          height: TUiConstants.appBarheight * 1.5,
+                        ),
+                      );
+                    }
+                    return TCustomAppBar(
+                      badgeIcon: TUiConstants.iconCart,
+                      title: userController.user.value?.fullName,
+                      titlemsg: TTextConstants.welcome,
+                      profileIcon: true,
+                      backgroundColor: Theme.of(context).colorScheme.surface,
+                    );
+                  },
                 ),
               ];
             },

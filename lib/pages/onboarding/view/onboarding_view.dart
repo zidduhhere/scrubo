@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/pages/authentication/onboarding/viewmodel/onboarding_controller.dart';
+import 'package:scrubo/pages/onboarding/controllers/onboarding_controller.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 
