@@ -4,22 +4,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 ///The UserModel class has the following properties:
 ///Parameters:
 ///`uid` (String): The unique id of the user.
+///
 ///`email` (String): The email of the user.
+///
 ///`firstName` (String): The first name of the user.
+///
 ///`lastName` (String): The last name of the user.
+///
 ///`phoneNumber` (String): The phone number of the user.
+///
 ///`photoUrl` (String): The photo url of the user.
 class UserModel {
-  String? uid;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? username;
-  String? phoneNumber;
-  String? photoUrl;
+  String id;
+  String email;
+  String firstName;
+  String lastName;
+  String username;
+  String phoneNumber;
+  String photoUrl;
 
   UserModel(
-      {required this.uid,
+      {required this.id,
       required this.email,
       required this.firstName,
       required this.lastName,
@@ -30,14 +35,14 @@ class UserModel {
   ///Gets the complete name of the user.
   String get fullName => '$firstName $lastName';
 
-  String get getUid => uid!;
+  String get getUid => id;
 
   ///Converts the Map object to UserModel object.
   ///Parameters:
   ///`json` (Map<String, dynamic>): The map object of the UserModel.
   static UserModel fromJson(Map<String, dynamic> json) {
     return UserModel(
-      uid: json['id'],
+      id: json['id'],
       email: json['Email'],
       firstName: json['First Name'],
       lastName: json['Last Name'],
@@ -50,7 +55,7 @@ class UserModel {
   static UserModel fromFirebaseDataSnapshot(DocumentSnapshot document) {
     if (document.data() != null) {
       return UserModel(
-        uid: document.id,
+        id: document.id,
         email: document['Email'] ?? '',
         firstName: document['First Name'] ?? '',
         lastName: document['Last Name'] ?? '',
@@ -69,7 +74,7 @@ class UserModel {
   ///The map object contains the following key-value pairs:
   Map<String, dynamic> toJson() {
     return {
-      'id': uid,
+      'id': id,
       'Email': email,
       'First Name': firstName,
       'Last Name': lastName,
@@ -83,7 +88,7 @@ class UserModel {
   ///Returns:
   ///UserModel: The empty UserModel object.
   static UserModel empty() => UserModel(
-        uid: '',
+        id: '',
         email: '',
         firstName: '',
         lastName: '',
@@ -91,4 +96,20 @@ class UserModel {
         username: '',
         photoUrl: '',
       );
+
+  ///Converts displayName to a list of first name and last name.
+  ///Parameters:
+  ///`displayName` (String): The display name of the user.
+  static List<String?> nameParts(String? displayName) {
+    return displayName!.split(" ");
+  }
+
+  ///Converts the list of first name and last name to a display name.
+  ///Parameters:
+  static String? generateUserName(String? displayName) {
+    final nameParts = displayName!.split(" ");
+    final firstName = nameParts[0].trim().toLowerCase();
+    final lastName = nameParts[1].trim().toLowerCase();
+    return '$firstName$lastName';
+  }
 }

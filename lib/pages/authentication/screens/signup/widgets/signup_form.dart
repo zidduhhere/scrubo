@@ -44,8 +44,9 @@ class SignupForm extends StatelessWidget {
           ),
           const SizedBox(height: TUiConstants.spaceBtwInputFields),
           CustomTextField(
-              textFieldController: signupController.userNameController,
-              validator: TValidation.usernameValidator,
+              enabled: false,
+              textFieldController: signupController.userNameController.value,
+              // validator: TValidation.usernameValidator,
               hintText: TTextConstants.usernameHint,
               prefixIcon: Iconsax.user_edit,
               labelText: TTextConstants.username,

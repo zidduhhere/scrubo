@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
+import 'package:scrubo/pages/home/controllers/category_controller.dart';
+import 'package:scrubo/pages/home/view/widgets/categories_rounded_image_container.dart';
+import 'package:scrubo/pages/sub_categories/models/category_model.dart';
+import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/helpers/helper_functions.dart';
+import 'package:scrubo/utils/device/device_utility.dart';
+import 'package:scrubo/utils/widgets/grids/custom_categories_shimmer.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({
@@ -11,44 +15,78 @@ class CategoriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeViewController homeviewController = Get.find<HomeViewController>();
+    final CategoryController categoryController = Get.put(CategoryController());
+    return Obx(
+      () {
+        if (categoryController.isLoading.value) {
+          return const TCategoryShimmer();
+        }
 
-    return SizedBox(
-      height: THelperFunctions.getDeviceHeight(context) * 0.125,
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: homeviewController.categories.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: TUiConstants.m),
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () => Get.toNamed('/home/subcategory'),
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundColor: THelperFunctions.isDarkMode(context)
-                          ? Colors.blueGrey[800]
-                          : Colors.blueGrey[100],
-                      foregroundColor: Theme.of(context).colorScheme.primary,
-                      child: Image.asset(
-                        homeviewController.categories[index]!['icon']!,
-                        scale: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: TUiConstants.s),
-                  Text(
-                    homeviewController.categories[index]!['title']!,
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                  ),
-                ],
+        if (categoryController.featuredCategories.isEmpty) {
+          return Center(
+            child: Text(
+              "Data not found !",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: TColors.lightError),
+            ),
+          );
+        }
+        return SizedBox(
+          height: TDeviceUtility.getDeviceHeight(context) * .13,
+          child: ListView.separated(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: categoryController.featuredCategories.length,
+              separatorBuilder: (_, __) {
+                return const SizedBox(width: TUiConstants.defaultSpacing * 2);
+              },
+              itemBuilder: (context, index) {
+                final category = categoryController.featuredCategories[index];
+                return CategoryWidget(
+                  category: category,
+                  onTap: () => Get.toNamed('/home/subcategory'),
+                );
+              }),
+        );
+      },
+    );
+  }
+}
+
+class CategoryWidget extends StatelessWidget {
+  const CategoryWidget(
+      {super.key, required this.category, required this.onTap});
+
+  final CategoryModel category;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: onTap,
+          child: category.image.isEmpty
+              ? const Icon(TUiConstants.iconWarning)
+              : CategoriesImageContainer(
+                  width: 40,
+                  height: 40,
+                  imageUrl: category.image,
+                  isNetworkImage: true,
+                ),
+        ),
+        const SizedBox(height: TUiConstants.s),
+
+        //Text
+        Text(
+          category.name,
+          style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                color: Theme.of(context).colorScheme.outline,
               ),
-            );
-          }),
+        ),
+      ],
     );
   }
 }

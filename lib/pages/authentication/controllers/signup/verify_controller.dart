@@ -39,7 +39,7 @@ class VerifyController extends GetxController {
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       ///Check if the user has verified the email
       ///If the user has verified the email, stop the timer and redirect the user to the verifiedpage page
-      await FirebaseAuth.instance.currentUser!.reload();
+      await FirebaseAuth.instance.currentUser?.reload();
       if (FirebaseAuth.instance.currentUser?.emailVerified ?? false) {
         timer.cancel();
         Get.offAllNamed(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
+import 'package:scrubo/utils/widgets/cards/custom_cached_image.dart';
 import 'package:scrubo/utils/widgets/containers/custom_rounded_containers.dart';
 
 class FeaturedServiceCard extends StatelessWidget {
@@ -8,11 +9,13 @@ class FeaturedServiceCard extends StatelessWidget {
     required this.image,
     required this.title,
     required this.subtitle,
+    required this.isNetworkImage,
   });
 
   final String image;
   final String title;
   final String subtitle;
+  final bool isNetworkImage;
   @override
   Widget build(BuildContext context) {
     return TRoundedContainer(
@@ -28,17 +31,18 @@ class FeaturedServiceCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Flexible(
-            child: Container(
-                height: 56,
-                width: 50,
-                padding: const EdgeInsets.all(TUiConstants.s),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    TUiConstants.borderRadiusMedium,
-                  ),
-                ),
-                child: Image.asset(image)),
-          ),
+              child: Container(
+            height: 56,
+            width: 50,
+            padding: const EdgeInsets.all(TUiConstants.s),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                TUiConstants.borderRadiusMedium,
+              ),
+            ),
+            child: TCachedNetworkImage(
+                isNetworkImage: isNetworkImage, image: image),
+          )),
           const SizedBox(width: TUiConstants.s),
           Expanded(
             child: Column(

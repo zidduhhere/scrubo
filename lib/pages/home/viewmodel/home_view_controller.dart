@@ -1,78 +1,22 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 
 class HomeViewController extends GetxController {
+  static HomeViewController get instance => Get.find();
   RxInt badgeNumber = 3.obs;
   RxInt carouselIndex = 0.obs;
   String firstPrice = "250";
   String secondPrice = "200";
-  RxInt countOfItem = 1.obs;
 
   int prevoisPrice(int price, int discount) {
     int prevPrice = (price - (price * discount / 100)).toInt();
     return prevPrice;
   }
 
-  bool incrementCount() {
-    if (badgeNumber.value < 10) {
-      // countOfItem.value++;
-      badgeNumber.value++;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   void changeCarouselIndex(int index) {
     carouselIndex.value = index;
   }
-
-  Map<int, Map<String, dynamic>> categories = {
-    0: {
-      "title": "Wash",
-      "icon": TImages.colorIconCarWash,
-      "backgroundColor": const Color(0xFF99CCE6), // Lightest
-      "backgroundColorDark": TColors.darkPrimary
-    },
-    1: {
-      "title": "Oil Change",
-      "icon": TImages.colorIconOilChange,
-      "backgroundColor": const Color(0xFF66B2D9), // Very light
-    },
-    2: {
-      "title": "Repair",
-      "icon": TImages.colorIconRepair,
-      "backgroundColor": const Color(0xFF3399CC), // Light
-    },
-    3: {
-      "title": "Engine",
-      "icon": TImages.colorIconCarService,
-      "backgroundColor": const Color(0xFF0061A3), // Primary
-    },
-    4: {
-      "title": "Inspection",
-      "icon": TImages.colorIconSpareParts,
-      "backgroundColor": const Color(0xFF004D82), // Medium dark
-    },
-    5: {
-      "title": "Brake Check",
-      "icon": TImages.colorIconBreakCheck,
-      "backgroundColor": const Color(0xFF003A61), // Dark
-    },
-    6: {
-      "title": "Transmission Check",
-      "icon": TImages.colorIconCarService,
-      "backgroundColor": const Color(0xFF002E4D), // Darker
-    },
-    7: {
-      "title": "Battery Check",
-      "icon": TImages.colorIconSpareParts,
-      "backgroundColor": const Color(0xFF00223A), // Darkest
-    },
-  };
 
   Map<int, Map<String, String>> items = {
     0: {

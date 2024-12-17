@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrubo/data/repositories/auth/authentication_repository.dart';
-import 'package:scrubo/data/user/user_repository.dart';
-import 'package:scrubo/pages/authentication/models/user_model.dart';
+import 'package:scrubo/data/repositories/user/user_controller.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
 import 'package:scrubo/utils/device/network_manager.dart';
@@ -35,7 +34,8 @@ class SignupController extends GetxController {
   final passwordController = TextEditingController();
 
   ///username controller
-  final userNameController = TextEditingController();
+  final Rx<TextEditingController> userNameController =
+      TextEditingController().obs;
 
   ///first name controller
   final firstNameController = TextEditingController();
@@ -49,7 +49,24 @@ class SignupController extends GetxController {
   ///A Getx variable for tracking the obscure text's in the password field
   final obscureState = false.obs; //obscure text
 
+  final userController = Get.put(UserController());
+
   //Functions
+
+  @override
+  void onInit() {
+    lastNameController.addListener(() {
+      firstNameController.text.isNotEmpty && lastNameController.text.isNotEmpty
+          ? userNameController.value.text =
+              '${firstNameController.text.trim().toLowerCase()}${lastNameController.text.trim().toLowerCase()}'
+          : userNameController.value.text = '';
+    });
+    super.onInit();
+  }
+
+  String _displayName(String a, String b) {
+    return "${a.trim()} ${b.trim()}";
+  }
 
   void signUp() async {
     try {
@@ -85,20 +102,14 @@ class SignupController extends GetxController {
           .registerWithEmailAndPassword(
               emailController.text.trim(), passwordController.text.trim());
 
-      ///Create a new user object to be added in the firestore
-      final newUser = UserModel(
-        uid: userCredential.user!.uid,
-        lastName: lastNameController.text.trim(),
-        email: emailController.text.trim(),
-        firstName: firstNameController.text.trim(),
-        phoneNumber: phoneController.text.trim(),
-        username: userNameController.text.trim(),
-        photoUrl: '',
-      );
-
       /// Save authenticated user details in the Firebase firestore
-      final userRepository = Get.put(UserRepository());
-      userRepository.saveUserRecord(newUser);
+      await userController.saveUserRecord(
+        userCredential: userCredential,
+        displayName: _displayName(
+            firstNameController.text.trim(), lastNameController.text.trim()),
+        userName: userNameController.value.text,
+        phoneNumber: phoneController.text.trim(),
+      );
 
       //Show success message
       TSnackBars.successSnackBar(
@@ -124,8 +135,7 @@ class SignupController extends GetxController {
     } catch (e) {
       print(e);
       TSnackBars.errorSnackBar('Oh Snap...', e.toString());
-
-      // TLodaers.stopLoading();
+      TLodaers.stopLoading();
     } finally {
       TDeviceUtility.hideKeyboard(Get.context!);
       //Remove Loader
@@ -136,7 +146,7 @@ class SignupController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
-    userNameController.dispose();
+    userNameController.value.dispose();
     firstNameController.dispose();
     lastNameController.dispose();
     phoneController.dispose();

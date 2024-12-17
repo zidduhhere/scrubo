@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scrubo/utils/constants/constants.dart';
+import 'package:get/get.dart';
+import 'package:scrubo/pages/products/controllers/products_controller.dart';
+import 'package:scrubo/pages/products/model/product_model.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/containers/custom_discount_containers.dart';
 import 'package:scrubo/utils/widgets/headings/custom_price_text_views.dart';
@@ -9,30 +11,39 @@ import 'package:scrubo/utils/widgets/headings/custom_title_text_widget.dart';
 class TProductMetadata extends StatelessWidget {
   const TProductMetadata({
     super.key,
+    required this.product,
   });
-
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
+    final controller = ProductsController.instance;
+    final variation = product.varitaions[controller.variationIndex.value];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //Price and Sale Price
-        const Row(
+        Row(
           children: [
-            DiscountContainer(discount: '25'),
-            SizedBox(width: TUiConstants.defaultSpacing),
-            StrikePriceTextWidget(
-              sign: TUiConstants.rupeeSign,
-              price: '3000',
+            const DiscountContainer(discount: '10'),
+            const SizedBox(width: TUiConstants.defaultSpacing),
+            Obx(
+              () => StrikePriceTextWidget(
+                sign: TUiConstants.rupeeSign,
+                price: ProductModel.getPreviousPrice(product
+                        .varitaions[controller.variationIndex.value].price
+                        .toDouble())
+                    .toString(),
+              ),
             ),
-            SizedBox(width: TUiConstants.defaultSpacing / 2),
-            PriceTextWidget(price: '2500', sign: TUiConstants.rupeeSign),
+            const SizedBox(width: TUiConstants.defaultSpacing / 2),
+            PriceTextWidget(
+                price: '${variation.price}', sign: TUiConstants.rupeeSign),
           ],
           //Title
         ),
         const SizedBox(height: TUiConstants.defaultSpacing),
-        const TTitleTextWidget(
-          text: 'Car Spa Full Service',
+        TTitleTextWidget(
+          text: variation.name.isEmpty ? product.name : variation.name,
         ),
         const SizedBox(height: TUiConstants.spaceBtwTexts),
 
@@ -45,13 +56,13 @@ class TProductMetadata extends StatelessWidget {
               width: TUiConstants.spaceBtwTexts,
             ),
             Text(
-              'Slot Available',
+              product.status ? 'Available' : 'Not Available',
               style: Theme.of(context).textTheme.labelMedium,
             ),
           ],
         ),
         const SizedBox(height: TUiConstants.spaceBtwTexts),
-        const TShopWithVerifiedIcon(shopAddress: TTextConstants.shopAddress),
+        TShopWithVerifiedIcon(shopAddress: product.shopName),
         const SizedBox(height: TUiConstants.defaultSpacing),
       ],
     );

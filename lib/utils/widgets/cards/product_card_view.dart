@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
-import 'package:scrubo/utils/constants/colors.dart';
-import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/buttons/custom_rounded_icon_button.dart';
 import 'package:scrubo/utils/widgets/containers/custom_discount_containers.dart';
@@ -32,7 +27,6 @@ class ProductViewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeViewController homeViewController = Get.find<HomeViewController>();
     return Container(
       margin: const EdgeInsets.fromLTRB(TUiConstants.s, 0, TUiConstants.s, 0),
       decoration: BoxDecoration(
@@ -111,20 +105,22 @@ class ProductViewCard extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  bool success = homeViewController.incrementCount();
-                  if (!success) {
-                    Get.snackbar(
-                      TTextConstants.snackBarTitle,
-                      TTextConstants.snackBarDescription,
-                      snackStyle: SnackStyle.FLOATING,
-                      colorText: Colors.white,
-                      icon: const Icon(
-                        Iconsax.warning_2,
-                        color: TColors.darkError,
-                      ),
-                      backgroundColor: TColors.lightPrimaryColor,
-                    );
-                  }
+                  //TODO: Implement increment count and design a function
+
+                  // bool success = homeViewController.incrementCount();
+                  // if (!success) {
+                  //   Get.snackbar(
+                  //     TTextConstants.snackBarTitle,
+                  //     TTextConstants.snackBarDescription,
+                  //     snackStyle: SnackStyle.FLOATING,
+                  //     colorText: Colors.white,
+                  //     icon: const Icon(
+                  //       Iconsax.warning_2,
+                  //       color: TColors.darkError,
+                  //     ),
+                  //     backgroundColor: TColors.lightPrimaryColor,
+                  //   );
+                  // }
                 },
                 child: const Align(
                   alignment: Alignment.bottomRight,

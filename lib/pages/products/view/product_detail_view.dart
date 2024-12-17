@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/pages/service_details/view/widgets/product_attributes.dart';
-import 'package:scrubo/pages/service_details/view/widgets/product_image_slider.dart';
-import 'package:scrubo/pages/service_details/view/widgets/product_metadata.dart';
-import 'package:scrubo/pages/service_details/view/widgets/vehicle_selection.dart';
+import 'package:scrubo/pages/products/model/product_model.dart';
+import 'package:scrubo/pages/products/view/widgets/product_attributes.dart';
+import 'package:scrubo/pages/products/view/widgets/product_image_slider.dart';
+import 'package:scrubo/pages/products/view/widgets/product_metadata.dart';
+import 'package:scrubo/pages/products/view/widgets/vehicle_selection.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/buttons/custom_elevated_button.dart';
 import 'package:scrubo/utils/widgets/custom/custom_divider.dart';
@@ -16,13 +17,18 @@ class ServiceDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguemnts = Get.arguments;
+    final ProductModel product = arguemnts['product'];
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               /// Product Image Slider
-              const TProductImageSlider(),
+              TProductImageSlider(
+                thumbnail: product.thumbnail,
+                photoUrls: product.photoUrls,
+              ),
 
               //Prodct Details
 
@@ -35,14 +41,19 @@ class ServiceDetailsView extends StatelessWidget {
                 child: Column(
                   children: [
                     ///Ratings& Share
-                    const RatingsShareWidget(),
+                    const RatingsShareWidget(
+                      rating: 4.5,
+                      totalRatings: 199,
+                    ),
 
                     ///Price, Title, Availabiltiy, Shop
-                    const TProductMetadata(),
+                    TProductMetadata(
+                      product: product,
+                    ),
 
                     ///Attributes
 
-                    const TProductAttributes(),
+                    TProductAttributes(product: product),
 
                     //Vehicle Selection
 

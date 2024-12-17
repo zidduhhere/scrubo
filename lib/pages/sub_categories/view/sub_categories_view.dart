@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scrubo/pages/categories/widgets/product_category_container.dart';
+import 'package:scrubo/pages/sub_categories/widgets/product_category_container.dart';
 import 'package:scrubo/utils/constants/colors.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';

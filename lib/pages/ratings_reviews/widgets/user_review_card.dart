@@ -4,7 +4,7 @@ import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
-import 'package:scrubo/utils/widgets/containers/circukar_image_container.dart';
+import 'package:scrubo/utils/widgets/containers/circular_image_container.dart';
 import 'package:scrubo/utils/widgets/containers/custom_rounded_containers.dart';
 import 'package:scrubo/utils/widgets/custom/custom_readmore_text.dart';
 

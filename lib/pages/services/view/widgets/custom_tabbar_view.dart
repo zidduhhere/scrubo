@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrubo/pages/home/controllers/category_controller.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
 
 class CustomTabView extends StatelessWidget implements PreferredSizeWidget {
@@ -11,6 +12,7 @@ class CustomTabView extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CategoryController categoryController = CategoryController.instance;
     return Material(
       color: Theme.of(context).colorScheme.surface,
       child: TabBar(
@@ -25,21 +27,12 @@ class CustomTabView extends StatelessWidget implements PreferredSizeWidget {
         splashFactory: NoSplash.splashFactory,
         tabAlignment: TabAlignment.start,
         isScrollable: true,
-        tabs: List.generate(6, (index) {
+        tabs: List.generate(categoryController.categories.length, (index) {
           return Tab(
-            text: services[index],
+            text: categoryController.categories[index].name,
           );
         }),
       ),
     );
   }
 }
-
-List<String> services = [
-  'Car Wash',
-  'Car Service',
-  'Brake Check',
-  'Oil Change',
-  'Flat Tyres',
-  'Vehicle Repair',
-];

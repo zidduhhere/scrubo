@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrubo/data/repositories/user/user_controller.dart';
 import 'package:scrubo/pages/booking_history/widgets/booking_container.dart';
 import 'package:scrubo/pages/booking_history/widgets/custom_status_container.dart';
 import 'package:scrubo/utils/constants/colors.dart';
@@ -13,13 +14,16 @@ class BookingHistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final controller = UserController.instance;
+    return Scaffold(
       appBar: TCustomNormalAppBar(
         profileIcon: true,
+        isProfileImage: true,
+        imageUrl: controller.user.value.photoUrl,
         title: 'Booking History',
         titlemsg: 'Welcome to',
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(TUiConstants.defaultSpacing),
           child: Column(

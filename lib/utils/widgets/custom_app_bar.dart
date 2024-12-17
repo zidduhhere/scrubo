@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:scrubo/data/repositories/user/user_controller.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:scrubo/utils/formatter/welcome_formatter.dart';
+import 'package:scrubo/utils/widgets/cards/custom_cached_image.dart';
+import 'package:scrubo/utils/widgets/containers/circular_image_container.dart';
 
 class TCustomAppBar extends StatelessWidget {
   const TCustomAppBar(
@@ -19,6 +21,8 @@ class TCustomAppBar extends StatelessWidget {
       this.centerTile = false,
       required this.profileIcon,
       this.badgeIcon,
+      this.isProfileImage = false,
+      this.imageUrl,
       this.badgeOnPresed})
       : assert(
           !badge ||
@@ -31,6 +35,10 @@ class TCustomAppBar extends StatelessWidget {
         assert(
           !trailing || trailingWidgets != null,
           'trailingWidgets must be provided if trailing is true',
+        ),
+        assert(
+          !isProfileImage || imageUrl != null,
+          'imageUrl must be provided if isProfileImage is true',
         );
 
   final String? title;
@@ -44,6 +52,8 @@ class TCustomAppBar extends StatelessWidget {
   final Color backgroundColor;
   final VoidCallback? badgeOnPresed;
   final List<Widget>? trailingWidgets;
+  final bool isProfileImage;
+  final String? imageUrl;
   final IconData? badgeIcon;
   @override
   Widget build(BuildContext context) {
@@ -51,62 +61,55 @@ class TCustomAppBar extends StatelessWidget {
       // floating: true,
       pinned: true,
       // snap: true,
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            WelcomeFormatter.getWelcomeMessage(DateTime.now()),
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.w500),
-          ),
-          Text(
-            title ?? "",
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                  fontSize: TUiConstants.fontSizeMediumLarge,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-            textAlign: TextAlign.start,
-          ),
-        ],
+      title: Padding(
+        padding: TSpacingStyles.paddingScaffold,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              TWelcomeFormatter.getWelcomeMessage(DateTime.now()),
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontWeight: FontWeight.w500),
+            ),
+            Text(
+              title ?? "",
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    fontSize: TUiConstants.fontSizeMediumLarge,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+              textAlign: TextAlign.start,
+            ),
+          ],
+        ),
       ),
       centerTitle: centerTile,
       backgroundColor: Theme.of(context).colorScheme.surface,
       scrolledUnderElevation: 0,
       toolbarHeight: TUiConstants.appBarheight,
       actions: [
-        badge
-            ? badges.Badge(
-                badgeStyle: badges.BadgeStyle(
-                    borderRadius:
-                        BorderRadius.circular(TUiConstants.borderRadiusSmall),
-                    shape: badges.BadgeShape.circle,
-                    badgeColor: Theme.of(context).colorScheme.errorContainer),
-                position: badges.BadgePosition.topEnd(top: 0, end: 3),
-                badgeContent: Text(
-                  badgeVal.toString(),
-                  style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onErrorContainer,
-                      ),
-                ),
-                child: IconButton(
-                  onPressed: badgeOnPresed,
-                  icon: Icon(badgeIcon),
-                ))
-            : const SizedBox(),
-        const SizedBox(width: TUiConstants.s / 2),
-        profileIcon
-            ? GestureDetector(
-                onTap: () => Get.toNamed('/profile'),
-                child: CircleAvatar(
-                  radius: TUiConstants.borderRadiusCircleAvatar,
-                  backgroundColor:
-                      Theme.of(context).colorScheme.secondaryContainer,
-                  child: const Icon(Iconsax.user),
-                ),
-              )
-            : const SizedBox(),
+        Padding(
+          padding: TSpacingStyles.paddingScaffold,
+          child: profileIcon
+              ? GestureDetector(
+                  onTap: () => Get.toNamed('/profile'),
+                  child: isProfileImage
+                      ? TCircualrImage(
+                          imageUrl: imageUrl!,
+                          isNetworkImage: true,
+                          width: 40,
+                          height: 40,
+                        )
+                      : CircleAvatar(
+                          radius: TUiConstants.borderRadiusCircleAvatar,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                          child: const Icon(Iconsax.user),
+                        ),
+                )
+              : const SizedBox(),
+        )
         // const SizedBox(width: TUiConstants.s),
       ],
     );
@@ -129,6 +132,8 @@ class TCustomNormalAppBar extends StatelessWidget
       this.subtitleColor,
       this.badge = false,
       this.centerTile = false,
+      this.isProfileImage = false,
+      this.imageUrl,
       required this.profileIcon,
       this.badgeIcon,
       this.padding,
@@ -157,6 +162,8 @@ class TCustomNormalAppBar extends StatelessWidget
   final bool leading;
   final bool badge;
   final bool customStyle;
+  final bool isProfileImage;
+  final String? imageUrl;
   final Color? titleColor;
   final Color? subtitleColor;
   final bool trailing;
@@ -172,6 +179,7 @@ class TCustomNormalAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    final userController = UserController.instance;
     return AppBar(
       // floating: true,
 
@@ -206,55 +214,26 @@ class TCustomNormalAppBar extends StatelessWidget
       centerTitle: centerTile,
       backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.surface,
       scrolledUnderElevation: 0,
+
       toolbarHeight: TUiConstants.appBarheight,
       actions: [
         Padding(
-          padding: TSpacingStyles.paddingScaffold,
-          child: Row(
-            children: [
-              badge
-                  ? badges.Badge(
-                      badgeStyle: badges.BadgeStyle(
-                          borderRadius: BorderRadius.circular(
-                              TUiConstants.borderRadiusSmall),
-                          shape: badges.BadgeShape.circle,
-                          badgeColor:
-                              Theme.of(context).colorScheme.errorContainer),
-                      position: badges.BadgePosition.topEnd(top: 0, end: 3),
-                      badgeContent: Text(
-                        badgeVal.toString(),
-                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onErrorContainer,
-                            ),
-                      ),
-                      child: IconButton(
-                        onPressed: badgeOnPresed,
-                        icon: Icon(badgeIcon),
-                      ))
-                  : const SizedBox(),
-              const SizedBox(width: TUiConstants.s / 2),
-              profileIcon
-                  ? GestureDetector(
-                      onTap: () => Get.toNamed('/profile'),
-                      child: CircleAvatar(
-                        radius: TUiConstants.borderRadiusCircleAvatar,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondaryContainer,
-                        child: const Icon(Iconsax.user),
-                      ),
-                    )
-                  : const SizedBox(),
-              // const SizedBox(width: TUiConstants.s),
-              trailing
-                  ? Row(
-                      children: trailingWidgets!,
-                    )
-                  : const SizedBox(),
-            ],
-          ),
-        )
+            padding: TSpacingStyles.paddingScaffold,
+            child: profileIcon
+                ? GestureDetector(
+                    onTap: () => Get.toNamed('/profile'),
+                    child: TCachedNetworkImageContainer(
+                      width: 40,
+                      height: 40,
+                      image: userController.user.value.photoUrl,
+                      subIcon: TUiConstants.iconUser,
+                      radius: 100,
+                    ),
+                  )
+                : const SizedBox()),
+        if (trailing) ...trailingWidgets! else const SizedBox()
+
+        // const SizedBox(width: TUiConstants.s),
       ],
     );
   }

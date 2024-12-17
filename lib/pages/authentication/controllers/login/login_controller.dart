@@ -19,6 +19,8 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getStorage.writeIfNull("REMEMBER_EMAIL", "");
+    getStorage.writeIfNull("REMEMBER_PASSWORD", "");
     emailController.text = getStorage.read('REMEMBER_EMAIL');
     passwordController.text = getStorage.read('REMEMBER_PASSWORD');
     obscureState.value = true;

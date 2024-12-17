@@ -58,8 +58,6 @@ class TFirebaseAuthException implements Exception {
         return 'The password you entered is incorrect. Please try again.';
       case 'user-disabled':
         return 'This user account has been disabled. Please contact support for assistance.';
-      case 'too-many-requests':
-        return 'You have made too many requests in a short period. Please try again later.';
       case 'network-request-failed':
         return 'Network error. Please check your internet connection and try again.';
       case 'invalid-credential':

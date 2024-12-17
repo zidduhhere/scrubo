@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:scrubo/pages/home/controllers/category_controller.dart';
 import 'package:scrubo/pages/services/view/widgets/custom_tabbar_view.dart';
 import 'package:scrubo/pages/services/view/widgets/featured_card_view.dart';
 import 'package:scrubo/utils/constants/constants.dart';
 import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/device/device_utility.dart';
+import 'package:scrubo/utils/widgets/custom_app_bar.dart';
 import 'package:scrubo/utils/widgets/grids/custom_grid.dart';
 import 'package:scrubo/utils/widgets/cards/custom_horizontal_card_view.dart';
 import 'package:scrubo/utils/widgets/headings/custom_row_header.dart';
@@ -16,54 +17,17 @@ class ServicesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categoryController = CategoryController.instance;
     TDeviceUtility.setStatusBarTextColor(true);
     return DefaultTabController(
-      length: 6,
+      length: categoryController.categories.length,
       child: Scaffold(
+        appBar: const TCustomNormalAppBar(
+            profileIcon: true, title: 'Services', titlemsg: 'Welcome to'),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                actions: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: TUiConstants.s),
-                    child: GestureDetector(
-                      onTap: () => Get.toNamed('/profile'),
-                      child: CircleAvatar(
-                        radius: TUiConstants.borderRadiusCircleAvatar,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondaryContainer,
-                        child: const Icon(TUiConstants.iconUser),
-                      ),
-                    ),
-                  )
-                ],
-                title: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: TUiConstants.s,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Good Morning",
-                        style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        "Services",
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                              fontSize: TUiConstants.fontSizeMediumLarge,
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context).colorScheme.onSurface,
-                            ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ],
-                  ),
-                ),
                 centerTitle: false,
                 backgroundColor: Colors.white,
                 floating: true,
@@ -88,13 +52,16 @@ class ServicesView extends StatelessWidget {
                       ),
                       const SizedBox(height: TUiConstants.spaceBtwSections),
                       TGridView(
-                        itemCount: 6,
+                        itemCount: categoryController.featuredCategories.length,
                         itemBuilder: (_, index) {
-                          final image = featuredServices[index]?['image'] ?? '';
-                          final title = featuredServices[index]?['title'] ?? '';
+                          final image = categoryController
+                              .featuredCategories[index].image;
+                          final title =
+                              categoryController.featuredCategories[index].name;
                           final subtitle =
                               featuredServices[index]?['subtitle'] ?? '';
                           return FeaturedServiceCard(
+                            isNetworkImage: true,
                             image: image,
                             title: title,
                             subtitle: subtitle,
@@ -110,6 +77,8 @@ class ServicesView extends StatelessWidget {
           },
           body: const TabBarView(
             children: [
+              TCategoryTab(),
+              TCategoryTab(),
               TCategoryTab(),
               TCategoryTab(),
               TCategoryTab(),

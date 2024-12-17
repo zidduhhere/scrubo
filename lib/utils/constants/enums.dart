@@ -5,4 +5,5 @@ enum ApiFlags {
   price,
   service,
   database,
+  postalOffice,
 }

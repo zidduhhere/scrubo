@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrubo/data/repositories/auth/authentication_repository.dart';
-import 'package:scrubo/data/user/user_controller.dart';
+import 'package:scrubo/data/repositories/user/user_controller.dart';
 import 'package:scrubo/pages/personalization/widgets/changable_profile_tiles_view.dart';
 import 'package:scrubo/pages/personalization/widgets/profile_container.dart';
 import 'package:scrubo/pages/personalization/widgets/settings_tile.dart';
 import 'package:scrubo/utils/constants/colors.dart';
-import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/custom/shapes/curved_edge_widget.dart';
 import 'package:scrubo/utils/widgets/custom_app_bar.dart';
@@ -39,8 +38,9 @@ class SettingsView extends StatelessWidget {
                     trailing: true,
                     trailingWidgets: [
                       IconButton(
-                        onPressed: () =>
-                            AuthenticationRepository.instance.logout(),
+                        onPressed: () {
+                          AuthenticationRepository.instance.logout();
+                        },
                         icon: Icon(
                           TUiConstants.iconLogout,
                           color: Theme.of(context).colorScheme.onPrimary,
@@ -53,9 +53,10 @@ class SettingsView extends StatelessWidget {
                   Obx(
                     () {
                       return ProfileInfoContainer(
-                        name: controller.user.value?.fullName ?? 'Unknown',
-                        email: controller.user.value?.email ?? 'Unknown',
-                        imageUrl: TImages.avatar,
+                        name: controller.user.value.fullName,
+                        email: controller.user.value.email,
+                        isNetworkImage: true,
+                        imageUrl: controller.user.value.photoUrl,
                       );
                     },
                   ),
@@ -78,7 +79,8 @@ class SettingsView extends StatelessWidget {
                     subtitle: 'Set pickup delivery address',
                     onTap: () => Get.toNamed('/profile/address'),
                   ),
-                  const TSettingsTile(
+                  TSettingsTile(
+                      onTap: () => Get.toNamed('/profile/vehicles'),
                       icon: TUiConstants.iconCar,
                       title: 'My Vehicles',
                       subtitle: 'Add or remove your vehicles'),

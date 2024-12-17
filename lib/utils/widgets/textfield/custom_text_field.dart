@@ -26,6 +26,7 @@ class CustomTextField extends StatelessWidget {
     required this.prefixIcon,
     this.suffixIcon,
     required this.labelText,
+    this.enabled = true,
     this.prefixWidget,
     this.obscureText,
     required this.textFieldController,
@@ -40,7 +41,7 @@ class CustomTextField extends StatelessWidget {
   final String labelText;
   final IconData? suffixIcon;
   final bool? obscureText;
-
+  final bool enabled;
   final TextEditingController textFieldController;
   final VoidCallback? onTap;
   final ValueChanged? onChanged;
@@ -49,6 +50,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: enabled,
       initialValue: initialValue,
       onChanged: onChanged,
       controller: textFieldController,
@@ -114,6 +116,7 @@ class TCustomSimpleTextField extends StatelessWidget {
     return TextFormField(
       controller: textFieldController,
       expands: false,
+
       obscureText: obscureText,
       autocorrect: false,
       // autofocus: true,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/data/user/user_controller.dart';
+import 'package:scrubo/data/repositories/user/user_controller.dart';
 import 'package:scrubo/pages/home/view/widgets/address_selection_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/categories_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/home_carousel.dart';
 import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
+import 'package:scrubo/pages/products/controllers/products_controller.dart';
 import 'package:scrubo/utils/widgets/containers/custom_shimmer.dart';
 import 'package:scrubo/utils/widgets/grids/product_grid.dart';
 import 'package:scrubo/utils/constants/constants.dart';
@@ -20,40 +21,43 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    HomeViewController homeviewController = Get.put(HomeViewController());
+    final HomeViewController homeviewController = Get.put(HomeViewController());
+    final productController = Get.put(ProductsController());
     final userController = Get.put(UserController());
     return GestureDetector(
       onTap: () => TDeviceUtility.hideKeyboard(context),
       child: Scaffold(
         //BODY
-        body: Padding(
-          padding: TSpacingStyles.paddingScaffold,
-          child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                //APPBAR SECTION
-                Obx(
-                  () {
-                    if (userController.profileLoading.value) {
-                      return const SliverToBoxAdapter(
-                        child: TShimmerEffect(
-                          width: double.infinity,
-                          height: TUiConstants.appBarheight * 1.5,
-                        ),
-                      );
-                    }
-                    return TCustomAppBar(
-                      badgeIcon: TUiConstants.iconCart,
-                      title: userController.user.value?.fullName,
-                      titlemsg: TTextConstants.welcome,
-                      profileIcon: true,
-                      backgroundColor: Theme.of(context).colorScheme.surface,
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              //APPBAR SECTION
+              Obx(
+                () {
+                  if (userController.profileLoading.value) {
+                    return const SliverToBoxAdapter(
+                      child: TShimmerEffect(
+                        width: double.infinity,
+                        height: TUiConstants.appBarheight * 1.5,
+                      ),
                     );
-                  },
-                ),
-              ];
-            },
-            body: const SingleChildScrollView(
+                  }
+                  return TCustomAppBar(
+                    badgeIcon: TUiConstants.iconCart,
+                    title: userController.user.value.fullName,
+                    titlemsg: TTextConstants.welcome,
+                    profileIcon: true,
+                    isProfileImage: true,
+                    imageUrl: userController.user.value.photoUrl,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                  );
+                },
+              ),
+            ];
+          },
+          body: const Padding(
+            padding: TSpacingStyles.paddingScaffold,
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -75,13 +79,7 @@ class HomeView extends StatelessWidget {
                   CategoriesList(),
                   SizedBox(height: TUiConstants.defaultSpacing),
                   //TRENDING SECTION
-                  Placeholder(
-                    fallbackHeight: 400,
-                    fallbackWidth: double.infinity,
-                    child: Center(
-                      child: Text('Trending Services'),
-                    ),
-                  ),
+
                   SizedBox(height: TUiConstants.spaceBtwSections),
                   //RECOMMENDED SECTION
                   CustomRowHeader(
@@ -92,6 +90,7 @@ class HomeView extends StatelessWidget {
                   SizedBox(height: TUiConstants.defaultSpacing),
 
                   // ProductViewGrid()
+
                   ProductViewGrid(),
                   SizedBox(height: TUiConstants.spaceBtwSections * 2),
                 ],

@@ -82,4 +82,15 @@ class TValidation {
         }
         return null;
       };
+
+  static FormFieldValidator<String> get postalValidator => (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter the postal code';
+        }
+
+        if (value.length > 6) {
+          return 'Postal code must be at most 6 characters long';
+        }
+        return null;
+      };
 }

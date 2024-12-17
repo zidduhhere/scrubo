@@ -6,7 +6,6 @@ class TImages {
   static const String verification = 'assets/images/utils/verification.png';
   static const String verified = 'assets/images/utils/verified.png';
   static const String avatar = 'assets/images/utils/avatar.png';
-  static const String carEngine = 'assets/images/products/car_engine.png';
   static const String airFilterCar = 'assets/images/prodcuts/air_filter.png';
   static const String batteryBike = 'assets/images/prodcuts/bike_battery.png';
   static const String clutchBike = 'assets/images/prodcuts/bike_clutch.png';

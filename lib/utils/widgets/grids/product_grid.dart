@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scrubo/pages/products/controllers/products_controller.dart';
+import 'package:scrubo/pages/products/model/product_model.dart';
 import 'package:scrubo/utils/widgets/cards/product_card_view.dart';
-import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
+import 'package:scrubo/utils/widgets/grids/vertical_product_shimmer.dart';
 
 class ProductViewGrid extends StatelessWidget {
   const ProductViewGrid({
@@ -12,44 +14,60 @@ class ProductViewGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeViewController controller = Get.find<HomeViewController>();
+    final productsController = ProductsController.instance;
     return SizedBox(
-      child: GridView.builder(
-        dragStartBehavior: DragStartBehavior.down,
-        itemCount: 4,
-        shrinkWrap: true,
-        padding: const EdgeInsets.fromLTRB(0, TUiConstants.s, 0, 0),
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: TUiConstants.gridViewMainAxisSpacing / 1,
-          crossAxisSpacing: TUiConstants.gridViewCrossAxisSpacing / 10,
-          crossAxisCount: 2,
-          childAspectRatio: 0.7,
-        ),
-        itemBuilder: (_, index) {
-          int price = controller.productGridItems[index]!["price"]!;
+      child: Obx(
+        () {
+          if (productsController.isLoading.value) {
+            return const TVerticalProductShimmer();
+          }
 
-          String title = controller.productGridItems[index]!["title"]!;
-          String imageUrl = controller.productGridItems[index]!["imageUrl"]!;
+          if (productsController.featuredProducts.isEmpty) {
+            return const Center(
+              child: Text('No products found'),
+            );
+          }
 
-          String shopAddress =
-              controller.productGridItems[index]!["shopAddress"]!;
-          int discount = controller.productGridItems[index]!["discount"]!;
-          String previousPrice =
-              controller.prevoisPrice(price, discount).toString();
-          return GestureDetector(
-              onTap: () {
-                Get.toNamed('/serviceDetails');
-              },
-              child: ProductViewCard(
-                price: price,
-                previousPrice: previousPrice,
-                title: title,
-                imageUrl: imageUrl,
-                isNetworkImage: false,
-                shopAddress: shopAddress,
-                discount: discount,
-              ));
+          return GridView.builder(
+            dragStartBehavior: DragStartBehavior.down,
+            itemCount: productsController.featuredProducts.length,
+            shrinkWrap: true,
+            padding: const EdgeInsets.fromLTRB(0, TUiConstants.s, 0, 0),
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisSpacing: TUiConstants.gridViewMainAxisSpacing / 1,
+              crossAxisSpacing: TUiConstants.gridViewCrossAxisSpacing / 10,
+              crossAxisCount: 2,
+              childAspectRatio: 0.7,
+            ),
+            itemBuilder: (_, index) {
+              ProductModel product = productsController.featuredProducts[index];
+              int price = product.varitaions[0].price;
+              String title = product.name;
+              String imageUrl = product.thumbnail;
+
+              String shopAddress = product.shopName;
+              int discount = 10;
+              String previousPrice =
+                  ProductModel.getPreviousPrice(price.toDouble()).toString();
+
+              return GestureDetector(
+                  onTap: () {
+                    Get.toNamed('/serviceDetails', arguments: {
+                      'product': product,
+                    });
+                  },
+                  child: ProductViewCard(
+                    price: price,
+                    previousPrice: previousPrice,
+                    title: title,
+                    imageUrl: imageUrl,
+                    isNetworkImage: true,
+                    shopAddress: shopAddress,
+                    discount: discount,
+                  ));
+            },
+          );
         },
       ),
     );

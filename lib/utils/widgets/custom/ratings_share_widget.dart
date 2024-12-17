@@ -4,8 +4,12 @@ import 'package:scrubo/utils/constants/uiconstants.dart';
 class RatingsShareWidget extends StatelessWidget {
   const RatingsShareWidget({
     super.key,
+    required this.totalRatings,
+    required this.rating,
   });
 
+  final double rating;
+  final int totalRatings;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,9 +27,10 @@ class RatingsShareWidget extends StatelessWidget {
               text:
                   TextSpan(style: const TextStyle(wordSpacing: 10), children: [
                 TextSpan(
-                    text: '5.0', style: Theme.of(context).textTheme.bodyMedium),
+                    text: rating.toString(),
+                    style: Theme.of(context).textTheme.bodyMedium),
                 TextSpan(
-                  text: '(199)',
+                  text: '($totalRatings)',
                   style: Theme.of(context).textTheme.bodySmall,
                 )
               ]),

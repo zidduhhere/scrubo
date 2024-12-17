@@ -1,8 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:scrubo/utils/constants/colors.dart';
-import 'package:scrubo/utils/constants/image_strings.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
+import 'package:scrubo/utils/widgets/cards/custom_cached_image.dart';
 import 'package:scrubo/utils/widgets/containers/custom_rounded_containers.dart';
 import 'package:scrubo/utils/widgets/custom/shapes/curved_edge_widget.dart';
 import 'package:scrubo/utils/widgets/headings/custom_row_icon_header.dart';
@@ -10,7 +12,11 @@ import 'package:scrubo/utils/widgets/headings/custom_row_icon_header.dart';
 class TProductImageSlider extends StatelessWidget {
   const TProductImageSlider({
     super.key,
+    required this.thumbnail,
+    required this.photoUrls,
   });
+  final String thumbnail;
+  final List<String> photoUrls;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +29,14 @@ class TProductImageSlider extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(TUiConstants.paddingImage),
-                  child: SizedBox(
-                    height: 300,
-                    child: Image.asset(
-                      TImages.carSpa,
-                      fit: BoxFit.contain,
-                      scale: 1.5,
+                  child: Hero(
+                    tag: 'thumbnail',
+                    child: SizedBox(
+                      height: 300,
+                      child: TCachedNetworkImage(
+                        isNetworkImage: true,
+                        image: thumbnail,
+                      ),
                     ),
                   ),
                 ),
@@ -41,7 +49,11 @@ class TProductImageSlider extends StatelessWidget {
                 child: SizedBox(
                   height: 80,
                   child: ListView.separated(
-                    itemCount: 6,
+                    clipBehavior: Clip.none,
+                    controller: ScrollController(
+                      initialScrollOffset: (photoUrls.length > 2) ? 10 : 1000,
+                    ),
+                    itemCount: photoUrls.length,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     physics: const AlwaysScrollableScrollPhysics(),
@@ -49,24 +61,21 @@ class TProductImageSlider extends StatelessWidget {
                       width: TUiConstants.defaultSpacing,
                     ),
                     itemBuilder: (_, index) {
-                      List<String> images = [
-                        TImages.carSpa,
-                        TImages.carWashService,
-                        TImages.tyresCar,
-                        TImages.carRepair,
-                        TImages.carTowing,
-                        TImages.carOilChange
-                      ];
-                      return TRoundedImageContainer(
-                        backgroundColor: Colors.white,
-                        height: 80,
-                        width: 80,
-                        border: Border.all(
-                          color: TColors.lightOutline.withOpacity(.3),
-                          width: 1,
+                      List<String> images = photoUrls;
+                      return GestureDetector(
+                        onTap: () {},
+                        child: TRoundedImageContainer(
+                          backgroundColor: Colors.white,
+                          height: 80,
+                          width: 80,
+                          border: Border.all(
+                            color: TColors.lightOutline.withOpacity(.3),
+                            width: 1,
+                          ),
+                          isNetworkImage: true,
+                          fit: BoxFit.cover,
+                          imageUrl: images[index],
                         ),
-                        isNetworkImage: false,
-                        imageUrl: images[index],
                       );
                     },
                   ),
