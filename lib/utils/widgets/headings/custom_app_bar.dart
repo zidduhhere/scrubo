@@ -23,9 +23,7 @@ class TCustomSimpleAppbar extends StatelessWidget
       automaticallyImplyLeading: implyLeading,
       centerTitle: centerTile,
       leading: IconButton(
-        onPressed: () {
-          Get.back();
-        },
+        onPressed: () => Get.back(),
         icon: Icon(leading ?? TUiConstants.iconBack),
       ),
       title: Text(

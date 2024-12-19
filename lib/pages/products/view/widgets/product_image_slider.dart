@@ -69,7 +69,7 @@ class TProductImageSlider extends StatelessWidget {
                           height: 80,
                           width: 80,
                           border: Border.all(
-                            color: TColors.lightOutline.withOpacity(.3),
+                            color: TColors.lightOutline.withAlpha(3),
                             width: 1,
                           ),
                           isNetworkImage: true,

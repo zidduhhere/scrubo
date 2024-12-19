@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:scrubo/data/repositories/address/address_repository.dart';
+import 'package:scrubo/data/repositories/user/address/address_repository.dart';
 import 'package:scrubo/pages/personalization/models/address_model.dart';
 import 'package:scrubo/pages/personalization/models/post_model.dart';
 import 'package:scrubo/utils/helpers/custom_snackbar.dart';

@@ -19,7 +19,7 @@ class UserAddressView extends StatelessWidget {
           backgroundColor: addressController.addresess.length <= 3
               ? Theme.of(context).colorScheme.surfaceContainerHigh
               : Theme.of(context).colorScheme.primaryContainer,
-          onPressed: addressController.addresess.length == 3
+          onPressed: addressController.addresess.length <= 3
               ? null
               : () => Get.toNamed('/profile/address/add'),
           child: Icon(

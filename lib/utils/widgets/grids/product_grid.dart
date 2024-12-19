@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrubo/pages/products/controllers/products_controller.dart';
 import 'package:scrubo/pages/products/model/product_model.dart';
+import 'package:scrubo/pages/products/view/product_detail_view.dart';
 import 'package:scrubo/utils/widgets/cards/product_card_view.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
 import 'package:scrubo/utils/widgets/grids/vertical_product_shimmer.dart';
@@ -38,7 +39,7 @@ class ProductViewGrid extends StatelessWidget {
               mainAxisSpacing: TUiConstants.gridViewMainAxisSpacing / 1,
               crossAxisSpacing: TUiConstants.gridViewCrossAxisSpacing / 10,
               crossAxisCount: 2,
-              childAspectRatio: 0.7,
+              childAspectRatio: 0.75,
             ),
             itemBuilder: (_, index) {
               ProductModel product = productsController.featuredProducts[index];
@@ -53,9 +54,8 @@ class ProductViewGrid extends StatelessWidget {
 
               return GestureDetector(
                   onTap: () {
-                    Get.toNamed('/serviceDetails', arguments: {
-                      'product': product,
-                    });
+                    debugPrint(product.toString());
+                    Get.to(() => ServiceDetailsView(product: product));
                   },
                   child: ProductViewCard(
                     price: price,

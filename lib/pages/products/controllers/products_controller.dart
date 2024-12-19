@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:scrubo/data/repositories/prodcuts/products_repository.dart';
 import 'package:scrubo/pages/products/model/product_model.dart';
+import 'package:scrubo/utils/device/network_manager.dart';
 import 'package:scrubo/utils/helpers/custom_snackbar.dart';
 
 class ProductsController extends GetxController {
@@ -9,6 +10,9 @@ class ProductsController extends GetxController {
   //Vairables
   RxList<ProductModel> featuredProducts = <ProductModel>[].obs;
   final _productRepository = Get.put(ProductsRepository());
+  final networkManager = NetworkManager.instance;
+
+  //Connection value
 
   //Variation Index
   final variationIndex = 0.obs;
@@ -16,10 +20,28 @@ class ProductsController extends GetxController {
   //Loader
   final isLoading = false.obs;
 
+  //Network Manager
   @override
   void onInit() async {
-    // await _productRepository.uploadDummyData();
-    await fetchFeaturedProducts();
+    bool previousValue = false;
+    // Listen to network connectivity status
+    networkManager.checkConnectivityRealTime().listen(
+      (isConnected) async {
+        if (isConnected != previousValue && isConnected) {
+          featuredProducts.isEmpty ? await fetchFeaturedProducts() : null;
+          previousValue = isConnected;
+        }
+        if (isConnected == false) {
+          TSnackBars.errorSnackBar(
+              'No internet connection', 'Try using mobile data / Wireless');
+
+          previousValue = isConnected;
+          const Duration(seconds: 3);
+        }
+      },
+    );
+
+    // await fetchFeaturedProducts();
     super.onInit();
   }
 
@@ -41,6 +63,13 @@ class ProductsController extends GetxController {
     try {
       //Start the lodaer
       isLoading.value = true;
+
+      //Check the connectivity
+      if (!await networkManager.hasInternetConnection()) {
+        TSnackBars.errorSnackBar(
+            'No Internet Connection', 'Please check your internet connection');
+        return;
+      }
 
       //Fetch all the featured products
       final products = await _productRepository.getFeaturedProducts();

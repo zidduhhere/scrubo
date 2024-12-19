@@ -45,13 +45,14 @@ dependencies:
   flutter_rating_bar:
   lottie: ^3.1.3
   shimmer:
+  permission_handler:
   #Web Communication
 
   http:
   intl:
   logger:
   url_launcher:
-  connectivity: ^3.0.6
+  connectivity_plus: ^6.1.1
 
   #State Management
 

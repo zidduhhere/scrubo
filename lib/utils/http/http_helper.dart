@@ -17,8 +17,8 @@ class THttpHelper {
     switch (urlType) {
       case ApiFlags.postalOffice:
         return "https://api.postalpincode.in/pincode/";
-      case ApiFlags.database:
-        return 'https://dev.scrubo.com/api/v1';
+      case ApiFlags.vehicles:
+        return "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/all-vehicles-model/";
       case ApiFlags.googleMaps:
         return 'https://staging.scrubo.com/api/v1';
       case ApiFlags.news:
@@ -29,23 +29,6 @@ class THttpHelper {
         return 'https://staging.scrubo.com/api/v1';
       default:
         return 'https://dev.scrubo.com/api/v1';
-    }
-  }
-
-  static String _getApiKey(ApiFlags apiType) {
-    switch (apiType) {
-      case ApiFlags.database:
-        return 'Bearer 1234567890';
-      case ApiFlags.googleMaps:
-        return 'Bearer 1234567890';
-      case ApiFlags.news:
-        return 'Bearer 1234567890';
-      case ApiFlags.price:
-        return 'Bearer 1234567890';
-      case ApiFlags.service:
-        return 'Bearer 123';
-      default:
-        return '';
     }
   }
 }

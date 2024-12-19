@@ -27,7 +27,7 @@ class TOutlinedButtonTheme {
         fontWeight: FontWeight.w600,
       ),
       foregroundColor: TColors.lightPrimaryColor,
-      overlayColor: Colors.black.withOpacity(0.1),
+      overlayColor: Colors.black.withAlpha(3),
     ),
   );
 
@@ -49,6 +49,6 @@ class TOutlinedButtonTheme {
     textStyle: TTextTheme.darkTextTheme.bodyMedium!
         .copyWith(color: TColors.darkPrimary, fontWeight: FontWeight.w600),
     foregroundColor: TColors.darkPrimary,
-    overlayColor: Colors.white.withOpacity(0.1),
+    overlayColor: Colors.white.withAlpha(1),
   ));
 }

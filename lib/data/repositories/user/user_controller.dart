@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:scrubo/data/repositories/user/user_repository.dart';
 import 'package:scrubo/pages/authentication/models/user_model.dart';
+import 'package:scrubo/utils/device/permission_handling.dart';
 import 'package:scrubo/utils/exceptions/custom_firebase_auth_exception.dart';
 import 'package:scrubo/utils/helpers/custom_snackbar.dart';
 
@@ -68,11 +70,13 @@ class UserController extends GetxController {
   Future<void> uploadProfilePicture() async {
     try {
       final imagePicker = ImagePicker();
+      await TPermissionHandler.handlePermissions(permission: Permission.camera);
       final XFile? image = await imagePicker.pickImage(
-          source: ImageSource.gallery,
-          imageQuality: 70,
-          maxHeight: 512,
-          maxWidth: 512);
+        source: ImageSource.camera,
+        imageQuality: 70,
+        maxHeight: 520,
+        maxWidth: 520,
+      );
       if (image != null) {
         final imageUrl = await userRepository.uploadUserProfilePicture(
             "Users/Images/Profile", image);

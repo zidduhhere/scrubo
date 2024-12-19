@@ -27,7 +27,7 @@ class TSingleAddress extends StatelessWidget {
         padding: const EdgeInsets.all(TUiConstants.m),
         border: isSelected
             ? null
-            : Border.all(color: TColors.lightSecondary.withOpacity(.4)),
+            : Border.all(color: TColors.lightSecondary.withAlpha(4)),
         onPressed: onPressed,
         child: Stack(
           children: [

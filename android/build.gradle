@@ -19,7 +19,11 @@ tasks.register("clean", Delete) {
 }
 
 buildscript {
-    ext.kotlin_version = '1.9.0'
+    ext {
+        agp_version = '8.7.3'
+        agp_version1 = '8.7.3'
+    }
+    ext.kotlin_version = '2.1.0'
     repositories {
         google()
         mavenCentral()

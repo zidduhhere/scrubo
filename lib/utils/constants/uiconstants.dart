@@ -208,14 +208,14 @@ class TShadowStyles {
   TShadowStyles._();
 
   static BoxShadow verticalShadow = BoxShadow(
-    color: Colors.grey.withOpacity(0.3),
+    color: Colors.grey.withAlpha(3),
     offset: const Offset(0, 2),
     blurRadius: 1,
     spreadRadius: 1,
   );
 
   static BoxShadow horizontalShadow = BoxShadow(
-    color: Colors.grey.withOpacity(0.3),
+    color: Colors.grey.withAlpha(3),
     offset: const Offset(2, 0),
     blurRadius: 1,
     spreadRadius: 1,

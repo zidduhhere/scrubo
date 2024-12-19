@@ -93,4 +93,24 @@ class TValidation {
         }
         return null;
       };
+
+  static FormFieldValidator<String> get registrationNumberValidator => (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter the registration number';
+        }
+        if (value.length > 10) {
+          return 'Registration number must be at most 10 characters long';
+        }
+        return null;
+      };
+
+  static FormFieldValidator<String> colorValidator = (value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter the color';
+    }
+    if (value.length > 10) {
+      return 'Color must be at most 10 characters long';
+    }
+    return null;
+  };
 }

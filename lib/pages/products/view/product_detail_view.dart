@@ -13,12 +13,14 @@ import 'package:scrubo/utils/widgets/custom/ratings_share_widget.dart';
 import 'package:scrubo/utils/widgets/headings/custom_row_header.dart';
 
 class ServiceDetailsView extends StatelessWidget {
-  const ServiceDetailsView({super.key});
+  const ServiceDetailsView({super.key, required this.product});
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    final arguemnts = Get.arguments;
-    final ProductModel product = arguemnts['product'];
+    //Retrieve the products argument with null check
+
+    //Body
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -88,7 +90,10 @@ class ServiceDetailsView extends StatelessWidget {
                         const Spacer(),
                         IconButton(
                             onPressed: () {
-                              Get.toNamed('/serviceDetails/reviews');
+                              Get.toNamed('/serviceDetails/reviews',
+                                  arguments: {
+                                    'product': product,
+                                  });
                             },
                             icon: const Icon(TUiConstants.iconArrowRight))
                       ],

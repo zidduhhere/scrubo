@@ -56,7 +56,7 @@ class TTextFieldTheme {
       ),
       borderSide: BorderSide(
         width: TUiConstants.textFieldBorder,
-        color: TColors.lightSecondary.withOpacity(0.3),
+        color: TColors.lightSecondary.withAlpha(150),
       ),
     ),
   );
@@ -109,7 +109,7 @@ class TTextFieldTheme {
       ),
       borderSide: BorderSide(
         width: TUiConstants.textFieldBorder,
-        color: TColors.darkOutline.withOpacity(0.5),
+        color: TColors.darkOutline.withAlpha(150),
       ),
     ),
   );

@@ -25,7 +25,7 @@ class TSearchBox extends StatelessWidget {
             prefixIcon: const Icon(TUiConstants.iconSearch),
             filled: true,
             fillColor:
-                Theme.of(context).colorScheme.surfaceContainer.withOpacity(1),
+                Theme.of(context).colorScheme.surfaceContainer.withAlpha(1),
             hintText: TTextConstants.searchServices,
             enabledBorder: OutlineInputBorder(
               borderRadius:
@@ -55,7 +55,7 @@ class TSearchBox extends StatelessWidget {
                     BorderRadius.circular(TUiConstants.borderRadiusMedium),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: Colors.grey.withAlpha(10),
                     spreadRadius: 2,
                     blurRadius: 4,
                     offset: const Offset(0, 2),

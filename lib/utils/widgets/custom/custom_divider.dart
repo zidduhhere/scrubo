@@ -47,7 +47,10 @@ class CustomDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Divider(
-      color: Theme.of(context).colorScheme.secondary.withOpacity(.4),
+      color: Theme.of(context)
+          .colorScheme
+          .secondary
+          .withValues(red: 0, green: 0, blue: 0, alpha: .1),
       height: 1,
       thickness: 1,
     );

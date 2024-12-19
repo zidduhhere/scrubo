@@ -14,7 +14,6 @@ class AddressRepository extends GetxController {
 
   Future<void> editAddress(AddressModel model) async {
     try {
-      print(model.id);
       await _db
           .collection("Users")
           .doc(AuthenticationRepository.instance.authUser?.uid)

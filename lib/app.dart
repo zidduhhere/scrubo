@@ -10,7 +10,9 @@ import 'package:scrubo/pages/authentication/screens/signup/view/verified_view.da
 import 'package:scrubo/pages/authentication/screens/signup/view/verify_view.dart';
 import 'package:scrubo/pages/booking_history/view/booking_history_view.dart';
 import 'package:scrubo/pages/personalization/address/edit_address.dart';
-import 'package:scrubo/pages/personalization/vehicles/vehicles.dart';
+import 'package:scrubo/pages/personalization/vehicles/add_vehicles.dart';
+import 'package:scrubo/pages/personalization/vehicles/vehicles_view.dart';
+import 'package:scrubo/pages/products/model/product_model.dart';
 import 'package:scrubo/pages/sub_categories/view/sub_categories_view.dart';
 import 'package:scrubo/pages/home/view/dynamic_location_view.dart';
 import 'package:scrubo/pages/home/view/home_view.dart';
@@ -45,7 +47,10 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/signup/verify/verified', page: () => const VerifiedView()),
         GetPage(
-            name: '/serviceDetails', page: () => const ServiceDetailsView()),
+            name: '/serviceDetails',
+            page: () => ServiceDetailsView(
+                  product: ProductModel.empty,
+                )),
         GetPage(
             name: '/serviceDetails/reviews',
             page: () => const ProdcutReviewView()),
@@ -66,6 +71,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/profile/address/edit', page: () => const EditAddressView()),
         GetPage(name: '/profile/vehicles', page: () => const VehiclesView()),
+        GetPage(
+            name: '/profile/vehicles/add', page: () => const AddNewVehicle()),
       ],
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

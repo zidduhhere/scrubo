@@ -27,7 +27,7 @@ class TSingleVehicle extends StatelessWidget {
         padding: const EdgeInsets.all(TUiConstants.m),
         border: isSelected
             ? null
-            : Border.all(color: TColors.lightSecondary.withOpacity(.4)),
+            : Border.all(color: TColors.lightSecondary.withAlpha(1)),
         onPressed: onPressed,
         child: Stack(
           children: [
@@ -63,7 +63,7 @@ class TSingleVehicle extends StatelessWidget {
                     text: model.registrationNumber,
                     isSmall: true,
                   ),
-                  TTitleTextWidget(text: model.make),
+                  TTitleTextWidget(text: model.model),
                   const SizedBox(height: TUiConstants.spaceBtwTexts),
                   TTitleTextWidget(text: model.company, isSmall: true),
                   const SizedBox(height: TUiConstants.spaceBtwTexts / 2),

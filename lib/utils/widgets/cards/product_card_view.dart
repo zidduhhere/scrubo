@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scrubo/utils/constants/uiconstants.dart';
-import 'package:scrubo/utils/widgets/buttons/custom_rounded_icon_button.dart';
 import 'package:scrubo/utils/widgets/containers/custom_discount_containers.dart';
 import 'package:scrubo/utils/widgets/headings/custom_price_text_views.dart';
 import 'package:scrubo/utils/widgets/containers/custom_rounded_containers.dart';
@@ -37,9 +36,8 @@ class ProductViewCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(TUiConstants.borderRadiusMedium),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height: TUiConstants.productCardImageHeight,
@@ -47,7 +45,7 @@ class ProductViewCard extends StatelessWidget {
               children: [
                 //Product Card Image
                 TRoundedImageContainer(
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   isNetworkImage: isNetworkImage,
                   backgroundColor: Colors.transparent,
                   imageUrl: imageUrl,
@@ -101,32 +99,6 @@ class ProductViewCard extends StatelessWidget {
                     StrikePriceTextWidget(
                         price: previousPrice, sign: TUiConstants.rupeeSign),
                   ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  //TODO: Implement increment count and design a function
-
-                  // bool success = homeViewController.incrementCount();
-                  // if (!success) {
-                  //   Get.snackbar(
-                  //     TTextConstants.snackBarTitle,
-                  //     TTextConstants.snackBarDescription,
-                  //     snackStyle: SnackStyle.FLOATING,
-                  //     colorText: Colors.white,
-                  //     icon: const Icon(
-                  //       Iconsax.warning_2,
-                  //       color: TColors.darkError,
-                  //     ),
-                  //     backgroundColor: TColors.lightPrimaryColor,
-                  //   );
-                  // }
-                },
-                child: const Align(
-                  alignment: Alignment.bottomRight,
-                  child: TRoundedIconButton(
-                    icon: TUiConstants.iconAdd,
-                  ),
                 ),
               ),
             ],

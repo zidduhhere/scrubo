@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VehicleModel {
-  final String id;
   final String model;
-  final String make;
+  final String? id;
   final String company;
   final String registrationNumber;
   final String color;
@@ -12,9 +11,8 @@ class VehicleModel {
   final String type;
 
   VehicleModel({
-    required this.id,
+    this.id,
     required this.model,
-    required this.make,
     required this.company,
     required this.registrationNumber,
     required this.color,
@@ -29,7 +27,6 @@ class VehicleModel {
       id: document.id,
       type: document['type'],
       model: document['model'],
-      make: document['make'],
       company: document['company'],
       registrationNumber: document['registrationNumber'],
       color: document['color'],
@@ -39,9 +36,7 @@ class VehicleModel {
   }
 
   static VehicleModel get empty => VehicleModel(
-        id: '',
         model: '',
-        make: '',
         type: '',
         company: '',
         registrationNumber: '',
@@ -52,9 +47,7 @@ class VehicleModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'model': model,
-      'make': make,
       'company': company,
       'registrationNumber': registrationNumber,
       'color': color,
@@ -65,9 +58,7 @@ class VehicleModel {
   }
 
   VehicleModel copyWith(
-      {String? id,
-      String? model,
-      String? make,
+      {String? model,
       String? company,
       String? registrationNumber,
       String? color,
@@ -76,9 +67,7 @@ class VehicleModel {
       String? type}) {
     return VehicleModel(
       type: type ?? this.type,
-      id: id ?? this.id,
       model: model ?? this.model,
-      make: make ?? this.make,
       company: company ?? this.company,
       registrationNumber: registrationNumber ?? this.registrationNumber,
       color: color ?? this.color,

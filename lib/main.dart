@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:scrubo/app.dart';
 import 'package:scrubo/data/repositories/auth/authentication_repository.dart';
 import 'package:scrubo/firebase_options.dart';
+import 'package:scrubo/utils/device/permission_handling.dart';
 
 void main() async {
   //Widget binding
@@ -24,6 +25,8 @@ void main() async {
       .then((FirebaseApp app) {
     Get.put(AuthenticationRepository());
   });
+
+  await TPermissionHandler.askAllPermissions();
 
   //Initialize App Check
   await FirebaseAppCheck.instance.activate(

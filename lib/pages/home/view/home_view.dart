@@ -4,7 +4,6 @@ import 'package:scrubo/data/repositories/user/user_controller.dart';
 import 'package:scrubo/pages/home/view/widgets/address_selection_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/categories_widget.dart';
 import 'package:scrubo/pages/home/view/widgets/home_carousel.dart';
-import 'package:scrubo/pages/home/viewmodel/home_view_controller.dart';
 import 'package:scrubo/pages/products/controllers/products_controller.dart';
 import 'package:scrubo/utils/widgets/containers/custom_shimmer.dart';
 import 'package:scrubo/utils/widgets/grids/product_grid.dart';
@@ -21,7 +20,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    final HomeViewController homeviewController = Get.put(HomeViewController());
     final productController = Get.put(ProductsController());
     final userController = Get.put(UserController());
     return GestureDetector(
